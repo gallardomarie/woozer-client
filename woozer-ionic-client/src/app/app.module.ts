@@ -14,8 +14,12 @@ import {firebaseConfig} from "../config";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-      AngularFireModule.initializeApp(firebaseConfig.fire),
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig.fire)
+      ],
   providers: [
     StatusBar,
     SplashScreen,
