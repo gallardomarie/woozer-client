@@ -5,10 +5,10 @@ import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'page-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginPage {
+export class LoginComponent {
 
   loginForm: FormGroup;
   loginError: string;
