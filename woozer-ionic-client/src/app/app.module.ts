@@ -12,8 +12,10 @@ import {AngularFireModule} from "@angular/fire";
 import {firebaseConfig} from "../config";
 import {AngularFireAuth} from "@angular/fire/auth";
 import {AuthService} from "../services/auth.service";
-import {LoginPageModule} from "./login/login.module";
+import {LoginModule} from "./login/login.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HomepageModule} from "./homepage/homepage.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent ],
@@ -23,9 +25,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       IonicModule.forRoot(),
       AppRoutingModule,
       AngularFireModule.initializeApp(firebaseConfig.fire),
-      LoginPageModule,
+      LoginModule,
+      HomepageModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule
   ],
   providers: [
     StatusBar,

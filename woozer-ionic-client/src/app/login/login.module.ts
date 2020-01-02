@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginComponent } from './login.component';
+import {UserService} from "../../services/user.service";
 
 const routes: Routes = [
   {
@@ -20,8 +21,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-      ReactiveFormsModule
+    ReactiveFormsModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers: [UserService]
 })
-export class LoginPageModule {}
+export class LoginModule {}

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NavController} from "@ionic/angular";
 import {AuthService} from "../../services/auth.service";
+import {ToastController} from "@ionic/angular";
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'page-login',
@@ -14,9 +16,11 @@ export class LoginComponent {
   loginError: string;
 
   constructor(
-      private navCtrl: NavController,
       private auth: AuthService,
-      fb: FormBuilder
+      private fb: FormBuilder,
+      private toastController: ToastController,
+      private userService: UserService,
+      private router: Router
   ) {
     this.loginForm = fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -37,9 +41,33 @@ export class LoginComponent {
     };
     this.auth.signInWithEmail(credentials)
         .then(
-            () => console.log("bien authentifié!"),
-            error => this.loginError = error.message
+            () => {
+              this.userService.findUserByMail(data.email).then((data) => {
+                if(data != null) {
+                  this.router.navigate(['/homepage'], {state : {user: data}});
+                } else {
+                  console.log("L'utilisateur n'existe pas en base.");
+                }
+              });
+            },
+            error => this.displayErrorToaster(error.code)
         );
+  }
+
+  async displayErrorToaster(errorCode: string) {
+    let message = "";
+    if(errorCode == "auth/user-not-found") {
+      message = "Aucun utilisateur n'est associé à l'email saisi.";
+    } else if (errorCode == "auth/wrong-password") {
+      message = "Le mot de passe saisi est invalide.";
+    } else {
+      message = "Erreur lors de la tentative de connexion. Veuillez réessayer."
+    }
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }
