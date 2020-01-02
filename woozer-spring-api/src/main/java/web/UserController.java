@@ -3,10 +3,7 @@ package web;
 import entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
 @RestController
@@ -21,5 +18,11 @@ public class UserController {
     public User getById(@PathVariable long id) {
         log.info("Récupération du user d'id {}", id);
         return userService.findById(id);
+    }
+
+    @PostMapping(path = "/email")
+    public User getByMail(@RequestBody String email) {
+        log.info("Recherche du user par mail : {}", email);
+        return userService.findByEmail(email);
     }
 }

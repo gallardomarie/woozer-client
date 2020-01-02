@@ -1,13 +1,12 @@
 package dao;
 
 import entity.User;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDao extends AbstractJpaDao<User> {
+public interface UserDao extends CrudRepository<User, Long> {
 
-    public UserDao() {
-        setClazz(User.class);
-    }
+    User findByEmail(String email);
 
 }
