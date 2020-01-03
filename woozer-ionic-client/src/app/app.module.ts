@@ -16,29 +16,35 @@ import {LoginModule} from "./login/login.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HomepageModule} from "./homepage/homepage.module";
 import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
-  declarations: [AppComponent ],
-  entryComponents: [],
-  imports: [
-      BrowserModule,
-      IonicModule.forRoot(),
-      AppRoutingModule,
-      AngularFireModule.initializeApp(firebaseConfig.fire),
-      LoginModule,
-      HomepageModule,
-      FormsModule,
-      ReactiveFormsModule,
-      HttpClientModule
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-      AngularFireAuth,
-      AuthService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        AngularFireModule.initializeApp(firebaseConfig.fire),
+        LoginModule,
+        HomepageModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SharedModule
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        AngularFireAuth,
+        AuthService,
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    ],
+    exports: [
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

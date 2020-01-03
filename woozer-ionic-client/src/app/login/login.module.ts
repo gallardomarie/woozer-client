@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginComponent } from './login.component';
 import {UserService} from "../../services/user.service";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [LoginComponent],
   providers: [UserService]
