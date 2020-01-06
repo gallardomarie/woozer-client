@@ -6,3 +6,7 @@ img#logo-login {
 div.logo-container, div.logo-container + h1 {
   text-align: center;
 }
+
+form#loginForm ion-list > p {
+  text-align: end;
+}

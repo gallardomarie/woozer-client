@@ -4,7 +4,7 @@
 
 <h1>Connexion</h1>
 
-<form (ngSubmit)="login()" [formGroup]="loginForm">
+<form (ngSubmit)="login()" [formGroup]="loginForm" id="loginForm">
   <ion-list inset>
 
     <ion-item >
@@ -17,17 +17,17 @@
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
-    <h3>Mot de passe oublié</h3>
+    <p>Mot de passe oublié</p>
 
-  </ion-list>
+    <div padding-horizontal>
+      <app-button text="Me connecter" type="submit"></app-button>
+    </div>
 
-  <div padding-horizontal>
-    <app-button text="Me connecter" type="submit"></app-button>
-  </div>
+    <div>
+      <p>Pas encore inscrit ?</p>
+      <app-button text="Créer mon compte"></app-button>
+    </div>
 
-  <div>
-    <h3>Pas encore inscrit ?</h3>
-    <app-button text="Créer mon compte"></app-button>
-  </div>
+    </ion-list>
 
 </form>
