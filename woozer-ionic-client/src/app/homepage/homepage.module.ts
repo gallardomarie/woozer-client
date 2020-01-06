@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {HomepageComponent} from "./homepage.component";
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     {
@@ -11,7 +12,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        SharedModule
     ],
     declarations: [HomepageComponent]
 })

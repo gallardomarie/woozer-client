@@ -11,4 +11,5 @@ export class UserService {
   findUserByMail(mail: string) {
     return this.httpClient.post(`${environment.apiBaseUrl}user/email`, mail).toPromise();
   }
+
 }
