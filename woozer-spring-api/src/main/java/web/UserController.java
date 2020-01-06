@@ -25,4 +25,10 @@ public class UserController {
         log.info("Recherche du user par mail : {}", email);
         return userService.findByEmail(email);
     }
+
+    @PostMapping(path = "")
+    public void createUser(@RequestBody User user) {
+        log.info("Création du user avec le mail : {}", user.getEmail());
+        userService.create(user);
+    }
 }
