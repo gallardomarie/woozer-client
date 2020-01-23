@@ -13,15 +13,3 @@ Il faut avoir installé :
 
 Pour lancer l'application :
 ``ionic serve``
-
-### Application back
-
-Il faut :
-- avoir installé MySQL (v8.0.18 fonctionne)
-- y créer un utilisateur (username = root, mdp = root)
-- lancer le script sql ```schema.sql``` pour créer la structure des tables
-- une fois la table créée, lancer le script sql ``data.sql`` pour créer un premier jeu de données
-
-Une fois la connexion SQL fonctionnelle, pour lancer l'API il faut exécuter le main de ``Application.java``.  
-Pour tester que tout fonctionne, la requête suivante en GET devrait retourner un utilisateur :
-``http://localhost:8080/user/1``
