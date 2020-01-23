@@ -1,17 +1,20 @@
 import {NgModule} from "@angular/core";
 import {ButtonComponent} from "./button/button.component";
 import { TopbarComponent } from './topbar/topbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     imports: [
     ],
     declarations: [
         ButtonComponent,
-        TopbarComponent
+        TopbarComponent,
+        FooterComponent
     ],
     exports: [
         ButtonComponent,
-        TopbarComponent
+        TopbarComponent,
+        FooterComponent
     ]
 })
 export class SharedModule {}
