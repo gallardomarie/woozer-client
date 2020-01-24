@@ -1,15 +1,19 @@
-<div class="blue_circle">
-        <em class="fa fa-calendar"></em>
-    </div>
-    <div class="blue_circle">
-        <em class="fa fa-euro"></em>
-    </div>
+<div class="separation_ligne">
+    <div class="footer">
+        <div class="blue_circle" (click)="navigateToCalendar()">
+            <em class="fa fa-calendar"></em>
+        </div>
+        <div class="blue_circle" (click)="navigateToTricount()">
+            <em class="fa fa-euro"></em>
+        </div>
 
-    <img src=".../../../assets/OO.jpg" alt="Woozer">
+        <img src=".../../../assets/OO.jpg" alt="Woozer" (click)="navigateToHomepage()">
 
-    <div class="orange_circle">
-        <em class="fa fa-camera-retro"></em>
+        <div id="camera" class="orange_circle" (click)="navigateToGallery()">
+            <em class="fa fa-camera-retro"></em>
+        </div>
+        <div class="orange_circle" (click)="navigateToChat()">
+            <em class="fa fa-comments"></em>
+        </div>
     </div>
-    <div class="orange_circle">
-        <em class="fa fa-comments"></em>
 </div>

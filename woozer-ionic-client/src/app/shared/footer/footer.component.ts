@@ -7,4 +7,30 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+    navigateToCalendar() {
+        // TODO
+        console.log('Je navigue sur le calendar');
+    }
+
+    navigateToTricount() {
+        // TODO
+        console.log('Je navigue sur le tricount');
+    }
+
+    navigateToGallery() {
+        // TODO
+        console.log('Je navigue dans la galerie');
+    }
+
+    navigateToChat() {
+        // TODO
+        console.log('Je navigue sur le chat');
+    }
+
+    navigateToHomepage() {
+        // TODO
+        console.log('Je navigue sur la page d accueil ');
+    }
+
+
 }

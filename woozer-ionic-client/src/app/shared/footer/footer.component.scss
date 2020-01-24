@@ -1,26 +1,51 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
-div{
-    border-radius:50%;
-    width: 50px;
-    height:50px;
+.separation_ligne {
 
-    em{
-        color:white;
-        margin: 13.5px;
-        font-size: 24px;  
-    }
+    border-top: solid 2px #FE6C0C;
     
-    .fa-euro {
-            margin-left: 17px;
+    .footer {
+        display: flex;
+        margin-bottom: 2%;
+        position: sticky;
+        margin-left:7%;
+        margin-right: 7%;
+        margin-top:2%;
+
+    img {
+        width: 34%;
+        max-width: 100%;
+    }
+
+    div{
+        border-radius:50%;
+        width: 21%;
+        max-width: 100%;
+
+        em{
+            color:white;
+            font-size: 135%;  
+            margin: 28%;
         }
-  }
+        
+        .fa-euro {
+                margin-left: 33%;
+            }
+    }
 
+    }
 
-.blue_circle {
-   background:#13A3C8;
-}
+    .blue_circle {
+    background:#13A3C8;
+    margin-right: 6%;
+    }
 
-.orange_circle {
-    background: #FE6C0C;
-}
+    .orange_circle {
+        background: #FE6C0C;
+    }
+
+        #camera {
+            margin-right: 6%;
+            margin-left: 6%;
+        }
+    }
