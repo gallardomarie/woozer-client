@@ -40,8 +40,10 @@ export class LoginComponent {
       password: data.password
     };
     this.auth.signInWithEmail(credentials)
-        .then(
-            () => {
+        .then(() => {
+              this.router.navigate(['/homepage'], {state: {user: data.email}});
+            }
+           /* () => {
                this.userService.findUserByMail(data.email).then((data) => {
                  if (data != null) {
               this.router.navigate(['/homepage'], {state: {user: data}});
@@ -49,9 +51,10 @@ export class LoginComponent {
                  console.log('L\'utilisateur n\'existe pas en base.');
                }
              },
-                   error => this.displayErrorToaster(error.code)
                );
-            });
+            }*/),
+    error => this.displayErrorToaster(error.code)
+    ;
   }
 
   async displayErrorToaster(errorCode: string) {

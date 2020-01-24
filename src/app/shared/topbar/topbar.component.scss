@@ -1,8 +1,14 @@
 nav#topbar {
-    background-color: orange;
+    background-color: #FE6C0C;
     text-align: end;
 }
 
-nav#topbar img {
+nav#topbar i {
     vertical-align: middle;
+}
+
+i {
+    font-size: 230%;
+    color: white;
+    margin: 1.5%;
 }
