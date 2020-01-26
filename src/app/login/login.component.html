@@ -4,26 +4,26 @@
 
 <h1>Connexion</h1>
 
-<form (ngSubmit)="login()" [formGroup]="loginForm" id="loginForm">
+<form (ngSubmit)="login()" [formGroup]="loginForm" id="login-form">
   <ion-list inset>
 
     <ion-item >
-      <ion-label>Email</ion-label>
+      <ion-label position="stacked">Email</ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Mot de passe</ion-label>
+      <ion-label position="stacked">Mot de passe</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
     <p>Mot de passe oublié</p>
 
-    <div padding-horizontal>
+    <div class="ion-padding-horizontal">
       <app-button text="Me connecter" type="submit"></app-button>
     </div>
 
-    <div>
+    <div id="create-account">
       <p>Pas encore inscrit ?</p>
       <app-button text="Créer mon compte"></app-button>
     </div>

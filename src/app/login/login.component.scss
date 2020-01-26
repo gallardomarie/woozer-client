@@ -1,12 +1,32 @@
 img#logo-login {
   max-width: 80%;
-  margin: 10% 0%;
+  margin-top: 10%;
 }
 
 div.logo-container, div.logo-container + h1 {
   text-align: center;
 }
 
-form#loginForm ion-list > p {
+form#login-form ion-list > p {
   text-align: end;
+  margin-top: 4%;
+}
+
+div#create-account {
+  margin: 8% 0% 5% 0%;
+}
+
+form#login-form ion-label {
+  font-size: 20px;
+  color: #7d7d7d;
+}
+
+div.ion-padding-horizontal {
+  text-align: center;
+  margin-top: 8%;
+}
+
+form#login-form ion-input {
+  --padding-top: 5%;
+  --padding-bottom: 0%;
 }
