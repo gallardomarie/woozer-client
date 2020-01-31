@@ -1,36 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
 
-    navigateToCalendar() {
-        // TODO
-        console.log('Je navigue sur le calendar');
-    }
+    constructor() { }
 
-    navigateToTricount() {
-        // TODO
-        console.log('Je navigue sur le tricount');
-    }
-
-    navigateToGallery() {
-        // TODO
-        console.log('Je navigue dans la galerie');
-    }
-
-    navigateToChat() {
-        // TODO
-        console.log('Je navigue sur le chat');
-    }
-
-    navigateToHomepage() {
-        // TODO
-        console.log('Je navigue sur la page d accueil ');
-    }
-
+    ngOnInit() {}
 
 }

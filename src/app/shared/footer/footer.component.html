@@ -1,18 +1,18 @@
 <div class="separation_ligne">
     <div class="footer">
-        <div class="blue_circle" (click)="navigateToCalendar()">
+        <div class="blue_circle" routerLink="agenda">
             <em class="fa fa-calendar"></em>
         </div>
-        <div class="blue_circle" (click)="navigateToTricount()">
+        <div class="blue_circle" routerLink="dettes">
             <em class="fas fa-euro-sign"></em>
         </div>
 
-        <img src=".../../../assets/OO.jpg" alt="Woozer" (click)="navigateToHomepage()">
+        <img src=".../../../assets/OO.jpg" alt="Woozer" routerLink="homepage">
 
-        <div id="camera" class="orange_circle" (click)="navigateToGallery()">
+        <div id="camera" class="orange_circle" routerLink="album">
             <em class="fa fa-camera-retro"></em>
         </div>
-        <div class="orange_circle" (click)="navigateToChat()">
+        <div class="orange_circle" routerLink="discussions">
             <em class="fa fa-comments"></em>
         </div>
     </div>

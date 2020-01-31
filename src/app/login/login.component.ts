@@ -41,7 +41,7 @@ export class LoginComponent {
     };
     this.auth.signInWithEmail(credentials)
         .then(() => {
-              this.router.navigate(['/homepage'], {state: {user: data.email}});
+              this.router.navigate(['homepage'], {state: {user: data.email}});
             }
            /* () => {
                this.userService.findUserByMail(data.email).then((data) => {
