@@ -8,15 +8,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {AngularFireModule} from "@angular/fire";
-import {firebaseConfig} from "../config";
-import {AngularFireAuth} from "@angular/fire/auth";
-import {AuthService} from "../services/auth.service";
-import {LoginModule} from "./login/login.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HomepageModule} from "./homepage/homepage.module";
-import {HttpClientModule} from "@angular/common/http";
-import {SharedModule} from "./shared/shared.module";
+import {AngularFireModule} from '@angular/fire';
+import {firebaseConfig} from '../config';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from '../services/auth.service';
+import {LoginModule} from './login/login.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HomepageModule} from './homepage/homepage.module';
+import {HttpClientModule} from '@angular/common/http';
+import {SharedModule} from './shared/shared.module';
+
 
 @NgModule({
     declarations: [
@@ -33,7 +34,7 @@ import {SharedModule} from "./shared/shared.module";
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        SharedModule
+        SharedModule,
     ],
     providers: [
         StatusBar,
