@@ -1,3 +1,40 @@
-<p>
-  calendar works!
-</p>
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <!-- Bouton pour aller sur le mois précédent -->
+      <!-- TODO : changer le css -->
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+      >
+        Previous
+      </div>
+
+      <!-- Bouton pour aller sur le mois suivant -->
+      <!-- TODO : changer le css-->
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+         >
+        Next
+      </div>
+    </div>
+  </div>
+  <!-- Affichage du mois en cours ainsi que l'année -->
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Fr' }}</h3>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    (dayClicked)="dayClicked($event.day)"
+  >
+  </mwl-calendar-month-view>
+</div>
