@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { CalendarEvent, CalendarView, CalendarDateFormatter } from 'angular-calendar';
+import { CalendarView, CalendarDateFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './calendar-formatter.provider';
 
-const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
