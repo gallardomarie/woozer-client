@@ -1,32 +1,34 @@
- <div class="headerCalendar">
-    <!-- Bouton pour aller sur le mois précédent -->
-    <!-- TODO : changer le css -->
-    <div
-      mwlCalendarPreviousView
-      [view]="view"
-      [(viewDate)]="viewDate"
-    >
-    <i class="fas fa-chevron-left"></i>
-    </div>
-  <!-- Affichage du mois en cours ainsi que l'année -->
-    <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Fr' }}</p>
-  
-          <!-- Bouton pour aller sur le mois suivant -->
-      <!-- TODO : changer le css-->
+ <div class="background">
+  <div class="headerCalendar">
+      <!-- Bouton pour aller sur le mois précédent -->
+      <!-- TODO : changer le css -->
       <div
-        mwlCalendarNextView
+        mwlCalendarPreviousView
         [view]="view"
         [(viewDate)]="viewDate"
-         >
-         <i class="fas fa-chevron-right"></i>
+      >
+      <i class="fas fa-chevron-left"></i>
       </div>
+    <!-- Affichage du mois en cours ainsi que l'année -->
+      <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Fr' }}</p>
+    
+            <!-- Bouton pour aller sur le mois suivant -->
+        <!-- TODO : changer le css-->
+        <div
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          >
+          <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+  <div class="calendar" [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      (dayClicked)="dayClicked($event.day)"
+    >
+    </mwl-calendar-month-view>
   </div>
-<br />
-<div [ngSwitch]="view">
-  <mwl-calendar-month-view
-    *ngSwitchCase="CalendarView.Month"
-    [viewDate]="viewDate"
-    (dayClicked)="dayClicked($event.day)"
-  >
-  </mwl-calendar-month-view>
+  
 </div>
