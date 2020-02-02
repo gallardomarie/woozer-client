@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +18,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomepageModule} from './homepage/homepage.module';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
-
-
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 @NgModule({
     declarations: [
         AppComponent
@@ -26,6 +33,7 @@ import {SharedModule} from './shared/shared.module';
     entryComponents: [],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         IonicModule.forRoot(),
         AppRoutingModule,
         AngularFireModule.initializeApp(firebaseConfig.fire),
@@ -35,6 +43,13 @@ import {SharedModule} from './shared/shared.module';
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
+        CommonModule,
+        NgbModalModule,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory
+          })
     ],
     providers: [
         StatusBar,
