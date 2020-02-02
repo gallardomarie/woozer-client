@@ -10,6 +10,7 @@
         align-items: baseline;
         place-content: space-around;
         font-size: 100%;
+        padding-top: 3%;
     }
     
      .calendar {
@@ -46,15 +47,30 @@
                     border: none !important;
                 
             
-                 mwl-calendar-month-cell {
-                   border: none !important;
-                   min-height: 0px !important;
-                   height: 40px !important;
-    
+                    mwl-calendar-month-cell {
+                        border: none !important;
+                        min-height: 0px !important;
+                        height: 40px !important;
+                    }
                 }
-            }
-        }
-        }
-        
+            }   
+        }        
+    }
 }
+
+.createEvent {
+    color: #fe6d0c;
+    display: flex;
+    place-content: flex-end;
+    margin-right: 3%;
+   
+
+    p {
+        text-decoration: underline;
+        font-size: 14px;
+    }
+    
+    i {
+        margin: 5px;  
+    }
 }

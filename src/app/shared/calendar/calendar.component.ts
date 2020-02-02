@@ -39,4 +39,10 @@ export class CalendarComponent implements OnInit {
      */
   }
 
+  createEvent() {
+    /**
+     * TODO Ouvrir le formulaire de création d'événement
+     */
+    console.log('Créer un événement');
+  }
 }
