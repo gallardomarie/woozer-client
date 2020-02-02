@@ -39,22 +39,23 @@ export class LoginComponent {
       email: data.email,
       password: data.password
     };
-    this.auth.signInWithEmail(credentials)
-        .then(() => {
-              this.router.navigate(['homepage'], {state: {user: data.email}});
-            }
-           /* () => {
-               this.userService.findUserByMail(data.email).then((data) => {
-                 if (data != null) {
-              this.router.navigate(['/homepage'], {state: {user: data}});
-               } else {
-                 console.log('L\'utilisateur n\'existe pas en base.');
-               }
-             },
-               );
-            }*/),
-    error => this.displayErrorToaster(error.code)
-    ;
+    this.router.navigate(['woozer/home'], {state: {user: data.email}});
+    /* this.auth.signInWithEmail(credentials)
+         .then(() => {
+               this.router.navigate(['homepage'], {state: {user: data.email}});
+             }
+            /!* () => {
+                this.userService.findUserByMail(data.email).then((data) => {
+                  if (data != null) {
+               this.router.navigate(['/homepage'], {state: {user: data}});
+                } else {
+                  console.log('L\'utilisateur n\'existe pas en base.');
+                }
+              },
+                );
+             }*!/),
+     error => this.displayErrorToaster(error.code)
+     ;*/
   }
 
   async displayErrorToaster(errorCode: string) {
