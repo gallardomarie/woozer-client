@@ -7,9 +7,9 @@ import { DebtComponent } from './debt/debt.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
-import {GroupListComponent} from "./groupe/group-list.component";
-import {path} from "@angular-devkit/core";
-import {GroupFormComponent} from "./groupe/form/group-form.component";
+import {GroupListComponent} from './groupe/group-list.component';
+import {GroupFormComponent} from './groupe/form/group-form.component';
+import {IonicModule} from '@ionic/angular';
 
 const routes: Routes = [
     {
@@ -38,13 +38,11 @@ const routes: Routes = [
             },
             {
                 path: 'groupe',
-                component: GroupListComponent,
-                children: [
-                    {
-                        path: 'form',
-                        component: GroupFormComponent
-                    }
-                ]
+                component: GroupListComponent
+            },
+            {
+                path: 'groupe/form',
+                component: GroupFormComponent
             }
         ]
     }
@@ -53,7 +51,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
-        SharedModule
+        SharedModule,
+        IonicModule
     ],
     declarations: [
         HomepageComponent,
