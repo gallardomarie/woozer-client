@@ -7,9 +7,12 @@ import { DebtComponent } from './debt/debt.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
-import {GroupListComponent} from './groupe/group-list.component';
-import {GroupFormComponent} from './groupe/form/group-form.component';
-import {IonicModule} from '@ionic/angular';
+import {GroupListComponent} from "./groupe/group-list.component";
+import {path} from "@angular-devkit/core";
+import {GroupFormComponent} from "./groupe/form/group-form.component";
+import {IonicModule} from "@ionic/angular";
+import {GroupService} from "../../services/group.service";
+import {CommonModule} from "@angular/common";
 
 const routes: Routes = [
     {
@@ -52,7 +55,8 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         SharedModule,
-        IonicModule
+        IonicModule,
+        CommonModule
     ],
     declarations: [
         HomepageComponent,
@@ -64,5 +68,8 @@ const routes: Routes = [
         GroupListComponent,
         GroupFormComponent
     ],
+    providers: [
+        GroupService
+    ]
 })
 export class HomepageModule {}

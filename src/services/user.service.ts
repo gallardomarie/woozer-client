@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import {User} from "../app/login/user";
 
 @Injectable()
 export class UserService {
@@ -9,7 +10,7 @@ export class UserService {
               ) { }
 
   findUserByMail(mail: string) {
-    return this.httpClient.post(`${environment.apiBaseUrl}user/email`, mail).toPromise();
+    return this.httpClient.post<User>(`${environment.apiBaseUrl}user/email`, mail).toPromise();
   }
 
 }
