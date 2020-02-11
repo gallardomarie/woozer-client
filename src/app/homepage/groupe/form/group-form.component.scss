@@ -1,6 +1,11 @@
-* {
+form {
   font-family: 'Lato', sans-serif!important;
 }
+
+form i {
+  font-family:'Font Awesome 5 Free'!important;
+}
+
 .blue_circle {
   background: #13A3C8;
   width: 100px;
@@ -15,4 +20,9 @@ em {
   margin-top: 15%;
   margin-left: 13%;
   color: white;
+}
+
+form > div {
+  display: flex;
+  margin: -60% 5% 0% 5%;
 }
