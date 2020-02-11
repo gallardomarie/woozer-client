@@ -8,11 +8,11 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
 import {GroupListComponent} from "./groupe/group-list.component";
-import {path} from "@angular-devkit/core";
 import {GroupFormComponent} from "./groupe/form/group-form.component";
 import {IonicModule} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
+import { EventComponent } from './event/event.component';
 
 const routes: Routes = [
     {
@@ -48,6 +48,12 @@ const routes: Routes = [
                 component: GroupFormComponent
             }
         ]
+    },
+
+    /** TODO : Supprimer le routing (Ajouter à un component ci-dessus) */
+    {
+    path: 'event',
+    component: EventComponent
     }
 ];
 
@@ -67,6 +73,7 @@ const routes: Routes = [
         HomeComponent,
         GroupListComponent,
         GroupFormComponent
+        EventComponent
     ],
     providers: [
         GroupService

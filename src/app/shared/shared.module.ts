@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ListEventComponent } from './list-event/list-event.component';
 
 @NgModule({
     imports: [
@@ -21,13 +22,15 @@ import { CalendarComponent } from './calendar/calendar.component';
         ButtonComponent,
         TopbarComponent,
         FooterComponent,
-        CalendarComponent
+        CalendarComponent,
+        ListEventComponent,
     ],
     exports: [
         ButtonComponent,
         TopbarComponent,
         FooterComponent,
-        CalendarComponent
+        CalendarComponent,
+        ListEventComponent
     ]
 })
 export class SharedModule {}
