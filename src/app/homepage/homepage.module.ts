@@ -13,6 +13,7 @@ import {IonicModule} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
 import { EventComponent } from './event/event.component';
+import { EventDetailsComponent } from './event/details/event.details.component';
 
 const routes: Routes = [
     {
@@ -54,6 +55,10 @@ const routes: Routes = [
     {
     path: 'event',
     component: EventComponent
+    },
+    {
+        path: 'details',
+        component: EventDetailsComponent
     }
 ];
 
@@ -72,8 +77,9 @@ const routes: Routes = [
         PhotoAlbumComponent,
         HomeComponent,
         GroupListComponent,
-        GroupFormComponent
-        EventComponent
+        GroupFormComponent,
+        EventComponent,
+        EventDetailsComponent
     ],
     providers: [
         GroupService

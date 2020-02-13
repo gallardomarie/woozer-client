@@ -17,7 +17,6 @@ export class EventComponent implements OnInit {
         /** TODO : importer l'id du group pour récupérer ses events */
         this.eventService.findAllByGroupId(4).then(events => {
             this.listEvent = events;
-            console.log(this.listEvent);
         });
     }
 }

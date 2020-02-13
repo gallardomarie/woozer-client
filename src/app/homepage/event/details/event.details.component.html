@@ -1,0 +1,34 @@
+<!-- Ajouter le nom de l'event dans la barre d'entête -->
+<!-- TODO Créer le bouton de modif d'event -->
+
+<div class="details" *ngIf="event">
+    <label> Description </label>
+    <div class="description">
+        {{event.description}}
+    </div>
+
+    <div>
+        <label>Date : </label>
+        <span *ngIf="event.date"> {{event.date}}</span>
+        <span *ngIf="!event.date"> en attente </span>
+    </div>
+
+    <div>
+        <label> Lieu : </label>
+        <span *ngIf="event.place"> {{event.place}}</span>
+        <span *ngIf="!event.place"> en attente </span>
+    </div>
+
+    <div>
+        <label> Heure :</label>
+        <span *ngIf="event.hour"> {{event.hour}}</span>
+        <span *ngIf="!event.hour"> en attente </span>
+    </div>
+
+    <label> Participants : </label>
+    <div class="participant">
+        <!-- TODO Afficher les participants à l'event -->
+    </div>
+</div>
+
+<!-- TODO Ajouter le bandeau "Je participe?" -->
