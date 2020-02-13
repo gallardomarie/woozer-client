@@ -47,19 +47,17 @@ const routes: Routes = [
             {
                 path: 'groupe/form',
                 component: GroupFormComponent
+            },
+            {
+                path: 'event',
+                component: EventComponent
+            },
+            {
+                path: 'event/details',
+                component: EventDetailsComponent
             }
         ]
     },
-
-    /** TODO : Supprimer le routing (Ajouter à un component ci-dessus) */
-    {
-    path: 'event',
-    component: EventComponent
-    },
-    {
-        path: 'details',
-        component: EventDetailsComponent
-    }
 ];
 
 @NgModule({

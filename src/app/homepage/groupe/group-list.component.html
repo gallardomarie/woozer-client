@@ -1,6 +1,6 @@
 <app-button id="create-group-button" text="Créer un groupe" routerLink="form"></app-button>
 
-<ion-item *ngFor="let group of groups" lines="none">
+<ion-item *ngFor="let group of groups" lines="none" (click)="openGroup(group.id)">
     <div class="item-content">
         <ion-label>
             <img src="https://photos.lci.fr/images/1024/576/friends-4f642a-2@1x.jpeg" style="width: 120px">

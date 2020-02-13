@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { EventService } from 'src/services/event.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-event',
@@ -11,12 +12,19 @@ export class EventComponent implements OnInit {
 
     private listEvent;
 
-    constructor( private eventService: EventService) {}
+    constructor(
+        private eventService: EventService,
+        private activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnInit() {
         /** TODO : importer l'id du group pour récupérer ses events */
-        this.eventService.findAllByGroupId(4).then(events => {
-            this.listEvent = events;
-        });
+        this.activatedRoute.queryParams.subscribe(
+            params => {
+                this.eventService.findAllByGroupId(+params.groupId).then(events => {
+                    this.listEvent = events;
+                });
+            }
+        );
     }
 }
