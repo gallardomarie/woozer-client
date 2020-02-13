@@ -22,7 +22,7 @@ export class GroupListComponent implements OnInit {
         (groups) => {
           this.groups = groups;
         }
-    )
+    );
   }
 
   openGroup(id) {

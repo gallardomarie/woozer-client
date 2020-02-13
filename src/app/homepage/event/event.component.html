@@ -7,7 +7,7 @@
 <!-- TODO Titre (composant) -->
 
 <div class="list-event" *ngIf="listEvent">
-    <div class="event" *ngFor="let event of listEvent">
+    <div class="event" *ngFor="let event of listEvent" (click)="openDetailsEvent(event.id)">
 
         <!-- Affichage du nom de l'event -->
         <span class= "name">{{event.name}}</span>

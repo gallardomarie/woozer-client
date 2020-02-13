@@ -14,11 +14,11 @@ export class EventComponent implements OnInit {
 
     constructor(
         private eventService: EventService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
-        /** TODO : importer l'id du group pour récupérer ses events */
         this.activatedRoute.queryParams.subscribe(
             params => {
                 this.eventService.findAllByGroupId(+params.groupId).then(events => {
@@ -26,5 +26,9 @@ export class EventComponent implements OnInit {
                 });
             }
         );
+    }
+
+    openDetailsEvent(eventId) {
+        this.router.navigate(['/woozer/event/details'], {queryParams: {eventId: eventId}});
     }
 }
