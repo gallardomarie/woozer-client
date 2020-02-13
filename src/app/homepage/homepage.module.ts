@@ -8,11 +8,12 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
 import {GroupListComponent} from "./groupe/group-list.component";
-import {path} from "@angular-devkit/core";
 import {GroupFormComponent} from "./groupe/form/group-form.component";
 import {IonicModule} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
+import { EventComponent } from './event/event.component';
+import { EventDetailsComponent } from './event/details/event.details.component';
 
 const routes: Routes = [
     {
@@ -46,9 +47,17 @@ const routes: Routes = [
             {
                 path: 'groupe/form',
                 component: GroupFormComponent
+            },
+            {
+                path: 'event',
+                component: EventComponent
+            },
+            {
+                path: 'event/details',
+                component: EventDetailsComponent
             }
         ]
-    }
+    },
 ];
 
 @NgModule({
@@ -66,7 +75,9 @@ const routes: Routes = [
         PhotoAlbumComponent,
         HomeComponent,
         GroupListComponent,
-        GroupFormComponent
+        GroupFormComponent,
+        EventComponent,
+        EventDetailsComponent
     ],
     providers: [
         GroupService

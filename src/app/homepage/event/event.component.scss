@@ -1,0 +1,35 @@
+.list-event {
+    display: list-item;
+    
+    .event {
+        background-color:  rgb(240, 240, 240);
+        margin: 3%;
+        padding: 5%;
+
+        .name {
+            color: #fe6d0c;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .attente {
+            font-style: italic;
+        }
+
+        .date {
+            display: block;
+            margin-top: inherit;
+        }
+
+        .place {
+            display: block;
+        }
+        .dateLabel, .placeLabel {
+            text-decoration: underline;
+            margin-right: 3%;
+        }
+
+    }
+
+
+}
