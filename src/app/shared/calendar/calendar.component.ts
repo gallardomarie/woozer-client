@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView, CalendarDateFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './calendar-formatter.provider';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -25,7 +26,9 @@ export class CalendarComponent implements OnInit {
    * Peut utiliser CalendarEvent ??
    */
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
   } 
@@ -40,9 +43,6 @@ export class CalendarComponent implements OnInit {
   }
 
   createEvent() {
-    /**
-     * TODO Ouvrir le formulaire de création d'événement
-     */
-    console.log('Créer un événement');
+    this.router.navigateByUrl('/woozer/event/form');
   }
 }

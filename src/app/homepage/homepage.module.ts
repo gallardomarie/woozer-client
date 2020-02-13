@@ -14,6 +14,7 @@ import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
 import { EventComponent } from './event/event.component';
 import { EventDetailsComponent } from './event/details/event.details.component';
+import { FormulaireEventComponent } from './event/formulaire-event/formulaire-event.component';
 
 const routes: Routes = [
     {
@@ -55,6 +56,10 @@ const routes: Routes = [
             {
                 path: 'event/details',
                 component: EventDetailsComponent
+            },
+            {
+                path: 'event/form',
+                component: FormulaireEventComponent
             }
         ]
     },
@@ -77,7 +82,8 @@ const routes: Routes = [
         GroupListComponent,
         GroupFormComponent,
         EventComponent,
-        EventDetailsComponent
+        EventDetailsComponent,
+        FormulaireEventComponent
     ],
     providers: [
         GroupService
