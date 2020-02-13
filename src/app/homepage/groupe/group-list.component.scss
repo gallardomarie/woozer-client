@@ -1,0 +1,26 @@
+* {
+  font-family: 'Lato', sans-serif!important;
+}
+
+div.item-content {
+  display: flex;
+  align-items: center;
+  background-color: #f4f5f6;
+  width: 100%;
+  height: 85px;
+  margin: 2% 0%;
+}
+
+div.item-content div, ion-label img {
+  margin-left: 3%;
+}
+
+#create-group-button ::ng-deep button  {
+  margin-bottom: 5%;
+  margin-top: -70%;
+}
+
+div.item-content div ion-label:first-child {
+  color: #FE6C0C;
+  font-weight: bold;
+}
