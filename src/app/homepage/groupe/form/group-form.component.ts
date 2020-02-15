@@ -1,45 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import {AutoCompleteService} from "ionic4-auto-complete";
-import {UserService} from "../../../../services/user.service";
+import {UserAutocompleteService} from '../../../../services/user-autocomplete.service';
+import {User} from '../../../login/user';
+import {Group} from '../group';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-group-form',
   templateUrl: './group-form.component.html',
   styleUrls: ['./group-form.component.scss'],
 })
-export class GroupFormComponent implements OnInit, AutoCompleteService {
+export class GroupFormComponent implements OnInit {
 
-  constructor(
-      private userService: UserService
-  ) { }
+  group: Group;
+  groupForm: FormGroup;
+  creation: boolean;
+
+    constructor(
+        public userAutocompleteService: UserAutocompleteService,
+        private fb: FormBuilder,
+        private route: ActivatedRoute
+    ) {
+        this.groupForm = fb.group({
+            name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      });
+    }
 
   ngOnInit() {
-    this.labelAttribute = 'username';
+      //TODO récupérer id du groupe pour afficher le nom
   }
 
-  formValueAttribute: any;
-  labelAttribute: string;
-
-  getItemLabel(item: any): any {
+  addDeleteUser(user: User) {
+    console.log(`add du user de username ${user.username}`);
   }
 
-  //https://www.npmjs.com/package/ionic4-auto-complete
+/*{
+    path : 'pros/creation',
+    component : ProFormComponent,
+    canActivate: [RouteGuard],
+    data : {'roles' : ['ROLE_PRO_W'], 'menuToActivate' : 'pros', 'breadcrumbs': ['_PROS_', '_PROS_LIST_#/pros', '_PRO_ADD_']}
+},
+{
+    path : 'pros/modification/:id',
+        component : ProFormComponent,
+    canActivate: [RouteGuard],
+    data : {'roles' : ['ROLE_PRO_W'], 'menuToActivate' : 'pros', 'breadcrumbs': ['_PROS_', '_PROS_LIST_#/pros', '_PRO_EDIT_']},
+    resolve: {pro: ProResolver}
 
-  getResults(term: any): any {
-    if(!term) {
-      return false;
+     let mode : string = this.route.snapshot.data['mode'];
+    if (mode == 'creation') {
+      this.creation = true;
     }
-    /*return this.http.get('https://restcountries.eu/rest/v2/name/' + keyword).pipe(map(
-        (result: any[]) => {
-          return result.filter(
-              (item) => {
-                return item.name.toLowerCase().startsWith(
-                    keyword.toLowerCase()
-                );
-              }
-          );
-        }
-    ));*/
-  }
+    else {
+      this.creation = false;
+},*/
+
+
 
 }

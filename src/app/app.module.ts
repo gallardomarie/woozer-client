@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomepageModule} from './homepage/homepage.module';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
+import {AutoCompleteModule} from 'ionic4-auto-complete';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {SharedModule} from './shared/shared.module';
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
+        AutoCompleteModule
     ],
     providers: [
         StatusBar,

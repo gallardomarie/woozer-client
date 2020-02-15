@@ -1,9 +1,9 @@
-<app-button id="create-group-button" text="Créer un groupe" routerLink="form"></app-button>
+<app-button id="create-group-button" text="Créer un groupe" routerLink="creation"></app-button>
 
 <ion-item *ngFor="let group of groups" lines="none">
-    <div class="item-content">
+    <div class="item-content" [routerLink]="['modification', group.id]">
         <ion-label>
-            <img src="https://photos.lci.fr/images/1024/576/friends-4f642a-2@1x.jpeg" style="width: 120px">
+            <img src="https://photos.lci.fr/images/1024/576/friends-4f642a-2@1x.jpeg" style="width: 130px">
         </ion-label>
         <div>
             <ion-label>{{group.name}}</ion-label>

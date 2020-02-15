@@ -8,11 +8,14 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
 import {GroupListComponent} from "./groupe/group-list.component";
-import {path} from "@angular-devkit/core";
 import {GroupFormComponent} from "./groupe/form/group-form.component";
 import {IonicModule} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {UserAutocompleteService} from '../../services/user-autocomplete.service';
+import {AutoCompleteModule} from 'ionic4-auto-complete';
 
 const routes: Routes = [
     {
@@ -41,10 +44,14 @@ const routes: Routes = [
             },
             {
                 path: 'groupe',
-                component: GroupListComponent
+                component: GroupListComponent,
             },
             {
-                path: 'groupe/form',
+                path: 'groupe/creation',
+                component: GroupFormComponent
+            },
+            {
+                path: 'groupe/modification/:id',
                 component: GroupFormComponent
             }
         ]
@@ -56,7 +63,10 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule,
         IonicModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        AutoCompleteModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         HomepageComponent,
@@ -69,7 +79,9 @@ const routes: Routes = [
         GroupFormComponent
     ],
     providers: [
-        GroupService
+        GroupService,
+        UserService,
+        UserAutocompleteService
     ]
 })
 export class HomepageModule {}

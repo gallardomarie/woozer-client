@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="loginForm">
 
   <div>
     <div>
@@ -10,20 +10,20 @@
 
     <ion-item >
       <ion-label position="stacked">Nom du groupe</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" formControlName="name"></ion-input>
     </ion-item>
   </div>
 
   <h4>Ajouter des membres</h4>
 
-  <ion-item>
-    <ion-icon name="search-outline" slot="start"></ion-icon>
-    <ion-label position="floating">Floating Label</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <div class="ion-form-group">
+    <ng-template #withImageAndIcon let-attrs="attrs">
+      <span [innerHTML]="attrs.data.username"></span>
+      <ion-icon (click)="addDeleteUser(attrs.data)" name="add-circle-outline"></ion-icon>
+    </ng-template>
+    <ion-auto-complete [dataProvider]="userAutocompleteService" [template]="withImageAndIcon"></ion-auto-complete>
+  </div>
 
-  <p>Recherche de membres par autocomplétion</p>
-  
   <h4>Membres du groupe</h4>
 
   <p>Listing des membres avec icones admin</p>
