@@ -16,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {UserAutocompleteService} from '../../services/user-autocomplete.service';
 import {AutoCompleteModule} from 'ionic4-auto-complete';
+import { GroupHomeComponent } from './groupe/home/group-home.component';
 
 const routes: Routes = [
     {
@@ -53,6 +54,10 @@ const routes: Routes = [
             {
                 path: 'groupe/modification/:id',
                 component: GroupFormComponent
+            },
+            {
+                path: 'groupe/home/:id',
+                component: GroupHomeComponent
             }
         ]
     }
@@ -76,7 +81,8 @@ const routes: Routes = [
         PhotoAlbumComponent,
         HomeComponent,
         GroupListComponent,
-        GroupFormComponent
+        GroupFormComponent,
+        GroupHomeComponent
     ],
     providers: [
         GroupService,
