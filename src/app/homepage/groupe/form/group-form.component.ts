@@ -3,7 +3,8 @@ import {UserAutocompleteService} from '../../../../services/user-autocomplete.se
 import {User} from '../../../login/user';
 import {Group} from '../group';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import { GroupService } from 'src/services/group.service';
 
 @Component({
   selector: 'app-group-form',
@@ -19,7 +20,8 @@ export class GroupFormComponent implements OnInit {
     constructor(
         public userAutocompleteService: UserAutocompleteService,
         private fb: FormBuilder,
-        private route: ActivatedRoute
+        private router: Router,
+        private groupService: GroupService
     ) {
         this.groupForm = fb.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -27,34 +29,28 @@ export class GroupFormComponent implements OnInit {
     }
 
   ngOnInit() {
-      //TODO récupérer id du groupe pour afficher le nom
-  }
-
-  addDeleteUser(user: User) {
-    console.log(`add du user de username ${user.username}`);
-  }
-
-/*{
-    path : 'pros/creation',
-    component : ProFormComponent,
-    canActivate: [RouteGuard],
-    data : {'roles' : ['ROLE_PRO_W'], 'menuToActivate' : 'pros', 'breadcrumbs': ['_PROS_', '_PROS_LIST_#/pros', '_PRO_ADD_']}
-},
-{
-    path : 'pros/modification/:id',
-        component : ProFormComponent,
-    canActivate: [RouteGuard],
-    data : {'roles' : ['ROLE_PRO_W'], 'menuToActivate' : 'pros', 'breadcrumbs': ['_PROS_', '_PROS_LIST_#/pros', '_PRO_EDIT_']},
-    resolve: {pro: ProResolver}
-
-     let mode : string = this.route.snapshot.data['mode'];
-    if (mode == 'creation') {
+    this.group = new Group(null, "", [], []);
+    if(this.router.url.includes("creation")) {
       this.creation = true;
-    }
-    else {
+    } else {
       this.creation = false;
-},*/
+      this.groupService.findGroupById(this.router.url[this.router.url.length-1]).then((group) => {
+        this.group = group;
+      });
+    }
+  }
 
+  addUser(user: User) {
+    let users = this.group.users;
+    users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
+  }
 
+  removeUser(user: User) {
+    this.group.users.push(user);
+  }
+
+  isInGroup(user: User) {
+    return this.group.users.findIndex((userArray) => userArray.id === user.id) !== -1;
+  }
 
 }
