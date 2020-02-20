@@ -41,12 +41,12 @@ export class GroupFormComponent implements OnInit {
   }
 
   addUser(user: User) {
-    let users = this.group.users;
-    users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
+    this.group.users.push(user);
   }
 
   removeUser(user: User) {
-    this.group.users.push(user);
+    let users = this.group.users;
+    users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
   }
 
   isInGroup(user: User) {
