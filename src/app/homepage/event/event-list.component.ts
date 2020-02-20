@@ -29,6 +29,6 @@ export class EventListComponent implements OnInit {
     }
 
     openDetailsEvent(eventId) {
-        this.router.navigate(['/woozer/event/details'], {queryParams: {eventId: eventId}});
+        this.router.navigate(['/woozer/event/details', eventId]);
     }
 }
