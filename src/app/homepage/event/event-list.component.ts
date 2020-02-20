@@ -13,22 +13,19 @@ import { GroupService } from 'src/services/group.service';
 export class EventListComponent implements OnInit {
 
     private listEvent;
-    group: Group;
+    groupId: string;
 
     constructor(
         private eventService: EventService,
-        private groupService: GroupService,
         private activatedRoute: ActivatedRoute,
         private router: Router
     ) {}
 
     ngOnInit() {
-        this.groupService.findGroupById(this.router.url[this.router.url.length-1]).then((group) => {
-            this.group = group;
-            this.eventService.findAllByGroupId(this.group.id).then(events => {
-                this.listEvent = events;
-            });
-        });            
+        this.groupId = this.router.url[this.router.url.length-1];
+        this.eventService.findAllByGroupId(+this.groupId).then(events => {
+            this.listEvent = events;
+        });          
     }
 
     openDetailsEvent(eventId) {
