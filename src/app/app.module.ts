@@ -26,6 +26,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
+import {AutoCompleteModule} from 'ionic4-auto-complete';
+
+
 @NgModule({
     declarations: [
         AppComponent
@@ -43,6 +46,7 @@ registerLocaleData(localeFr);
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
+        AutoCompleteModule,
         CommonModule,
         NgbModalModule,
         FlatpickrModule.forRoot(),

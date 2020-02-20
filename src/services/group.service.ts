@@ -13,4 +13,8 @@ export class GroupService {
         return this.httpClient.get<Group[]>(`${environment.apiBaseUrl}group/list/` + userId).toPromise();
     }
 
+    findGroupById(id: string) {
+        return this.httpClient.get<Group>(`${environment.apiBaseUrl}group/` + id).toPromise();
+    }
+
 }

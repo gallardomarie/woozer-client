@@ -12,9 +12,13 @@ import {GroupFormComponent} from "./groupe/form/group-form.component";
 import {IonicModule} from "@ionic/angular";
 import {GroupService} from "../../services/group.service";
 import {CommonModule} from "@angular/common";
-import { EventComponent } from './event/event.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {UserAutocompleteService} from '../../services/user-autocomplete.service';
+import {AutoCompleteModule} from 'ionic4-auto-complete';
+import { EventListComponent } from './event/event-list.component';
 import { EventDetailsComponent } from './event/details/event.details.component';
-import { FormulaireEventComponent } from './event/formulaire-event/formulaire-event.component';
+import { EventFormComponent } from './event/form/event-form.component';
 
 const routes: Routes = [
     {
@@ -43,15 +47,19 @@ const routes: Routes = [
             },
             {
                 path: 'groupe',
-                component: GroupListComponent
+                component: GroupListComponent,
             },
             {
-                path: 'groupe/form',
+                path: 'groupe/creation',
                 component: GroupFormComponent
             },
             {
-                path: 'event',
-                component: EventComponent
+                path: 'groupe/modification/:id',
+                component: GroupFormComponent
+            },
+            {
+                path: 'event/:id',
+                component: EventListComponent
             },
             {
                 path: 'event/details',
@@ -59,7 +67,7 @@ const routes: Routes = [
             },
             {
                 path: 'event/form',
-                component: FormulaireEventComponent
+                component: EventFormComponent
             }
         ]
     },
@@ -70,7 +78,10 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule,
         IonicModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        AutoCompleteModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         HomepageComponent,
@@ -81,12 +92,14 @@ const routes: Routes = [
         HomeComponent,
         GroupListComponent,
         GroupFormComponent,
-        EventComponent,
+        EventListComponent,
         EventDetailsComponent,
-        FormulaireEventComponent
+        EventFormComponent
     ],
     providers: [
-        GroupService
+        GroupService,
+        UserService,
+        UserAutocompleteService
     ]
 })
 export class HomepageModule {}

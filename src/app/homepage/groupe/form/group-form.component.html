@@ -1,34 +1,42 @@
-<form>
+<form (ngSubmit)="save()" [formGroup]="groupForm">
 
   <div>
     <div>
       <div class="blue_circle">
         <em class="fas fa-image"></em>
       </div>
-      <p>Uploader une photo</p>
+      <p id="upload-photo-text">Uploader une photo</p>
     </div>
 
-    <ion-item >
+    <ion-item id="name-container">
       <ion-label position="stacked">Nom du groupe</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" formControlName="name" [(ngModel)]="group.name"></ion-input>
     </ion-item>
   </div>
 
   <h4>Ajouter des membres</h4>
 
-  <ion-item>
-    <ion-icon name="search-outline" slot="start"></ion-icon>
-    <ion-label position="floating">Floating Label</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <div class="ion-form-group">
+    <ng-template #withImageAndIcon let-attrs="attrs">
+      <span><img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 45px;"/></span>
+      <span class="search-member-name" [innerHTML]="attrs.data.username"></span>
+      <ion-icon *ngIf="isInGroup(attrs.data)" (click)="removeUser(attrs.data)" name="remove-circle-outline" style="font-size: 30px; color: red;"></ion-icon>
+      <ion-icon *ngIf="!isInGroup(attrs.data)" (click)="addUser(attrs.data)" name="add-circle-outline" style="font-size: 30px; color: green;"></ion-icon>
+    </ng-template>
+    <ion-auto-complete [dataProvider]="userAutocompleteService" [template]="withImageAndIcon"></ion-auto-complete>
+  </div>
 
-  <p>Recherche de membres par autocomplétion</p>
+  <div id="end-page-container">
+    <h4>Membres du groupe</h4>
+
+    <div id="members-container">
+      <div *ngFor="let user of group.users">
+        <img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 50px;"/>
+        <p>{{user.username}}</p>
+      </div>
+    </div>
   
-  <h4>Membres du groupe</h4>
-
-  <p>Listing des membres avec icones admin</p>
-
-  <app-button text="Valider"></app-button>
-
+    <app-button text="Valider"></app-button>
+  </div>
 </form>
 

@@ -1,6 +1,8 @@
 <!-- TODO Ajouter le nom du groupe dans le header -->
-<!-- TODO Bouton de création d'événements -->
-<!-- TODO Bouton de modification de groupe -->
+<div>
+    <app-button text="Créer un événement" routerLink="TODO"></app-button>
+    <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', group.id]"></app-button>
+  </div>
 
 <!-- TODO Scrolling quand page pleine d'événements-->
 
@@ -9,10 +11,8 @@
 <div class="list-event" *ngIf="listEvent">
     <div class="event" *ngFor="let event of listEvent" (click)="openDetailsEvent(event.id)">
 
-        <!-- Affichage du nom de l'event -->
         <span class= "name">{{event.name}}</span>
 
-        <!-- Affichage de la date -->
         <div class="date">
             <div *ngIf="!event.date">
                 <label class="dateLabel"> Date :</label>
@@ -25,7 +25,6 @@
             </div>
         </div>
 
-        <!-- Affichage du lieu -->
         <div class="place">
             <label class="placeLabel">Lieu : </label>
             <span class="attente" *ngIf="!event.place">en attente</span>

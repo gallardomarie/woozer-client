@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GroupService} from "../../../services/group.service";
-import {Group} from "./group";
-import { Router } from '@angular/router';
+import { GroupService } from 'src/services/group.service';
+import { Group } from './group';
 
 @Component({
   selector: 'app-group-list',
@@ -13,20 +12,14 @@ export class GroupListComponent implements OnInit {
   groups: Group[];
 
   constructor(
-      private groupService: GroupService,
-      private router: Router
+    private groupService: GroupService,
   ) { }
 
   ngOnInit() {
-    this.groupService.findGroupsByUser("1").then(
-        (groups) => {
-          this.groups = groups;
-        }
-    );
-  }
-
-  openGroup(id) {
-    this.router.navigate(['/woozer/event'], {queryParams: {groupId: id}});
+    //TODO replace with dynamic user id
+    this.groupService.findGroupsByUser("1").then((groups) => {
+      this.groups = groups;
+    });
   }
 
 }

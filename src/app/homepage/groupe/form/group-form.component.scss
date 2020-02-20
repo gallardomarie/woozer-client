@@ -1,30 +1,24 @@
-* {
-  padding: 0% 2%;
-}
-
 form {
+  padding: 0% 4%;
   font-family: 'Lato', sans-serif!important;
-}
-
-form i {
-  font-family:'Font Awesome 5 Free'!important;
 }
 
 .blue_circle {
   background: #13A3C8;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
+  margin-left: 5%;
 }
 
 em {
-  font-size: 450%;
+  font-size: 400%;
   margin-top: 15%;
   margin-left: 13%;
   color: white;
 }
 
-form > div {
+form > div:first-child, #members-container {
   display: flex;
 }
 
@@ -35,4 +29,37 @@ form ion-label {
 
 ion-item.item-has-focus {
   border: none;
+}
+
+#upload-photo-text {
+  font-size: 13px;
+  width: 120px;
+}
+
+#name-container {
+  margin-top: 5%;
+}
+
+#end-page-container {
+  margin-top: 70%;
+}
+
+ion-auto-complete ::ng-deep ul li {
+  padding: 7px 15px!important;
+}
+
+#members-container > div {
+  width: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 2%;
+  text-align: center;
+}
+
+#members-container img {
+  text-align: center;
+}
+
+.search-member-name {
+  font-size: 18px;
 }

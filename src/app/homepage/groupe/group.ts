@@ -1,4 +1,4 @@
-import {User} from "../../login/user";
+import {User} from '../../login/user';
 
 export class Group {
 

@@ -1,0 +1,8 @@
+<div>
+  <app-button text="Créer un événement" routerLink="TODO"></app-button>
+  <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', group.id]"></app-button>
+</div>
+
+<p>
+  group-home with id = {{group?.id}}!
+</p>

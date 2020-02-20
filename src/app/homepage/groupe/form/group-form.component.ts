@@ -1,45 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import {AutoCompleteService} from "ionic4-auto-complete";
-import {UserService} from "../../../../services/user.service";
+import {UserAutocompleteService} from '../../../../services/user-autocomplete.service';
+import {User} from '../../../login/user';
+import {Group} from '../group';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import { GroupService } from 'src/services/group.service';
 
 @Component({
   selector: 'app-group-form',
   templateUrl: './group-form.component.html',
   styleUrls: ['./group-form.component.scss'],
 })
-export class GroupFormComponent implements OnInit, AutoCompleteService {
+export class GroupFormComponent implements OnInit {
 
-  constructor(
-      private userService: UserService
-  ) { }
+  group: Group;
+  groupForm: FormGroup;
+  creation: boolean;
+
+    constructor(
+        public userAutocompleteService: UserAutocompleteService,
+        private fb: FormBuilder,
+        private router: Router,
+        private groupService: GroupService
+    ) {
+        this.groupForm = fb.group({
+            name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      });
+    }
 
   ngOnInit() {
-    this.labelAttribute = 'username';
-  }
-
-  formValueAttribute: any;
-  labelAttribute: string;
-
-  getItemLabel(item: any): any {
-  }
-
-  //https://www.npmjs.com/package/ionic4-auto-complete
-
-  getResults(term: any): any {
-    if(!term) {
-      return false;
+    this.group = new Group(null, "", [], []);
+    if(this.router.url.includes("creation")) {
+      this.creation = true;
+    } else {
+      this.creation = false;
+      this.groupService.findGroupById(this.router.url[this.router.url.length-1]).then((group) => {
+        this.group = group;
+      });
     }
-    /*return this.http.get('https://restcountries.eu/rest/v2/name/' + keyword).pipe(map(
-        (result: any[]) => {
-          return result.filter(
-              (item) => {
-                return item.name.toLowerCase().startsWith(
-                    keyword.toLowerCase()
-                );
-              }
-          );
-        }
-    ));*/
+  }
+
+  addUser(user: User) {
+    this.group.users.push(user);
+  }
+
+  removeUser(user: User) {
+    let users = this.group.users;
+    users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
+  }
+
+  isInGroup(user: User) {
+    return this.group.users.findIndex((userArray) => userArray.id === user.id) !== -1;
   }
 
 }
