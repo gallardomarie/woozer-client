@@ -8,6 +8,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './calendar/calendar.component';
 import {AutoCompleteModule} from 'ionic4-auto-complete';
+import { CacheService } from 'src/services/cache.service';
 
 @NgModule({
     imports: [
@@ -30,6 +31,9 @@ import {AutoCompleteModule} from 'ionic4-auto-complete';
         TopbarComponent,
         FooterComponent,
         CalendarComponent
+    ],
+    providers: [
+        CacheService
     ]
 })
 export class SharedModule {}

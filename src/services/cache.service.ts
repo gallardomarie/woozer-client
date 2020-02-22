@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-
 @Injectable()
 export class CacheService {
 
-    // Observable string sources
-    private emitChangeSource = new Subject<any>();
+    private emitChangeSource;
 
-    // Observable string streams
-    changeEmitted = this.emitChangeSource.asObservable();
-
-    // Service message commands
+    getCache() {
+        return this.emitChangeSource;
+    }
     emitChange(change: any) {
-        this.emitChangeSource.next(change);
+        this.emitChangeSource = change;
     }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView, CalendarDateFormatter } from 'angular-calendar';
 import { CustomDateFormatter } from './calendar-formatter.provider';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CacheService } from 'src/services/cache.service';
 
 @Component({
   selector: 'app-calendar',
@@ -19,6 +20,7 @@ export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
+  groupId: string;
 
   /**
    * TODO
@@ -27,11 +29,19 @@ export class CalendarComponent implements OnInit {
    */
 
   constructor(
-    private router: Router
+    private router: Router ,
+    private activeRoute: ActivatedRoute,
+    private cache: CacheService
   ) {}
 
   ngOnInit(): void {
-  } 
+    this.groupId = this.cache.getCache();
+    if (this.groupId) {
+      console.log('Je suis dans le groupe ' + this.groupId);
+    } else {
+      console.log('Je ne suis dans aucun groupe');
+    }
+  }
 
   dayClicked(event): void {
     console.log('Je clique sur une date du calendrier = ' + event.date);

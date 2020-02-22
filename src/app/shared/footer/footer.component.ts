@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import { CacheService } from 'src/services/cache.service';
 
 @Component({
     selector: 'app-footer',
@@ -7,8 +9,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        private cache: CacheService
+    ) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
+
+    goHome() {
+        this.cache.emitChange(null);
+        this.router.navigateByUrl('/woozer/home');
+    }
 
 }

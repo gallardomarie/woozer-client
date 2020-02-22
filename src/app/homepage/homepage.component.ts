@@ -12,7 +12,7 @@ export class HomepageComponent implements OnInit {
   username: string;
   id: number;
 
-  constructor(private router: Router) { }
+  constructor() {}
 
   ngOnInit() {
     this.username = 'Marie';
