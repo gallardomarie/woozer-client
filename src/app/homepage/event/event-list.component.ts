@@ -12,7 +12,7 @@ import { GroupService } from 'src/services/group.service';
 })
 export class EventListComponent implements OnInit {
 
-    private listEvent;
+    listEvent;
     group: Group;
     groupId;
 

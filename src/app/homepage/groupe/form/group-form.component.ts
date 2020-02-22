@@ -53,4 +53,8 @@ export class GroupFormComponent implements OnInit {
     return this.group.users.findIndex((userArray) => userArray.id === user.id) !== -1;
   }
 
+  save() {
+    
+  }
+
 }
