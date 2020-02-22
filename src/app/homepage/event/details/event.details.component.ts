@@ -15,11 +15,11 @@ export class EventDetailsComponent implements OnInit {
 
     constructor(
         private eventService: EventService,
-        private activatedRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
-        this.activatedRoute.queryParams.subscribe(
+        this.activeRoute.params.subscribe(
             params => {
                 this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;

@@ -1,15 +1,15 @@
 <!-- TODO Ajouter le nom du groupe dans le header -->
 <div>
     <app-button text="Créer un événement" routerLink="TODO"></app-button>
-    <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', group.id]"></app-button>
-  </div>
+   <!-- <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', group.id]"></app-button>
+ --> </div>
 
 <!-- TODO Scrolling quand page pleine d'événements-->
 
 <!-- TODO Titre (composant) -->
 
 <div class="list-event" *ngIf="listEvent">
-    <div class="event" *ngFor="let event of listEvent" (click)="openDetailsEvent(event.id)">
+    <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id}]">
 
         <span class= "name">{{event.name}}</span>
 

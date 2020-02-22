@@ -58,7 +58,7 @@ const routes: Routes = [
                 component: GroupFormComponent
             },
             {
-                path: 'event/:id',
+                path: 'event',
                 component: EventListComponent
             },
             {
