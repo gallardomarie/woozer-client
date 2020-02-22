@@ -62,7 +62,7 @@ const routes: Routes = [
                 component: EventListComponent
             },
             {
-                path: 'event/details',
+                path: 'event/details/:id',
                 component: EventDetailsComponent
             },
             {
