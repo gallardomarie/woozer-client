@@ -1,5 +1,7 @@
 {
   "name": "woozer",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
