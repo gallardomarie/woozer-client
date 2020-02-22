@@ -19,6 +19,7 @@ import {AutoCompleteModule} from 'ionic4-auto-complete';
 import { EventListComponent } from './event/event-list.component';
 import { EventDetailsComponent } from './event/details/event.details.component';
 import { EventFormComponent } from './event/form/event-form.component';
+import { CacheService } from 'src/services/cache.service';
 
 const routes: Routes = [
     {
@@ -62,7 +63,7 @@ const routes: Routes = [
                 component: EventListComponent
             },
             {
-                path: 'event/details/:id',
+                path: 'event/details',
                 component: EventDetailsComponent
             },
             {
@@ -99,7 +100,8 @@ const routes: Routes = [
     providers: [
         GroupService,
         UserService,
-        UserAutocompleteService
+        UserAutocompleteService,
+        CacheService
     ]
 })
 export class HomepageModule {}
