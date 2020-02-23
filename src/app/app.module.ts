@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AngularFireModule} from '@angular/fire';
 import {firebaseConfig} from '../config';
-import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthService} from '../services/auth.service';
 import {LoginModule} from './login/login.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -53,7 +53,8 @@ import {AutoCompleteModule} from 'ionic4-auto-complete';
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory
-          })
+          }),
+        AngularFireAuthModule 
     ],
     providers: [
         StatusBar,
