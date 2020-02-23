@@ -7,8 +7,8 @@
         [view]="view"
         [(viewDate)]="viewDate"
       >
-      <i class="fas fa-chevron-left"></i>
-      </div>
+      <ion-icon name="chevron-back-circle-outline"></ion-icon>
+    </div>
     <!-- Affichage du mois en cours ainsi que l'année -->
       <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Fr' }}</p>
     
@@ -19,7 +19,7 @@
           [view]="view"
           [(viewDate)]="viewDate"
           >
-          <i class="fas fa-chevron-right"></i>
+          <ion-icon name="chevron-forward-circle-outline"></ion-icon>
         </div>
     </div>
   <div class="calendar" [ngSwitch]="view">
@@ -35,5 +35,5 @@
 
 <div class="createEvent" (click)="createEvent()">
   <p>Créer un événement </p>
-  <i class="fas fa-plus-circle"></i>
+  <ion-icon name="add-circle-outline"></ion-icon>
 </div>
