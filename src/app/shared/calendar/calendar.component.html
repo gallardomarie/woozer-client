@@ -1,7 +1,6 @@
  <div class="background">
   <div class="headerCalendar">
       <!-- Bouton pour aller sur le mois précédent -->
-      <!-- TODO : changer le css -->
       <div
         mwlCalendarPreviousView
         [view]="view"
@@ -12,8 +11,7 @@
     <!-- Affichage du mois en cours ainsi que l'année -->
       <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Fr' }}</p>
     
-            <!-- Bouton pour aller sur le mois suivant -->
-        <!-- TODO : changer le css-->
+        <!-- Bouton pour aller sur le mois suivant -->
         <div
           mwlCalendarNextView
           [view]="view"
@@ -27,6 +25,7 @@
       *ngSwitchCase="CalendarView.Month"
       [viewDate]="viewDate"
       (dayClicked)="dayClicked($event.day)"
+      [events]="events"
     >
     </mwl-calendar-month-view>
   </div>
