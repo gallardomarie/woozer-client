@@ -1,4 +1,10 @@
 <h2>Mon agenda</h2>
 <app-calendar></app-calendar>
 <h2>Mes groupes</h2>
+<ion-item *ngFor="let group of groups | slice:0:3" lines="none">
+    <div class="item-content" (click)="navigateToGroup(group.id)">
+        <ion-label>{{group.name}}</ion-label>
+    </div>
+</ion-item>
+
 <a routerLink="/woozer/groupe">Voir tous mes groupes</a>
