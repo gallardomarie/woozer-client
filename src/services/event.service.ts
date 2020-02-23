@@ -15,5 +15,9 @@ export class EventService {
     return this.httpClient.get(`${environment.apiBaseUrl}event/` + eventId).toPromise();
   }
 
+  findByUserId(userId: number) {
+    return this.httpClient.get(`${environment.apiBaseUrl}event/perso/` + userId).toPromise();
+  }
+
 }
 

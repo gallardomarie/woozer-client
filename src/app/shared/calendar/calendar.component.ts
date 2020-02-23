@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CalendarView, CalendarDateFormatter, CalendarEvent } from 'angular-calendar';
 import { CustomDateFormatter } from './calendar-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,12 +24,9 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   groupId: string;
 
-  /**
-   * TODO
-   * Importer les events de la base de données
-   * Peut utiliser CalendarEvent ??
-   */
   events: CalendarEvent[] = [];
+  eventsSansDate: Event[] = [];
+  @Output() sendEventsSansDate = new EventEmitter<Event[]>();
 
   colors: any = {
     blue: {
@@ -50,9 +47,14 @@ export class CalendarComponent implements OnInit {
       console.log('Je suis dans le groupe ' + this.groupId);
       this.eventService.findAllByGroupId(+this.groupId).then(result => {
         this.initEventsCalendar(result);
+        this.sendEventsSansDate.emit(this.eventsSansDate);
       });
     } else {
       console.log('Je ne suis dans aucun groupe');
+      // TODO: Remplacer par l'id de l'user connecté
+      this.eventService.findByUserId(1).then(result => {
+        this.initEventsCalendar(result);
+      });
     }
   }
 
@@ -75,13 +77,17 @@ export class CalendarComponent implements OnInit {
    */
   initEventsCalendar(events) {
     events.forEach(event => {
-      this.events = [
+      if (event.date) {
+         this.events = [
         ...this.events,
         {
           title: event.description,
           start: event.date,
         }
       ];
+      } else {
+        this.eventsSansDate.push(event);
+      }
       });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CacheService } from 'src/services/cache.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agenda',
@@ -9,18 +9,16 @@ import { CacheService } from 'src/services/cache.service';
 export class AgendaComponent implements OnInit {
 
   groupId;
-  
+  eventsSansDate = [];
+
   constructor(
-    private cache: CacheService
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.groupId = this.cache.getCache();
-    if (this.groupId) {
-      console.log('Je suis dans le groupe ' + this.groupId);
-    } else {
-      console.log('Je ne suis dans aucun groupe');
-    }
   }
 
+  getEvents(events) {
+    this.eventsSansDate = events;
+  }
 }
