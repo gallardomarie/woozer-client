@@ -1,21 +1,25 @@
-.close {
-    float: right;
-    background: none;
-    ion-icon {
-        color:grey;
-        font-size: 22px;
+::ng-deep .mat-dialog-container{
+    padding: 10px;
+
+    .close {
+        float: right;
+        background: none;
+        ion-icon {
+            color:grey;
+            font-size: 22px;
+        }
     }
-}
-
-
-.title {
-    font-weight: bold;
-    text-align: -webkit-center;
-    margin-bottom: 10%;
-    margin-top: 15%;
-}
-
-.button {
-    font-size: 12px;
-    margin: 3%;
+    
+    
+    .title {
+        font-weight: bold;
+        text-align: -webkit-center;
+        margin-bottom: 10%;
+        margin-top: 15%;
+    }
+    
+    .button {
+        font-size: 12px;
+        margin: 3%;
+    }
 }

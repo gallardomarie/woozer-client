@@ -52,7 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
             provide: DateAdapter,
             useFactory: adapterFactory
           }),
-        AngularFireAuthModule 
+        AngularFireAuthModule,
         MatDialogModule
     ],
     providers: [
