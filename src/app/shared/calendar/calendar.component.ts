@@ -28,12 +28,6 @@ export class CalendarComponent implements OnInit {
   eventsSansDate: Event[] = [];
   @Output() sendEventsSansDate = new EventEmitter<Event[]>();
 
-  colors: any = {
-    blue: {
-      primary: '#13A3C8',
-    },
-  };
-
   constructor(
     private router: Router ,
     private activeRoute: ActivatedRoute,
@@ -59,12 +53,11 @@ export class CalendarComponent implements OnInit {
   }
 
   dayClicked(event): void {
-    console.log('Je clique sur une date du calendrier = ' + event.date);
-    /**
-     * TODO
-     * Si event : On ouvre une popup avec les events présents en ce jour
-     * Sinon on se rend directement sur l'évent en question
-     */
+    if (event.events && event.events.length > 1) {
+      console.log("Il y a au moins 2 évents");
+    } else if (event.events && event.events.length === 1) {
+      this.router.navigate(['/woozer/event/details', {eventId: event.events[0].id}]);
+    }
   }
 
   createEvent() {
@@ -83,6 +76,7 @@ export class CalendarComponent implements OnInit {
         {
           title: event.description,
           start: event.date,
+          id: event.id
         }
       ];
       } else {
