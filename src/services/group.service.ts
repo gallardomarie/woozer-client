@@ -17,4 +17,8 @@ export class GroupService {
         return this.httpClient.get<Group>(`${environment.apiBaseUrl}group/` + id).toPromise();
     }
 
+    save(group: Group) {
+        return this.httpClient.post<Group>(`${environment.apiBaseUrl}group/save`, group).toPromise();
+    }
+
 }
