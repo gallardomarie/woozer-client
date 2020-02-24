@@ -4,6 +4,8 @@ import { CustomDateFormatter } from './calendar-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
 import { EventService } from 'src/services/event.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 
 @Component({
@@ -32,19 +34,18 @@ export class CalendarComponent implements OnInit {
     private router: Router ,
     private activeRoute: ActivatedRoute,
     private cache: CacheService,
-    private eventService: EventService
+    private eventService: EventService,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.groupId = this.cache.getCache();
     if (this.groupId) {
-      console.log('Je suis dans le groupe ' + this.groupId);
       this.eventService.findAllByGroupId(+this.groupId).then(result => {
         this.initEventsCalendar(result);
         this.sendEventsSansDate.emit(this.eventsSansDate);
       });
     } else {
-      console.log('Je ne suis dans aucun groupe');
       // TODO: Remplacer par l'id de l'user connecté
       this.eventService.findByUserId(1).then(result => {
         this.initEventsCalendar(result);
@@ -54,10 +55,17 @@ export class CalendarComponent implements OnInit {
 
   dayClicked(event): void {
     if (event.events && event.events.length > 1) {
-      console.log("Il y a au moins 2 évents");
+      this.openDialog(event.events);
     } else if (event.events && event.events.length === 1) {
       this.router.navigate(['/woozer/event/details', {eventId: event.events[0].id}]);
     }
+  }
+
+  openDialog(events) {
+    this.matDialog.open(PopupComponent, {
+      width: '250px',
+      data: {data: events}
+    });
   }
 
   createEvent() {

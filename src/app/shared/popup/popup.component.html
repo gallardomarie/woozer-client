@@ -1,0 +1,7 @@
+<button mat-button class="close" (click)="closeModal()"><em class="fas fa-times"></em></button>
+<h4 mat-dialog-title class="title" >Quel événement souhaitez-vous voir?</h4>
+<div mat-dialog-content>
+  <div class="button" *ngFor="let event of data.data">
+    <app-button [text]="event.title" (click)="openEvent(event.id)"></app-button>
+  </div>
+</div>
