@@ -1,1 +1,9 @@
-<app-calendar></app-calendar>
+<app-calendar (sendEventsSansDate)="getEvents($event)"></app-calendar>
+
+<div *ngIf="eventsSansDate.length > 0">
+    <h2>Evénements sans date fixée</h2>
+    <!-- TODO Scrollbar -->
+    <div *ngFor="let event of eventsSansDate">
+        <div class="event" [routerLink]="['/woozer/event/details', {eventId: event.id}]"> {{event.name}} </div>
+    </div>
+</div>

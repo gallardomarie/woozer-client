@@ -27,6 +27,10 @@
         ::ng-deep .cal-month-view {
             font-size: 10px;
 
+            .cal-day-badge {
+                display: none;
+            }
+
             .cal-day-cell.cal-today  {
                 /* TODO : trouver un meilleur design pour le jour 'TODAY'*/
                 background-color: rgba(254, 109, 12, 0.562) !important;
@@ -55,6 +59,33 @@
                         border: none !important;
                         min-height: 0px !important;
                         height: 40px !important;
+                        }
+
+                        mwl-calendar-month-cell.cal-has-events{
+
+                            span.cal-day-number {
+                                color: white !important;
+                                z-index: 1 !important;
+                                position: absolute;
+                                margin-left: 15px;
+                                opacity: 1;
+                                margin-top: 13px;
+                            }
+
+                            .cal-events {
+                                // TODO : EDIT CSS EVENT
+                                background-color: #13A3C8;
+                                border-radius: 51%;
+                                position: absolute;
+                                padding: 8px;
+                                height: 40px;
+                                padding-right: 32px;
+    
+                                .cal-event {
+                                    display: none;
+                                }
+
+                        }
                     }
                 }
             }   
@@ -80,3 +111,10 @@
         align-self: center;
     }
 }
+
+.eventDate {
+    color: red;
+    background-color: blue;
+    border: green 2px solid;
+}
+

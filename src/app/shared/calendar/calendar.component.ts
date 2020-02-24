@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarView, CalendarDateFormatter } from 'angular-calendar';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { CalendarView, CalendarDateFormatter, CalendarEvent } from 'angular-calendar';
 import { CustomDateFormatter } from './calendar-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
+import { EventService } from 'src/services/event.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
+
 
 @Component({
   selector: 'app-calendar',
@@ -22,37 +26,70 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   groupId: string;
 
-  /**
-   * TODO
-   * Importer les events de la base de données
-   * Peut utiliser CalendarEvent ??
-   */
+  events: CalendarEvent[] = [];
+  eventsSansDate: Event[] = [];
+  @Output() sendEventsSansDate = new EventEmitter<Event[]>();
 
   constructor(
     private router: Router ,
     private activeRoute: ActivatedRoute,
-    private cache: CacheService
+    private cache: CacheService,
+    private eventService: EventService,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.groupId = this.cache.getCache();
     if (this.groupId) {
-      console.log('Je suis dans le groupe ' + this.groupId);
+      this.eventService.findAllByGroupId(+this.groupId).then(result => {
+        this.initEventsCalendar(result);
+        this.sendEventsSansDate.emit(this.eventsSansDate);
+      });
     } else {
-      console.log('Je ne suis dans aucun groupe');
+      // TODO: Remplacer par l'id de l'user connecté
+      this.eventService.findByUserId(1).then(result => {
+        this.initEventsCalendar(result);
+      });
     }
   }
 
   dayClicked(event): void {
-    console.log('Je clique sur une date du calendrier = ' + event.date);
-    /**
-     * TODO
-     * Si event : On ouvre une popup avec les events présents en ce jour
-     * (Rappel : la date possède un esthétique particulier)
-     */
+    if (event.events && event.events.length > 1) {
+      this.openDialog(event.events);
+    } else if (event.events && event.events.length === 1) {
+      this.router.navigate(['/woozer/event/details', {eventId: event.events[0].id}]);
+    }
+  }
+
+  openDialog(events) {
+    this.matDialog.open(PopupComponent, {
+      width: '250px',
+      data: {data: events}
+    });
   }
 
   createEvent() {
     this.router.navigateByUrl('/woozer/event/form');
+  }
+
+  /**
+   * Initialisation de l'affichage des events sur le calendrier
+   * @param events les events a afficher
+   */
+  initEventsCalendar(events) {
+    events.forEach(event => {
+      if (event.date) {
+         this.events = [
+        ...this.events,
+        {
+          title: event.description,
+          start: event.date,
+          id: event.id
+        }
+      ];
+      } else {
+        this.eventsSansDate.push(event);
+      }
+      });
   }
 }
