@@ -29,9 +29,9 @@ export class GroupFormComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.group = new Group(null, "", [], []);
     if(this.router.url.includes("creation")) {
       this.creation = true;
+      this.group = new Group(null, "", [], []);
     } else {
       this.creation = false;
       this.groupService.findGroupById(this.router.url[this.router.url.length-1]).then((group) => {
@@ -41,12 +41,16 @@ export class GroupFormComponent implements OnInit {
   }
 
   addUser(user: User) {
+    console.log(`taille users avant : ${this.group.users}`);
     this.group.users.push(user);
+    console.log(`taille users après : ${this.group.users}`);
   }
 
   removeUser(user: User) {
+    console.log(`taille users avant : ${this.group.users}`);
     let users = this.group.users;
     users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
+    console.log(`taille users après : ${this.group.users}`);
   }
 
   isInGroup(user: User) {
@@ -54,7 +58,7 @@ export class GroupFormComponent implements OnInit {
   }
 
   save() {
-    this.groupService.saveGroup(this.group).then((groupSaved) => {
+    this.groupService.save(this.group).then((groupSaved) => {
       this.router.navigate(['/woozer/event', {id: groupSaved.id}]);
     })
     // TODO faire un retour utilisateur pour dire que groupe bien crée/modifié

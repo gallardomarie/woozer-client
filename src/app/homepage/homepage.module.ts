@@ -4,7 +4,7 @@ import {HomepageComponent} from './homepage.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgendaComponent } from './agenda/agenda.component';
 import { DebtComponent } from './debt/debt.component';
-import { DiscussionComponent } from './discussion/discussion.component';
+import { DiscussionListComponent } from './discussion/discussion-list.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
 import {GroupListComponent} from "./groupe/group-list.component";
@@ -20,6 +20,7 @@ import { EventListComponent } from './event/event-list.component';
 import { EventDetailsComponent } from './event/details/event.details.component';
 import { EventFormComponent } from './event/form/event-form.component';
 import { CacheService } from 'src/services/cache.service';
+import { DiscussionService } from 'src/services/discussion.service';
 
 const routes: Routes = [
     {
@@ -36,7 +37,7 @@ const routes: Routes = [
             },
             {
                 path: 'discussions',
-                component: DiscussionComponent
+                component: DiscussionListComponent
             },
             {
                 path: 'album',
@@ -82,13 +83,13 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         AutoCompleteModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         HomepageComponent,
         AgendaComponent,
         DebtComponent,
-        DiscussionComponent,
+        DiscussionListComponent,
         PhotoAlbumComponent,
         HomeComponent,
         GroupListComponent,
@@ -101,7 +102,8 @@ const routes: Routes = [
         GroupService,
         UserService,
         UserAutocompleteService,
-        CacheService
+        CacheService,
+        DiscussionService
     ]
 })
 export class HomepageModule {}
