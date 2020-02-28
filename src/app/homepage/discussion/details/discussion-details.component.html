@@ -1,0 +1,10 @@
+<h2>Discussion</h2>
+
+<table>
+    <div *ngFor="let message of discussion?.messages">
+        <p>Auteur : {{message.user.username}} | Date : {{message.date}} | Contenu : {{message.message}}</p>
+    </div>
+    <div *ngIf="discussion?.messages.length === 0">
+        Aucun message dans la discussion.
+    </div>
+</table>

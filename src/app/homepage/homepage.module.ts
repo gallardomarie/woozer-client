@@ -7,11 +7,11 @@ import { DebtComponent } from './debt/debt.component';
 import { DiscussionListComponent } from './discussion/discussion-list.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
-import {GroupListComponent} from "./groupe/group-list.component";
-import {GroupFormComponent} from "./groupe/form/group-form.component";
-import {IonicModule} from "@ionic/angular";
-import {GroupService} from "../../services/group.service";
-import {CommonModule} from "@angular/common";
+import {GroupListComponent} from './groupe/group-list.component';
+import {GroupFormComponent} from './groupe/form/group-form.component';
+import {IonicModule} from '@ionic/angular';
+import {GroupService} from '../../services/group.service';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {UserAutocompleteService} from '../../services/user-autocomplete.service';
@@ -21,6 +21,7 @@ import { EventDetailsComponent } from './event/details/event.details.component';
 import { EventFormComponent } from './event/form/event-form.component';
 import { CacheService } from 'src/services/cache.service';
 import { DiscussionService } from 'src/services/discussion.service';
+import {DiscussionDetailsComponent} from './discussion/details/discussion-details.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,10 @@ const routes: Routes = [
             {
                 path: 'discussions',
                 component: DiscussionListComponent
+            },
+            {
+                path: 'discussion/:id',
+                component: DiscussionDetailsComponent
             },
             {
                 path: 'album',
@@ -90,13 +95,14 @@ const routes: Routes = [
         AgendaComponent,
         DebtComponent,
         DiscussionListComponent,
+        DiscussionDetailsComponent,
         PhotoAlbumComponent,
         HomeComponent,
         GroupListComponent,
         GroupFormComponent,
         EventListComponent,
         EventDetailsComponent,
-        EventFormComponent
+        EventFormComponent,
     ],
     providers: [
         GroupService,

@@ -27,7 +27,7 @@ export class DiscussionListComponent implements OnInit {
     });
   }
 
-  navigateToDiscussion(discussionId: number){
+  navigateToDiscussion(discussionId: number) {
     this.router.navigate(['/woozer/discussion/', discussionId]);
     this.cache.emitChange(this.discussions[0].group.id);
   }
