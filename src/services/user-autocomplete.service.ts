@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AutoCompleteService} from 'ionic4-auto-complete';
 import {UserService} from './user.service';
-import {User} from '../app/login/user';
-import {Promise} from 'q';
-import {Observable} from 'rxjs';
 import {map} from 'rxjs/internal/operators';
 
 @Injectable()

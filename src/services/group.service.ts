@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../environments/environment";
-import {Group} from "../app/homepage/groupe/group";
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {Group} from '../app/homepage/groupe/group';
 
 @Injectable()
 export class GroupService {

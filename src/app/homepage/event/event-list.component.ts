@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { EventService } from 'src/services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from '../groupe/group';

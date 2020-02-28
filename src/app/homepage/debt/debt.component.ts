@@ -9,7 +9,7 @@ import { CacheService } from 'src/services/cache.service';
 export class DebtComponent implements OnInit {
 
   groupId;
-  
+
   constructor(
     private cache: CacheService
   ) { }

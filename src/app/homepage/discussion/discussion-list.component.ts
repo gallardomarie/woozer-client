@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CacheService } from 'src/services/cache.service';
 import { Router } from '@angular/router';
-import { GroupService } from 'src/services/group.service';
 import { DiscussionService } from 'src/services/discussion.service';
 import { DiscussionListItem } from './discussion-list-item';
 
@@ -21,7 +20,7 @@ export class DiscussionListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //TODO replace with dynamic user id
+    // TODO replace with dynamic user id
     this.discussionService.findAllByUserId(1).then((discussions) => {
       this.discussions = discussions;
     });

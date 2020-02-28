@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //TODO replace with dynamic user id
+    // TODO replace with dynamic user id
     this.groupService.findGroupsByUser('1').then((groups) => {
       this.groups = groups;
     });

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -8,17 +7,13 @@ import {Router} from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  email: string;
-  username: string;
+
   id: number;
 
   constructor() {}
 
   ngOnInit() {
-    this.username = 'Marie';
-    this.email = 'email@email.fr';
-    // this.username = this.router.getCurrentNavigation().extras.state.user.username;
-    // this.email = this.router.getCurrentNavigation().extras.state.user.email;
+
   }
 
 }

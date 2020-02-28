@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {ToastController} from "@ionic/angular";
-import {UserService} from "../../services/user.service";
-import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
+import {ToastController} from '@ionic/angular';
+import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'page-login',
@@ -68,7 +68,7 @@ export class LoginComponent {
       message = 'Erreur lors de la tentative de connexion. Veuillez réessayer.';
     }
     const toast = await this.toastController.create({
-      message: message,
+      message,
       duration: 3000
     });
     toast.present();
