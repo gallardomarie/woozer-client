@@ -3,6 +3,7 @@ import { CacheService } from 'src/services/cache.service';
 import { Router } from '@angular/router';
 import { DiscussionService } from 'src/services/discussion.service';
 import { DiscussionListItem } from './discussion-list-item';
+import {User} from "../../login/user";
 
 @Component({
   selector: 'app-discussion-list',
@@ -12,23 +13,24 @@ import { DiscussionListItem } from './discussion-list-item';
 export class DiscussionListComponent implements OnInit {
 
   private discussions: DiscussionListItem[];
+  private user: User;
 
   constructor(
-    private cache: CacheService,
+    private cacheService: CacheService,
     private router: Router,
     private discussionService: DiscussionService
   ) { }
 
   ngOnInit() {
-    // TODO replace with dynamic user id
-    this.discussionService.findAllByUserId(1).then((discussions) => {
+    this.user = this.cacheService.getUser();
+    this.discussionService.findAllByUserId(this.user.id).then((discussions) => {
       this.discussions = discussions;
     });
   }
 
   navigateToDiscussion(discussionId: number) {
     this.router.navigate(['/woozer/discussion/', discussionId]);
-    this.cache.emitChange(this.discussions[0].group.id);
+    this.cacheService.emitChange(this.discussions[0].group.id);
   }
 
 }

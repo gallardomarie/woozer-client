@@ -3,6 +3,7 @@ import { GroupService } from 'src/services/group.service';
 import { Group } from './group';
 import { Router } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
+import {User} from "../../login/user";
 
 @Component({
   selector: 'app-group-list',
@@ -12,23 +13,24 @@ import { CacheService } from 'src/services/cache.service';
 export class GroupListComponent implements OnInit {
 
   groups: Group[];
+  user: User;
 
   constructor(
     private groupService: GroupService,
     private router: Router,
-    private cache: CacheService
+    private cacheService: CacheService
   ) { }
 
   ngOnInit() {
-    //TODO replace with dynamic user id
-    this.groupService.findGroupsByUser('1').then((groups) => {
+    this.user = this.cacheService.getUser();
+    this.groupService.findGroupsByUser(this.user.id).then((groups) => {
       this.groups = groups;
     });
   }
 
   navigateToGroup(idGroup){
     this.router.navigate(['/woozer/event', {id: idGroup}]);
-    this.cache.emitChange(idGroup);
+    this.cacheService.emitChange(idGroup);
   }
 
 }

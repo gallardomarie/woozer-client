@@ -25,7 +25,7 @@ export class DiscussionDetailsComponent implements OnInit {
     message: Message;
 
     constructor(
-        private cache: CacheService,
+        private cacheService: CacheService,
         private discussionService: DiscussionService,
         private messageService: MessageService,
         private userService: UserService,
@@ -33,15 +33,12 @@ export class DiscussionDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        //TODO replace with dynamic user id connected
         this.userId = 1;
         this.discussionService.findById(+this.router.url[this.router.url.length - 1]).then((discussion) => {
             this.discussion = discussion;
-            this.userService.findById(this.userId).then((user) => {
-                this.user = user;
-                this.message = new Message(null, user, null, "");
-                this.content.scrollToBottom(1000);
-            });
+            this.user = this.cacheService.getUser();
+            this.message = new Message(null, this.user, null, "");
+            this.content.scrollToBottom(1000);
         });
     }
 

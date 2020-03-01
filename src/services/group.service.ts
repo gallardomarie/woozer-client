@@ -9,11 +9,11 @@ export class GroupService {
     constructor(private httpClient: HttpClient
     ) { }
 
-    findGroupsByUser(userId: string) {
+    findGroupsByUser(userId: number) {
         return this.httpClient.get<Group[]>(`${environment.apiBaseUrl}group/list/` + userId).toPromise();
     }
 
-    findGroupById(id: string) {
+    findGroupById(id: number) {
         return this.httpClient.get<Group>(`${environment.apiBaseUrl}group/` + id).toPromise();
     }
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CacheService} from "../../services/cache.service";
+import {Router} from "@angular/router";
+import {User} from "../login/user";
 
 @Component({
   selector: 'app-homepage',
@@ -9,11 +12,17 @@ export class HomepageComponent implements OnInit {
 
 
   id: number;
+  user: User;
 
-  constructor() {}
+  constructor(
+      private cacheService: CacheService,
+      private router: Router
+  ) {}
 
   ngOnInit() {
-
+    //TODO remettre quand prod
+    //this.user = this.router.getCurrentNavigation().extras.state.user;
+    //this.cacheService.setUser(this.user);
   }
 
 }

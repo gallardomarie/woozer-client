@@ -5,6 +5,7 @@ import {Group} from '../group';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { GroupService } from 'src/services/group.service';
+import {CacheService} from "../../../../services/cache.service";
 
 @Component({
   selector: 'app-group-form',
@@ -16,12 +17,14 @@ export class GroupFormComponent implements OnInit {
   group: Group;
   groupForm: FormGroup;
   creation: boolean;
+  connectedUser: User;
 
     constructor(
         public userAutocompleteService: UserAutocompleteService,
         private fb: FormBuilder,
         private router: Router,
-        private groupService: GroupService
+        private groupService: GroupService,
+        private cacheService: CacheService
     ) {
         this.groupForm = fb.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -29,12 +32,13 @@ export class GroupFormComponent implements OnInit {
     }
 
   ngOnInit() {
+      this.connectedUser = this.cacheService.getUser();
     if (this.router.url.includes('creation')) {
       this.creation = true;
       this.group = new Group(null, '', [], []);
     } else {
       this.creation = false;
-      this.groupService.findGroupById(this.router.url[this.router.url.length - 1]).then((group) => {
+      this.groupService.findGroupById(+this.router.url[this.router.url.length - 1]).then((group) => {
         this.group = group;
       });
     }
