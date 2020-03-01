@@ -1,50 +1,61 @@
 * {
-    font-family: 'Lato', sans-serif!important;
-  }
+  font-family: 'Lato', sans-serif!important;
+}
 
-  span {
-      display: flex;
-  }
+span {
+  display: flex;
+}
 
-  .message-author {
-      font-weight: bold;
-      margin-right: 4%;
-  }
+.message-author {
+  font-weight: bold;
+  margin-right: 4%;
+}
 
-  .text-content {
-    width: 70%;
-    text-align: justify;
-    margin-left: 3%;
-  }
+.text-content {
+  width: 70%;
+  text-align: justify;
+  margin-left: 3%;
+}
 
-  ion-item {
-      margin-bottom: 4%;
-  }
-
-  .img-container {
-      align-self: flex-start;
-      margin-top: 2%;
-  }
-
-  .message-from-other .message-content {
-    background: #f0f0f0;
-    padding: 3%;
-    border-radius: 3%;
+.img-container {
+    align-self: flex-start;
     margin-top: 2%;
-  }
+}
 
-  .message-from-me .message-content {
-    background: #13A3C8;
-    padding: 3%;
-    border-radius: 3%;
-    margin-top: 2%;
-    color: white;
-  }
+.message-from-other .message-content {
+  background: #f0f0f0;
+  padding: 3%;
+  border-radius: 3%;
+  margin-top: 2%;
+}
 
-  #send-icon {
-    color: #fe6d0c;
-  }
+.message-from-me .message-content {
+  background: #13A3C8;
+  padding: 3%;
+  border-radius: 3%;
+  margin-top: 2%;
+  color: white;
+}
 
-  .send-message {
-      margin: 4%;
-  }
+#send-icon {
+  color: #fe6d0c;
+}
+
+
+
+.send-message {
+    margin: 2% 4%;
+}
+
+ion-content {
+  height: 70vh;
+}
+
+h2 {
+  margin: 0% 0% 4% 4%;
+  font-weight: bold;
+}
+
+ion-item {
+  margin-bottom: 5%;
+}
