@@ -1,10 +1,26 @@
 <h2>Discussion</h2>
 
-<table>
-    <div *ngFor="let message of discussion?.messages">
-        <p>Auteur : {{message.user.username}} | Date : {{message.date}} | Contenu : {{message.message}}</p>
-    </div>
-    <div *ngIf="discussion?.messages.length === 0">
+<div id="discussion-container">
+    <ion-item *ngFor="let message of discussion?.messages" lines="none">
+        <div class="img-container">
+            <img *ngIf="!isUserAuthor(message.user.id)" src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 45px;"/>
+        </div>
+        <div class="text-content" [ngClass]="{
+            'message-from-me': isUserAuthor(message.user.id),
+            'message-from-other': !isUserAuthor(message.user.id)}">
+            <span>
+                <div *ngIf="!isUserAuthor(message.user.id)" class="message-author">{{message.user.username}}</div>
+                <div *ngIf="isUserAuthor(message.user.id)" class="message-author">moi</div>
+                <div class="message-date">{{message.date | date : 'dd/MM/yy HH\'h\'mm'}}</div>
+            </span>
+            <div class="message-content">{{message.message}}</div>
+        </div>
+    </ion-item>
+    <ion-item *ngIf="discussion?.messages.length === 0" lines="none">
         Aucun message dans la discussion.
-    </div>
-</table>
+    </ion-item>
+    <ion-item class="send-message" *ngIf="message">
+        <ion-input placeholder="Répondre" [(ngModel)]="message.message"></ion-input>
+        <ion-icon id="send-icon" name="send-outline" slot="end" (click)="sendMessage()"></ion-icon>
+    </ion-item>
+</div>

@@ -1,0 +1,50 @@
+* {
+    font-family: 'Lato', sans-serif!important;
+  }
+
+  span {
+      display: flex;
+  }
+
+  .message-author {
+      font-weight: bold;
+      margin-right: 4%;
+  }
+
+  .text-content {
+    width: 70%;
+    text-align: justify;
+    margin-left: 3%;
+  }
+
+  ion-item {
+      margin-bottom: 4%;
+  }
+
+  .img-container {
+      align-self: flex-start;
+      margin-top: 2%;
+  }
+
+  .message-from-other .message-content {
+    background: #f0f0f0;
+    padding: 3%;
+    border-radius: 3%;
+    margin-top: 2%;
+  }
+
+  .message-from-me .message-content {
+    background: #13A3C8;
+    padding: 3%;
+    border-radius: 3%;
+    margin-top: 2%;
+    color: white;
+  }
+
+  #send-icon {
+    color: #fe6d0c;
+  }
+
+  .send-message {
+      margin: 4%;
+  }
