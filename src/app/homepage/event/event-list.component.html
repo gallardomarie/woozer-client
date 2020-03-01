@@ -20,7 +20,7 @@
             </div>
             <div *ngIf="event.date">
                 <label class="dateLabel"> Date :</label>
-                <span> {{event.date}} </span>
+                <span> {{event.date | date : 'dd/MM/yyyy'}} </span>
                 <span *ngIf="event.hour"> - {{event.hour}}</span>
             </div>
         </div>

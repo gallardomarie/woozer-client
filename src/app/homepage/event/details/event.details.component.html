@@ -9,7 +9,7 @@
 
     <div>
         <label>Date : </label>
-        <span *ngIf="event.date"> {{event.date}}</span>
+        <span *ngIf="event.date"> {{event.date | date : 'dd/MM/yyyy'}}</span>
         <span *ngIf="!event.date"> en attente </span>
     </div>
 
