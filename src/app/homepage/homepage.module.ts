@@ -22,6 +22,7 @@ import { EventFormComponent } from './event/form/event-form.component';
 import { CacheService } from 'src/services/cache.service';
 import { DiscussionService } from 'src/services/discussion.service';
 import {DiscussionDetailsComponent} from './discussion/details/discussion-details.component';
+import { MessageService } from 'src/services/message.service';
 
 const routes: Routes = [
     {
@@ -109,7 +110,8 @@ const routes: Routes = [
         UserService,
         UserAutocompleteService,
         CacheService,
-        DiscussionService
+        DiscussionService,
+        MessageService
     ]
 })
 export class HomepageModule {}

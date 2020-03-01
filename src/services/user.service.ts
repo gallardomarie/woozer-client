@@ -21,4 +21,8 @@ export class UserService {
       return this.httpClient.get<User[]>(`${environment.apiBaseUrl}user/all`).toPromise();
   }
 
+  findById(id: number) {
+    return this.httpClient.get<User>(`${environment.apiBaseUrl}user/` + id).toPromise();
+}
+
 }

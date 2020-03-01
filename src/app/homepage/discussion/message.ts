@@ -1,4 +1,5 @@
 import { User } from 'src/app/login/user';
+import { Discussion } from './discussion';
 
 export class Message {
 
