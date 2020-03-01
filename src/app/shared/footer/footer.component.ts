@@ -9,6 +9,8 @@ import { CacheService } from 'src/services/cache.service';
 })
 export class FooterComponent implements OnInit {
 
+    private groupId: number;
+
     constructor(
         private router: Router,
         private cache: CacheService
@@ -20,6 +22,11 @@ export class FooterComponent implements OnInit {
     goHome() {
         this.cache.emitChange(null);
         this.router.navigateByUrl('/woozer/home');
+    }
+
+    goDiscussions() {
+        this.groupId = this.cache.getCache();
+        this.groupId ? this.router.navigateByUrl("/woozer/discussion/" + this.groupId) : this.router.navigateByUrl("/woozer/discussions");
     }
 
 }
