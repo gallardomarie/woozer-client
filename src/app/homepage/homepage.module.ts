@@ -104,7 +104,7 @@ const routes: Routes = [
         GroupFormComponent,
         EventListComponent,
         EventDetailsComponent,
-        EventFormComponent,
+        EventFormComponent
     ],
     providers: [
         GroupService,

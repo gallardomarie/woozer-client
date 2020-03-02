@@ -1,1 +1,62 @@
-<p>Page de formulaire pour l'event</p>
+<div class="event-form">
+
+    <form [formGroup]="formGroup">
+
+
+      <div class="form-group">
+        <label for="nom">Nom <span class="option-obligatoire">*</span> </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="nom" type="text" class="nom"/>
+          <div *ngIf="formGroup.controls['nom'].errors && (formGroup.controls['nom'].dirty || formGroup.controls['nom'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['nom'].errors.required">Le nom de l'événement est obligatoire</span>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description <span class="option-obligatoire">*</span> </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="description" type="text" class="description"/>
+          <div *ngIf="formGroup.controls['description'].errors && (formGroup.controls['description'].dirty || formGroup.controls['description'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['description'].errors.required">La description de l'événement obligatoire</span>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lieu">Lieu </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="lieu" type="text"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date  </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="date" type="date"/>
+          <!-- TODO Gestion erreurs
+          <div *ngIf="formGroup.controls['date'].errors && (formGroup.controls['date'].dirty || formGroup.controls['date'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['date'].errors.required">Champ obligatoire</span>
+           </div>
+        -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="heure">Heure </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="heure" type="text"/>
+          <!-- TODO Gestion erreurs
+          <div *ngIf="formGroup.controls['date'].errors && (formGroup.controls['date'].dirty || formGroup.controls['date'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['date'].errors.required">Champ obligatoire</span>
+           </div>
+        -->
+        </div>
+      </div>
+
+    </form>
+  
+  </div>
+
+  <app-button text="Valider" (click)="saveEvent()"></app-button>
+  
