@@ -6,8 +6,8 @@ import {Discussion} from '../discussion';
 import { Message } from '../message';
 import { UserService } from 'src/services/user.service';
 import { MessageService } from 'src/services/message.service';
-import {User} from "../../../login/user";
-import {IonContent} from "@ionic/angular";
+import {User} from '../../../login/user';
+import {IonContent} from '@ionic/angular';
 
 @Component({
     selector: 'app-discussion-details',
@@ -33,11 +33,11 @@ export class DiscussionDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.userId = 1;
+        this.userId = this.cacheService.getUser().id;
         this.discussionService.findById(+this.router.url[this.router.url.length - 1]).then((discussion) => {
             this.discussion = discussion;
             this.user = this.cacheService.getUser();
-            this.message = new Message(null, this.user, null, "");
+            this.message = new Message(null, this.user, null, '');
             this.content.scrollToBottom(1000);
         });
     }
@@ -50,7 +50,7 @@ export class DiscussionDetailsComponent implements OnInit {
         this.message.date = new Date();
         this.messageService.save(this.message, this.discussion.id).then((messageSaved) => {
             this.discussion.messages.push(messageSaved);
-            this.message = new Message(null, this.user, null, "");
+            this.message = new Message(null, this.user, null, '');
             // recharger la page pour scroll vers le bas et afficher le dernier message -> si trop long en prod, enlever
             this.ngOnInit();
         });

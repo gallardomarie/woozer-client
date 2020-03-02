@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {HomepageComponent} from './homepage.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgendaComponent } from './agenda/agenda.component';
-import { DebtComponent } from './debt/debt.component';
+import { DebtListComponent } from './debt/debt-list.component';
 import { DiscussionListComponent } from './discussion/discussion-list.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +23,7 @@ import { CacheService } from 'src/services/cache.service';
 import { DiscussionService } from 'src/services/discussion.service';
 import {DiscussionDetailsComponent} from './discussion/details/discussion-details.component';
 import { MessageService } from 'src/services/message.service';
+import {DebtService} from '../../services/debt.service';
 
 const routes: Routes = [
     {
@@ -35,7 +36,7 @@ const routes: Routes = [
             },
             {
                 path: 'dettes',
-                component: DebtComponent
+                component: DebtListComponent
             },
             {
                 path: 'discussions',
@@ -94,7 +95,7 @@ const routes: Routes = [
     declarations: [
         HomepageComponent,
         AgendaComponent,
-        DebtComponent,
+        DebtListComponent,
         DiscussionListComponent,
         DiscussionDetailsComponent,
         PhotoAlbumComponent,
@@ -111,7 +112,8 @@ const routes: Routes = [
         UserAutocompleteService,
         CacheService,
         DiscussionService,
-        MessageService
+        MessageService,
+        DebtService
     ]
 })
 export class HomepageModule {}

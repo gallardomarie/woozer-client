@@ -1,0 +1,22 @@
+<app-button text="Ajouter une dépense"></app-button>
+
+<div *ngIf="debts?.length > 0">
+    <ion-item *ngFor="let debt of debts" lines="none">
+        <div class="item-content">
+            <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
+                {{debt.payedFor.username}} doit {{debt.amount}} à {{debt.payedBy.username}}
+            </ion-label>
+            <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && isUserConnected(debt.payedBy.id)">
+                {{debt.payedFor.username}} me doit {{debt.amount}}
+            </ion-label>
+            <ion-label *ngIf="isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
+                Je dois {{debt.amount}} à {{debt.payedBy.username}}
+            </ion-label>
+            <ion-label *ngIf="debt.comment">({{debt.comment}})</ion-label>
+        </div>
+    </ion-item>
+</div>
+
+<div *ngIf="debts?.length < 1">
+    Aucune dette à afficher.
+</div>
