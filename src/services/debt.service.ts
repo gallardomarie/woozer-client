@@ -10,7 +10,11 @@ export class DebtService {
     }
 
     findAllByGroupId(groupId: number) {
-        return this.httpClient.get<Debt[]>(`${environment.apiBaseUrl}debt/list/` + groupId).toPromise();
+        return this.httpClient.get<Debt[]>(`${environment.apiBaseUrl}debt/list/group/` + groupId).toPromise();
+    }
+
+    findAllByUserId(userId: number) {
+        return this.httpClient.get<Debt[]>(`${environment.apiBaseUrl}debt/list/user/` + userId).toPromise();
     }
 
 }

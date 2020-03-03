@@ -27,7 +27,9 @@ export class DebtListComponent implements OnInit {
             this.debts = debts;
         });
     } else {
-      // récupérer dettes perso
+        this.debtService.findAllByUserId(this.userId).then((debts) => {
+            this.debts = debts;
+        });
     }
   }
 
