@@ -34,11 +34,6 @@
         <label for="date">Date  </label>
         <div class="form-group-feedback">
           <input class="form-control" formControlName="date" type="date"/>
-          <!-- TODO Gestion erreurs
-          <div *ngIf="formGroup.controls['date'].errors && (formGroup.controls['date'].dirty || formGroup.controls['date'].touched)">
-            <span class="form-control-feedback" *ngIf="formGroup.controls['date'].errors.required">Champ obligatoire</span>
-           </div>
-        -->
         </div>
       </div>
 
@@ -46,11 +41,9 @@
         <label for="heure">Heure </label>
         <div class="form-group-feedback">
           <input class="form-control" formControlName="heure" type="text"/>
-          <!-- TODO Gestion erreurs
-          <div *ngIf="formGroup.controls['date'].errors && (formGroup.controls['date'].dirty || formGroup.controls['date'].touched)">
-            <span class="form-control-feedback" *ngIf="formGroup.controls['date'].errors.required">Champ obligatoire</span>
+          <div *ngIf="formGroup.controls['heure'].errors && (formGroup.controls['heure'].dirty || formGroup.controls['heure'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['heure'].errors.format">L'heure doit être au format HH:MM:SS</span>
            </div>
-        -->
         </div>
       </div>
 

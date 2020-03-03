@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/services/event.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ValidateHours } from './hour-validator';
 
 @Component({
     selector: 'app-event-form',
@@ -47,7 +48,7 @@ export class EventFormComponent implements OnInit {
             description: ['', Validators.required],
             date: [''],
             lieu: [''],
-            heure: ['']
+            heure: ['', ValidateHours]
           });
     }
 
@@ -73,13 +74,13 @@ export class EventFormComponent implements OnInit {
 
     convertDate(dateToConvert: Date) {
         let result = dateToConvert.getUTCFullYear() + '-';
-        if((dateToConvert.getMonth()+1).toString().length == 1) {
-            result+='0'
+        if ((dateToConvert.getMonth() + 1).toString().length === 1) {
+            result += '0';
         }
-        result+=(dateToConvert.getMonth()+1) + '-';
-        if(dateToConvert.getDate().toString().length == 1) {
-            result+='0';
-        }       
+        result += (dateToConvert.getMonth() + 1) + '-';
+        if (dateToConvert.getDate().toString().length === 1) {
+            result += '0';
+        }
         result += dateToConvert.getDate();
         return result;
     }
