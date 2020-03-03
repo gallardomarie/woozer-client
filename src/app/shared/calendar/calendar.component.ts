@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
 import { EventService } from 'src/services/event.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from '../popup/popup.component';
+import {CalendarEventPopupComponent} from '../popup/calendar-event/calendar-event-popup.component';
 
 
 @Component({
@@ -62,7 +62,7 @@ export class CalendarComponent implements OnInit {
   }
 
   openDialog(events) {
-    this.matDialog.open(PopupComponent, {
+    this.matDialog.open(CalendarEventPopupComponent, {
       width: '250px',
       data: {data: events}
     });

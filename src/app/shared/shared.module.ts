@@ -11,7 +11,7 @@ import {AutoCompleteModule} from 'ionic4-auto-complete';
 import { CacheService } from 'src/services/cache.service';
 import { IonicModule } from '@ionic/angular';
 import { EventService } from 'src/services/event.service';
-import { PopupComponent } from './popup/popup.component';
+import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event-popup.component';
 
 @NgModule({
     imports: [
@@ -29,7 +29,7 @@ import { PopupComponent } from './popup/popup.component';
         TopbarComponent,
         FooterComponent,
         CalendarComponent,
-        PopupComponent
+        CalendarEventPopupComponent,
     ],
     exports: [
         ButtonComponent,
@@ -42,7 +42,7 @@ import { PopupComponent } from './popup/popup.component';
         EventService
     ],
     entryComponents: [
-        PopupComponent
+        CalendarEventPopupComponent,
     ]
 })
 export class SharedModule {}

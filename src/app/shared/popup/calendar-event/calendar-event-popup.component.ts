@@ -1,16 +1,16 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-popup',
-    templateUrl: './popup.component.html',
-    styleUrls: ['./popup.component.scss'],
+    selector: 'app-calendar-event-popup',
+    templateUrl: './calendar-event-popup.component.html',
+    styleUrls: ['./calendar-event-popup.component.scss'],
 })
-export class PopupComponent {
+export class CalendarEventPopupComponent {
 
     constructor(
-        public dialogRef: MatDialogRef<PopupComponent>,
+        public dialogRef: MatDialogRef<CalendarEventPopupComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private router: Router
         ) { }
