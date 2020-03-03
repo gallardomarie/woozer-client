@@ -5,7 +5,7 @@ import {Group} from '../group';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { GroupService } from 'src/services/group.service';
-import {CacheService} from "../../../../services/cache.service";
+import {CacheService} from '../../../../services/cache.service';
 
 @Component({
   selector: 'app-group-form',
@@ -33,7 +33,7 @@ export class GroupFormComponent implements OnInit {
 
   ngOnInit() {
       this.connectedUser = this.cacheService.getUser();
-    if (this.router.url.includes('creation')) {
+      if (this.router.url.includes('creation')) {
       this.creation = true;
       this.group = new Group(null, '', [], []);
     } else {

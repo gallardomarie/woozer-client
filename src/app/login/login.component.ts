@@ -4,7 +4,6 @@ import {AuthService} from '../../services/auth.service';
 import {ToastController} from '@ionic/angular';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
-import {CacheService} from "../../services/cache.service";
 
 @Component({
   selector: 'page-login',
@@ -31,7 +30,7 @@ export class LoginComponent {
 
   login() {
     this.router.navigate(['/woozer/home']);
-    //TODO remettre quand prod
+    // TODO remettre quand prod
     /*let data = this.loginForm.value;
 
     if (!data.email) {
@@ -58,16 +57,16 @@ export class LoginComponent {
   }
 
   async displayErrorToaster(errorCode: string) {
-    let message = "";
-    if(errorCode == "auth/user-not-found") {
-      message = "Aucun utilisateur n'est associé à l'email saisi.";
-    } else if (errorCode == "auth/wrong-password") {
-      message = "Le mot de passe saisi est invalide.";
+    let message = '';
+    if (errorCode === 'auth/user-not-found') {
+      message = 'Aucun utilisateur n\'est associé à l\'email saisi.';
+    } else if (errorCode === 'auth/wrong-password') {
+      message = 'Le mot de passe saisi est invalide.';
     } else {
-      message = "Erreur lors de la tentative de connexion. Veuillez réessayer."
+      message = 'Erreur lors de la tentative de connexion. Veuillez réessayer.';
     }
     const toast = await this.toastController.create({
-      message: message,
+      message,
       duration: 3000
     });
     toast.present();
