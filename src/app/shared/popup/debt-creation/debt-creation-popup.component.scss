@@ -1,0 +1,26 @@
+::ng-deep .mat-dialog-container{
+
+  padding: 10px;
+
+  .close {
+    float: right;
+    background: none;
+
+    ion-icon {
+      color:grey;
+      font-size: 22px;
+    }
+
+  }
+
+  .title {
+    font-weight: bold;
+    text-align: -webkit-center;
+  }
+
+  .button {
+    font-size: 12px;
+    margin: 3%;
+  }
+
+}

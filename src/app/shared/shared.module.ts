@@ -12,6 +12,8 @@ import { CacheService } from 'src/services/cache.service';
 import { IonicModule } from '@ionic/angular';
 import { EventService } from 'src/services/event.service';
 import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event-popup.component';
+import {DebtCreationPopupComponent} from './popup/debt-creation/debt-creation-popup.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -22,7 +24,9 @@ import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event
             useFactory: adapterFactory
         }),
         AutoCompleteModule,
-        IonicModule
+        IonicModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         ButtonComponent,
@@ -30,6 +34,7 @@ import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event
         FooterComponent,
         CalendarComponent,
         CalendarEventPopupComponent,
+        DebtCreationPopupComponent
     ],
     exports: [
         ButtonComponent,
@@ -43,6 +48,7 @@ import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event
     ],
     entryComponents: [
         CalendarEventPopupComponent,
+        DebtCreationPopupComponent
     ]
 })
 export class SharedModule {}

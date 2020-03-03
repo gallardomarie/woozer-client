@@ -1,5 +1,5 @@
 <div id="debt-list">
-    <app-button text="Ajouter une dépense"></app-button>
+    <app-button text="Ajouter une dépense" (click)="openCreationDialog()"></app-button>
     <h3 *ngIf="groupId"><strong>Dettes du groupe</strong></h3>
     <h3 *ngIf="!groupId"><strong>Mes dettes</strong></h3>
 

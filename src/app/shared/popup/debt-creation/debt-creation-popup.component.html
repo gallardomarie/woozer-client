@@ -1,0 +1,37 @@
+<button mat-button class="close" (click)="closeModal()">
+    <ion-icon name="close-outline"></ion-icon>
+</button>
+
+<h4 mat-dialog-title class="title">Ajout d'une dépense</h4>
+
+
+<form mat-dialog-content (ngSubmit)="save()" [formGroup]="debtForm" id="debt-form">
+    <ion-list inset>
+
+        <ion-item >
+            <ion-label position="stacked">Montant dépensé</ion-label>
+            <ion-input type="number" formControlName="amount" [(ngModel)]="debt.amount"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Quel groupe ?</ion-label>
+            <ion-input type="text" formControlName="group" [(ngModel)]="selectedGroup"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Pour qui ?</ion-label>
+            <ion-input type="text" formControlName="payedFor" [(ngModel)]="debt.payedFor"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Détails</ion-label>
+            <ion-input type="text" formControlName="comment" [(ngModel)]="debt.comment"></ion-input>
+        </ion-item>
+
+        <div class="ion-padding-horizontal">
+            <app-button text="Valider" type="submit"></app-button>
+        </div>
+
+    </ion-list>
+
+</form>
