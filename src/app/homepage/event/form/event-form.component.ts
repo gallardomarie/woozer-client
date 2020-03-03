@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/services/event.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidateHours } from './hour-validator';
+import { EventObject } from '../event';
 
 @Component({
     selector: 'app-event-form',
@@ -35,7 +36,6 @@ export class EventFormComponent implements OnInit {
                 params => {
                     this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;
-                    console.log(event);
                     this.preremplissageForm();
                 });
             });
@@ -53,7 +53,6 @@ export class EventFormComponent implements OnInit {
     }
 
     preremplissageForm() {
-        console.log(new Date(this.event.date).toDateString());
         let convertedDate = '';
         if (this.event.date) {
             convertedDate = this.convertDate(new Date(this.event.date));
@@ -68,8 +67,9 @@ export class EventFormComponent implements OnInit {
     }
 
     saveEvent() {
-        console.log('Je save ce qui se trouve dans le formGroup');
-        // TODO la date doit être timestamp /!\ reformattage
+        const event = this.convertToEventObject();
+        this.eventService.save(event);
+
     }
 
     convertDate(dateToConvert: Date) {
@@ -83,6 +83,19 @@ export class EventFormComponent implements OnInit {
         }
         result += dateToConvert.getDate();
         return result;
+    }
+
+    convertToEventObject() {
+        const event = new EventObject(null, '', '');
+        if (this.eventId) {
+            event.id = this.eventId;
+        }
+        event.name = this.formGroup.controls.nom.value;
+        event.description = this.formGroup.controls.description.value;
+        event.date = this.formGroup.controls.date.value;
+        event.hour = this.formGroup.controls.heure.value;
+        event.place = this.formGroup.controls.lieu.value;
+        return event;
     }
 
 }
