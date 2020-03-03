@@ -20,10 +20,11 @@ export class EventService {
     return this.httpClient.get(`${environment.apiBaseUrl}event/perso/` + userId).toPromise();
   }
 
-  save(event: EventObject) {
-    return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/save`, event).toPromise();
-
+  save(event: EventObject, groupId: number) {
+    return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/save/` + groupId, event).toPromise();
   }
+
+
 
 }
 

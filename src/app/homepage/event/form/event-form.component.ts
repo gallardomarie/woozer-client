@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from 'src/services/event.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidateHours } from './hour-validator';
 import { EventObject } from '../event';
+import { CacheService } from 'src/services/cache.service';
+import { GroupService } from 'src/services/group.service';
+import { ValidateGroup } from './group-validator';
 
 @Component({
     selector: 'app-event-form',
@@ -15,17 +18,23 @@ import { EventObject } from '../event';
 export class EventFormComponent implements OnInit {
 
     eventId;
+    groupId;
     event;
     formGroup;
+    inGroup;
+    groups;
 
     constructor(
         private eventService: EventService,
         private activeRoute: ActivatedRoute,
-        private formBuilder: FormBuilder
-
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private cache: CacheService,
+        private groupService: GroupService
     ) {
         this.activeRoute.params.subscribe(params => {
             this.eventId = params.eventId;
+            this.groupId = params.groupId;
         });
     }
 
@@ -40,6 +49,15 @@ export class EventFormComponent implements OnInit {
                 });
             });
         }
+        if (+this.groupId) {
+            this.inGroup = true;
+        } else {
+            this.inGroup = false;
+            const user = this.cache.getUser();
+            this.groupService.findGroupsByUser(user.id).then(results => {
+                this.groups = results;
+            });
+        }
     }
 
     initFormGroup() {
@@ -48,7 +66,8 @@ export class EventFormComponent implements OnInit {
             description: ['', Validators.required],
             date: [''],
             lieu: [''],
-            heure: ['', ValidateHours]
+            heure: ['', ValidateHours],
+            group: ['', ValidateGroup.valid(this.inGroup)]
           });
     }
 
@@ -68,8 +87,13 @@ export class EventFormComponent implements OnInit {
 
     saveEvent() {
         const event = this.convertToEventObject();
-        this.eventService.save(event);
-
+        if (this.inGroup) {
+            this.eventService.save(event, +this.groupId);
+            this.router.navigate(['woozer/event', {id: this.groupId}]);
+        } else {
+            this.eventService.save(event, +this.formGroup.controls.group.value);
+            this.router.navigate(['woozer/home']);
+        }
     }
 
     convertDate(dateToConvert: Date) {
@@ -92,8 +116,8 @@ export class EventFormComponent implements OnInit {
         }
         event.name = this.formGroup.controls.nom.value;
         event.description = this.formGroup.controls.description.value;
-        event.date = this.formGroup.controls.date.value;
-        event.hour = this.formGroup.controls.heure.value;
+        this.formGroup.controls.date.value === '' ? event.date = null : event.date = this.formGroup.controls.date.value;
+        this.formGroup.controls.heure.value === '' ? event.hour = null : event.hour = this.formGroup.controls.heure.value;
         event.place = this.formGroup.controls.lieu.value;
         return event;
     }

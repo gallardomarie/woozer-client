@@ -2,6 +2,18 @@
 
     <form [formGroup]="formGroup">
 
+      <div class="form-group" *ngIf="!inGroup">
+        <label for="group">Groupe </label>
+          <div class="form-group-feedback">
+            <select placeholder="Groupe" formControlName="group">
+              <option *ngFor="let group of groups" [value]="group.id" [innerHTML]="group.name"></option>
+            </select>
+            <div *ngIf="formGroup.controls['group'].errors && (formGroup.controls['group'].dirty || formGroup.controls['group'].touched)">
+              <span class="form-control-feedback" *ngIf="formGroup.controls['group'].errors.group">Le groupe est requis</span>
+             </div>
+          </div>
+        </div>
+
 
       <div class="form-group">
         <label for="nom">Nom <span class="option-obligatoire">*</span> </label>
@@ -45,11 +57,11 @@
             <span class="form-control-feedback" *ngIf="formGroup.controls['heure'].errors.format">L'heure doit être au format HH:MM:SS</span>
            </div>
         </div>
-      </div>
+      </div>   
 
     </form>
-  
   </div>
+
 
   <app-button text="Valider" (click)="saveEvent()"></app-button>
   
