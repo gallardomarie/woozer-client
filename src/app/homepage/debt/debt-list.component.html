@@ -1,19 +1,19 @@
 <div id="debt-list">
     <app-button text="Ajouter une dépense"></app-button>
-    <h3 *ngIf="groupId"><strong>Dépenses du groupe</strong></h3>
-    <h3 *ngIf="!groupId"><strong>Mes dépenses</strong></h3>
+    <h3 *ngIf="groupId"><strong>Dettes du groupe</strong></h3>
+    <h3 *ngIf="!groupId"><strong>Mes dettes</strong></h3>
 
     <div *ngIf="debts?.length > 0">
         <ion-item *ngFor="let debt of debts" lines="none">
             <div class="item-content">
                 <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
-                    <strong>{{debt.payedFor.username}}</strong> doit {{debt.amount}} à <strong>{{debt.payedBy.username}}</strong>
+                    <strong>{{debt.payedFor.username}}</strong> doit {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy.username}}</strong>
                 </ion-label>
                 <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && isUserConnected(debt.payedBy.id)">
-                    <strong>{{debt.payedFor.username}}</strong> me doit {{debt.amount}}
+                    <strong>{{debt.payedFor.username}}</strong> me doit {{debt.amount | currency:'EUR'}}
                 </ion-label>
                 <ion-label *ngIf="isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
-                    Je dois {{debt.amount}} à <strong>{{debt.payedBy.username}}</strong>
+                    Je dois {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy.username}}</strong>
                 </ion-label>
                 <ion-label class="debt-comment" *ngIf="debt.comment">({{debt.comment}})</ion-label>
             </div>

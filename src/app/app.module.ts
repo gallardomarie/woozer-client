@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -60,7 +60,11 @@ import { MatDialogModule } from '@angular/material/dialog';
         SplashScreen,
         AngularFireAuth,
         AuthService,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {
+            provide: LOCALE_ID,
+            useValue: 'fr-FR'
+        }
     ],
     exports: [
     ],
