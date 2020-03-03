@@ -21,6 +21,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
     discussion: Discussion;
     userId: number;
+    groupdId: number;
     user: User;
     message: Message;
 
@@ -34,6 +35,7 @@ export class DiscussionDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.userId = this.cacheService.getUser().id;
+        this.groupdId = this.cacheService.getCache();
         this.discussionService.findById(+this.router.url[this.router.url.length - 1]).then((discussion) => {
             this.discussion = discussion;
             this.user = this.cacheService.getUser();

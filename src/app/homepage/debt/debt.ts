@@ -7,7 +7,8 @@ export class Debt {
         public payedBy: User,
         public payedFor: User,
         public amount: number,
-        public comment: string
+        public comment: string,
+        public done: boolean
     ) { }
 
 }

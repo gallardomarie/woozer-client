@@ -1,3 +1,43 @@
 * {
   font-family: 'Lato', sans-serif!important;
 }
+
+ion-item {
+  border-left: 3px solid #fe6d0c;
+  margin-left: 8%;
+  margin-bottom: 6%;
+}
+
+ion-item:nth-child(odd) {
+  border-left: 3px solid #fe6d0c;
+}
+
+ion-item:nth-child(even) {
+  border-left: 3px solid #13A3C8;
+}
+
+.debt-comment {
+  margin-top: 4%;
+}
+
+h3 {
+  margin: 8% 4%;
+}
+
+ion-checkbox {
+  position: absolute;
+  right: 12%;
+  top: 0%;
+  --size: 23px;
+  --background-checked: #5a6978;
+  --border-color-checked: #5a6978;
+  --color: #5a6978;
+}
+
+#debt-list {
+  margin-top: -105%;
+}
+
+#no-debt {
+  margin-left: 8%;
+}
