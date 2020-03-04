@@ -13,6 +13,7 @@ export class SondageComponent implements OnInit {
     sondageType;
     formGroup;
     allOptions: FormGroup[] = [];
+    typeInput;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -25,6 +26,11 @@ export class SondageComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.sondageType === 'Date') {
+            this.typeInput = 'date';
+        } else {
+            this.typeInput = 'text';
+        }
         console.log(this.eventId);
         console.log(this.sondageType);
         this.initFormGroup();

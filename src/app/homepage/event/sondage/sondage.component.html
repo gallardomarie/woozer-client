@@ -2,7 +2,7 @@
     <h2 class="title" [innerHTML]="sondageType + ' :'"></h2>
     <div formArrayName="sondage">
         <div class="option" [formGroupName]="index" *ngFor="let option of allOptions; let index=index">
-            <ion-input type="text"></ion-input>
+            <ion-input [type]="typeInput"></ion-input>
             <ion-icon name="square-outline"></ion-icon>
         </div>
     </div>
