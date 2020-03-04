@@ -5,6 +5,7 @@ import {User} from '../../../login/user';
 import {GroupService} from '../../../../services/group.service';
 import {CacheService} from '../../../../services/cache.service';
 import {Debt} from '../../../homepage/debt/debt';
+import {DebtService} from '../../../../services/debt.service';
 import {ModalController} from '@ionic/angular';
 
 @Component({
@@ -13,13 +14,6 @@ import {ModalController} from '@ionic/angular';
     styleUrls: ['./debt-creation-popup.component.scss'],
 })
 export class DebtCreationPopupComponent implements OnInit {
-
-    debtForm: FormGroup;
-    groups: Group[];
-    selectedGroup: Group;
-    users: User[];
-    connectedUser: User;
-    debt: Debt;
 
     constructor(
         private groupService: GroupService,
@@ -32,9 +26,17 @@ export class DebtCreationPopupComponent implements OnInit {
             amount: ['', Validators.compose([Validators.required, Validators.min(0)])],
             group: ['', Validators.compose([Validators.required])],
             payedFor: ['', Validators.compose([Validators.required])],
-            comment: ['']
+            comment: ['', Validators.compose([Validators.required])],
+            selectedGroup: ['']
         });
     }
+
+    debtForm: FormGroup;
+    groups: Group[];
+    selectedGroup: Group;
+    users: User[];
+    connectedUser: User;
+    debt: Debt;
 
     ngOnInit(): void {
         this.connectedUser = this.cacheService.getUser();
@@ -44,19 +46,21 @@ export class DebtCreationPopupComponent implements OnInit {
         this.debt = new Debt(null, this.connectedUser, null, null, null, false);
     }
 
-    // TODO mapper liste des groupes avec son champ et ngChange dessus qui appelle updateUsers
-    // TODO mapper liste des users avec son champ
-
-    updateUsers() {
-        this.users = this.selectedGroup.users;
+    compareFn(o1, o2) {
+        return o1 && o2 ? o1.id === o2.id : o1 === o2;
     }
 
-    closeModal() {
-        this.dialogRef.close();
-
+    updateUsers(selectedGroup: Group) {
+        this.users = selectedGroup.users;
+        this.debt.payedFor = null;
     }
 
     save() {
+        this.debtService.save(this.debt).then((debtSaved) => {
+            console.log(`la dette a bien été sauvegardée, fermer le modal et la retourner à la liste parent !`);
+            this.closeModal();
+        });
+    }
 
     closeModal() {
         this.modalController.dismiss();

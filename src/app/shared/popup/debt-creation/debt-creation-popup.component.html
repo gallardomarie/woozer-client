@@ -15,12 +15,16 @@
 
         <ion-item>
             <ion-label position="stacked">Quel groupe ?</ion-label>
-            <ion-input type="text" formControlName="group" [(ngModel)]="selectedGroup"></ion-input>
+            <ion-select formControlName="selectedGroup" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="selectedGroup" (ionChange)="updateUsers(selectedGroup)">
+                <ion-select-option *ngFor="let group of groups" [value]="group">{{group.name}}</ion-select-option>
+            </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">Pour qui ?</ion-label>
-            <ion-input type="text" formControlName="payedFor" [(ngModel)]="debt.payedFor"></ion-input>
+            <ion-select formControlName="payedFor" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="debt.payedFor">
+                <ion-select-option *ngFor="let user of users" [value]="user">{{user.username}}</ion-select-option>
+            </ion-select>
         </ion-item>
 
         <ion-item>
