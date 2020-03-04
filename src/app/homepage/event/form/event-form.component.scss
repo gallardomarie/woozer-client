@@ -1,0 +1,49 @@
+.option-obligatoire {
+    color: red;
+}
+
+.form-group {
+    margin: 3%;
+    label {
+        color:grey;
+    }
+    input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        width: 100%;
+        margin-top: 3%;
+    }
+
+    .nom {
+        font-weight: bold;
+    }
+
+    .description {
+        background-color: rgb(240, 240, 240);
+        padding: 3%;
+    }
+
+    .form-control-feedback {
+        color: red;
+    }
+
+    select {
+        width: 100%;
+        margin-top: 3%;
+        padding: 2%;
+
+        option {
+            color: grey;
+        }
+    }
+
+}
+
+::ng-deep app-button.disabled {
+    div {
+        button {
+            background-color: #f0f0f0 !important;
+        }
+    }
+}

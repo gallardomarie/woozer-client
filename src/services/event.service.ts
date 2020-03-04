@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import { EventObject } from 'src/app/homepage/event/event';
 
 @Injectable()
 export class EventService {
@@ -18,6 +19,12 @@ export class EventService {
   findByUserId(userId: number) {
     return this.httpClient.get(`${environment.apiBaseUrl}event/perso/` + userId).toPromise();
   }
+
+  save(event: EventObject, groupId: number) {
+    return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/save/` + groupId, event).toPromise();
+  }
+
+
 
 }
 

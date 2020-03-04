@@ -1,1 +1,66 @@
-<p>Page de formulaire pour l'event</p>
+<div class="event-form">
+
+    <form [formGroup]="formGroup">
+
+      <div class="form-group" *ngIf="!inGroup">
+        <label for="group">Groupe </label>
+          <div class="form-group-feedback">
+            <select placeholder="Groupe" formControlName="group">
+              <option *ngFor="let group of groups" [value]="group.id" [innerHTML]="group.name"></option>
+            </select>
+            <div *ngIf="formGroup.controls['group'].errors && (formGroup.controls['group'].dirty || formGroup.controls['group'].touched)">
+              <span class="form-control-feedback" *ngIf="formGroup.controls['group'].errors.group">Le groupe est requis</span>
+             </div>
+          </div>
+        </div>
+
+
+      <div class="form-group">
+        <label for="nom">Nom <span class="option-obligatoire">*</span> </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="nom" type="text" class="nom"/>
+          <div *ngIf="formGroup.controls['nom'].errors && (formGroup.controls['nom'].dirty || formGroup.controls['nom'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['nom'].errors.required">Le nom de l'événement est obligatoire</span>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description <span class="option-obligatoire">*</span> </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="description" type="text" class="description"/>
+          <div *ngIf="formGroup.controls['description'].errors && (formGroup.controls['description'].dirty || formGroup.controls['description'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['description'].errors.required">La description de l'événement obligatoire</span>
+           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lieu">Lieu </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="lieu" type="text"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date  </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="date" type="date"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="heure">Heure </label>
+        <div class="form-group-feedback">
+          <input class="form-control" formControlName="heure" type="text"/>
+          <div *ngIf="formGroup.controls['heure'].errors && (formGroup.controls['heure'].dirty || formGroup.controls['heure'].touched)">
+            <span class="form-control-feedback" *ngIf="formGroup.controls['heure'].errors.format">L'heure doit être au format HH:MM:SS</span>
+           </div>
+        </div>
+      </div>   
+
+    </form>
+  </div>
+
+  <app-button text="Valider" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveEvent()"></app-button>
+  
