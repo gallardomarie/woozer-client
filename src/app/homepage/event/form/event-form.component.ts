@@ -39,6 +39,15 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (+this.groupId) {
+            this.inGroup = true;
+        } else {
+            this.inGroup = false;
+            const user = this.cache.getUser();
+            this.groupService.findGroupsByUser(user.id).then(results => {
+                this.groups = results;
+            });
+        }
         this.initFormGroup();
         if (this.eventId) {
             this.activeRoute.params.subscribe(
@@ -47,15 +56,6 @@ export class EventFormComponent implements OnInit {
                     this.event = event;
                     this.preremplissageForm();
                 });
-            });
-        }
-        if (+this.groupId) {
-            this.inGroup = true;
-        } else {
-            this.inGroup = false;
-            const user = this.cache.getUser();
-            this.groupService.findGroupsByUser(user.id).then(results => {
-                this.groups = results;
             });
         }
     }
@@ -69,6 +69,9 @@ export class EventFormComponent implements OnInit {
             heure: ['', ValidateHours],
             group: ['', ValidateGroup.valid(this.inGroup)]
           });
+        this.formGroup.patchValue({
+              group: null
+        });
     }
 
     preremplissageForm() {

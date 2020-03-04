@@ -62,6 +62,5 @@
     </form>
   </div>
 
-
-  <app-button text="Valider" (click)="saveEvent()"></app-button>
+  <app-button text="Valider" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveEvent()"></app-button>
   

@@ -1,6 +1,9 @@
 import { AbstractControl } from '@angular/forms';
 
 export function ValidateHours(control: AbstractControl) {
+    if (control.value === '') {
+        return null;
+    }
     if (control.value) {
         const heure = control.value.split(':');
         const heureEnTroisPartie = heure.length === 3;
