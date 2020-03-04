@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CacheService } from 'src/services/cache.service';
 import {DebtService} from '../../../services/debt.service';
 import {Debt} from './debt';
-import {CalendarEventPopupComponent} from '../../shared/popup/calendar-event/calendar-event-popup.component';
-import {MatDialog} from '@angular/material/dialog';
 import {DebtCreationPopupComponent} from '../../shared/popup/debt-creation/debt-creation-popup.component';
+import {ModalController} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-debt-list',
@@ -20,7 +20,7 @@ export class DebtListComponent implements OnInit {
   constructor(
     private cache: CacheService,
     private debtService: DebtService,
-    public matDialog: MatDialog
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -41,10 +41,18 @@ export class DebtListComponent implements OnInit {
       return this.userId === user;
   }
 
-    openCreationDialog() {
+  /*  openCreationDialog() {
         this.matDialog.open(DebtCreationPopupComponent, {
             width: '350px'
         });
+    }*/
+
+    async openCreationDialog() {
+        const modal = await this.modalController.create({
+            component: DebtCreationPopupComponent,
+            cssClass: 'debt-creation-modal'
+        });
+        return await modal.present();
     }
 
 }

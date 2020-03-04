@@ -1,11 +1,11 @@
-<button mat-button class="close" (click)="closeModal()">
+<button class="close" (click)="closeModal()">
     <ion-icon name="close-outline"></ion-icon>
 </button>
 
-<h4 mat-dialog-title class="title">Ajout d'une dépense</h4>
+<h4 class="title">Ajout d'une dette</h4>
 
 
-<form mat-dialog-content (ngSubmit)="save()" [formGroup]="debtForm" id="debt-form">
+<form (ngSubmit)="save()" [formGroup]="debtForm" id="debt-form">
     <ion-list inset>
 
         <ion-item >

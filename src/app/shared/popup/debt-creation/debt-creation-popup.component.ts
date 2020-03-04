@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Group} from '../../../homepage/groupe/group';
 import {User} from '../../../login/user';
 import {GroupService} from '../../../../services/group.service';
 import {CacheService} from '../../../../services/cache.service';
 import {Debt} from '../../../homepage/debt/debt';
+import {ModalController} from '@ionic/angular';
 
 @Component({
     selector: 'app-debt-creation-popup',
@@ -24,9 +24,9 @@ export class DebtCreationPopupComponent implements OnInit {
     constructor(
         private groupService: GroupService,
         private cacheService: CacheService,
-        public dialogRef: MatDialogRef<DebtCreationPopupComponent>,
+        private debtService: DebtService,
         private fb: FormBuilder,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        private modalController: ModalController
     ) {
         this.debtForm = fb.group({
             amount: ['', Validators.compose([Validators.required, Validators.min(0)])],
@@ -58,6 +58,8 @@ export class DebtCreationPopupComponent implements OnInit {
 
     save() {
 
+    closeModal() {
+        this.modalController.dismiss();
     }
 
 }
