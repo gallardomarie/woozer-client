@@ -2,7 +2,7 @@
     <h2 class="title" [innerHTML]="sondageType + ' :'"></h2>
     <div formArrayName="sondage">
         <div class="option" [formGroupName]="index" *ngFor="let option of allOptions; let index=index">
-            <ion-input [type]="typeInput"></ion-input>
+            <ion-input [type]="typeInput" formControlName="optionSondage"></ion-input>
             <ion-icon name="square-outline"></ion-icon>
         </div>
     </div>
@@ -16,4 +16,7 @@
         <p>Supprimer une option</p>
         <ion-icon name="remove-circle-outline"></ion-icon>
       </div>
+
+      <app-button text="Ajouter le sondage" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveSondage()"></app-button>
+
 </div>

@@ -64,4 +64,11 @@ export class SondageComponent implements OnInit {
 
     }
 
+    saveSondage() {
+        console.log('Je save le sondage');
+        // TODO Enregistrer le sondage
+        // Retour à l'event en modif avec l'id du sondage
+        // On stock cet id dans une variable pour pouvoir lié le sondage à l'event après enregistrement
+    }
+
 }
