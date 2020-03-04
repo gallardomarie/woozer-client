@@ -1,0 +1,49 @@
+.sondage {
+    padding: 3%;
+
+    .title {
+        font-weight: bold;
+        color:grey;
+    }
+
+    .option {
+        width:100%;
+        display: inline-flex;
+        padding-top: 3%;
+    
+        ion-input {
+            border-width: 2px;
+            border-style: inset;
+            border-color: initial;
+            border-image: initial;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        ion-icon {
+            font-size: 30px;
+            color:grey;
+        }
+    
+    }
+}
+
+.changeOptions {
+    color: #fe6d0c;
+    display: flex;
+    place-content: flex-end;
+    margin-bottom: -15px;
+
+
+    p {
+        text-decoration: underline;
+        font-size: 14px;
+    }
+    
+    ion-icon {
+        margin: 5px;  
+        display: flex;
+        align-self: center;
+    }
+}

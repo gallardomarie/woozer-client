@@ -125,4 +125,8 @@ export class EventFormComponent implements OnInit {
         return event;
     }
 
+    createSondage(type) {
+        this.router.navigate(['woozer/sondage', {sondageType: type}]);
+    }
+
 }

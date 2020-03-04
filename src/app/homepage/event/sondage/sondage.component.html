@@ -1,1 +1,19 @@
-<p> Sondage </p>
+<div class="sondage" [formGroup]="formGroup">
+    <h2 class="title" [innerHTML]="sondageType + ' :'"></h2>
+    <div formArrayName="sondage">
+        <div class="option" [formGroupName]="index" *ngFor="let option of allOptions; let index=index">
+            <ion-input type="text"></ion-input>
+            <ion-icon name="square-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="changeOptions" (click)="addOption()">
+        <p>Ajouter une option</p>
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </div>
+
+      <div *ngIf="allOptions.length > 2" class="changeOptions" (click)="deleteOption()">
+        <p>Supprimer une option</p>
+        <ion-icon name="remove-circle-outline"></ion-icon>
+      </div>
+</div>

@@ -76,6 +76,10 @@ const routes: Routes = [
             {
                 path: 'event/form',
                 component: EventFormComponent
+            },
+            {
+                path: 'sondage',
+                component: SondageComponent
             }
         ]
     },
