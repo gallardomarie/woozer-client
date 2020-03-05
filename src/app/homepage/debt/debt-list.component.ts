@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CacheService } from 'src/services/cache.service';
 import {DebtService} from '../../../services/debt.service';
 import {Debt} from './debt';
@@ -12,6 +12,9 @@ import {ModalController} from '@ionic/angular';
   styleUrls: ['./debt-list.component.scss'],
 })
 export class DebtListComponent implements OnInit {
+
+    @ViewChild(IonContent, null)
+    private content: IonContent;
 
   groupId: number;
   userId: number;

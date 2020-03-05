@@ -4,21 +4,23 @@
     <h3 *ngIf="!groupId"><strong>Mes dettes</strong></h3>
 
     <div *ngIf="debts?.length > 0">
-        <ion-item *ngFor="let debt of debts" lines="none">
-            <div class="item-content">
-                <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
-                    <strong>{{debt.payedFor.username}}</strong> doit {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy.username}}</strong>
-                </ion-label>
-                <ion-label *ngIf="!isUserConnected(debt.payedFor.id) && isUserConnected(debt.payedBy.id)">
-                    <strong>{{debt.payedFor.username}}</strong> me doit {{debt.amount | currency:'EUR'}}
-                </ion-label>
-                <ion-label *ngIf="isUserConnected(debt.payedFor.id) && !isUserConnected(debt.payedBy.id)">
-                    Je dois {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy.username}}</strong>
-                </ion-label>
-                <ion-label class="debt-comment" *ngIf="debt.comment">({{debt.comment}})</ion-label>
-            </div>
-            <ion-checkbox [(ngModel)]="debt.done" [checked]="debt.done"></ion-checkbox>
-        </ion-item>
+        <ion-content [scrollEvents]="true" #content>
+            <ion-item *ngFor="let debt of debts" lines="none">
+                <div class="item-content">
+                    <ion-label *ngIf="!isUserConnected(debt.payedFor?.id) && !isUserConnected(debt.payedBy?.id)">
+                        <strong>{{debt.payedFor?.username}}</strong> doit {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy?.username}}</strong>
+                    </ion-label>
+                    <ion-label *ngIf="!isUserConnected(debt.payedFor?.id) && isUserConnected(debt.payedBy?.id)">
+                        <strong>{{debt.payedFor?.username}}</strong> me doit {{debt.amount | currency:'EUR'}}
+                    </ion-label>
+                    <ion-label *ngIf="isUserConnected(debt.payedFor?.id) && !isUserConnected(debt.payedBy?.id)">
+                        Je dois {{debt.amount | currency:'EUR'}} à <strong>{{debt.payedBy?.username}}</strong>
+                    </ion-label>
+                    <ion-label class="debt-comment" *ngIf="debt.comment">({{debt.comment}})</ion-label>
+                </div>
+                <ion-checkbox [(ngModel)]="debt.done" [checked]="debt.done" (click)="acknowledge(debt.id)"></ion-checkbox>
+            </ion-item>
+        </ion-content>
     </div>
 
     <div *ngIf="debts?.length < 1" id="no-debt">
