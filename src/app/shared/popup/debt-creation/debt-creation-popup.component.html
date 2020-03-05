@@ -21,10 +21,20 @@
         </ion-item>
 
         <ion-item>
-            <ion-label position="stacked">Pour qui ?</ion-label>
-            <ion-select formControlName="payedFor" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="debt.payedFor">
-                <ion-select-option *ngFor="let user of users" [value]="user">{{user.username}}</ion-select-option>
-            </ion-select>
+            <div *ngIf="users?.length > 0">
+                <ion-label position="stacked">Pour qui ?</ion-label>
+                <ion-select formControlName="payedFor" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="debt.payedFor">
+                    <ion-select-option *ngFor="let user of users" [value]="user">{{user.username}}</ion-select-option>
+                </ion-select>
+            </div>
+            <div *ngIf="!selectedGroup">
+                <ion-label position="stacked">Pour qui ?</ion-label>
+                Veuillez sélectionner un groupe afin de pouvoir choisir un membre.
+            </div>
+            <div *ngIf="users?.length === 0">
+                <ion-label position="stacked">Pour qui ?</ion-label>
+                Il n'y a aucun membre dans le groupe sélectionné, excepté vous.
+            </div>
         </ion-item>
 
         <ion-item>

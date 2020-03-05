@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Group} from '../../../homepage/groupe/group';
 import {User} from '../../../login/user';
@@ -51,19 +51,27 @@ export class DebtCreationPopupComponent implements OnInit {
     }
 
     updateUsers(selectedGroup: Group) {
-        this.users = selectedGroup.users;
+        this.users = [];
+        selectedGroup.users.forEach((user) => {
+            if (user.id !== this.connectedUser.id) {
+                this.users.push(user);
+            }
+        });
         this.debt.payedFor = null;
     }
 
     save() {
         this.debtService.save(this.debt).then((debtSaved) => {
-            console.log(`la dette a bien été sauvegardée, fermer le modal et la retourner à la liste parent !`);
-            this.closeModal();
+            this.closeModalWithDebt(debtSaved);
         });
     }
 
     closeModal() {
         this.modalController.dismiss();
+    }
+
+    closeModalWithDebt(debt: Debt) {
+        this.modalController.dismiss(debt);
     }
 
 }
