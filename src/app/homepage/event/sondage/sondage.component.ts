@@ -14,6 +14,7 @@ export class SondageComponent implements OnInit {
     formGroup;
     allOptions: FormGroup[] = [];
     typeInput;
+    generique;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -28,8 +29,13 @@ export class SondageComponent implements OnInit {
     ngOnInit() {
         if (this.sondageType === 'Date') {
             this.typeInput = 'date';
+            this.generique = false;
+        } else if (this.sondageType === 'generique') {
+            this.typeInput = 'text';
+            this.generique = true;
         } else {
             this.typeInput = 'text';
+            this.generique = false;
         }
         console.log(this.eventId);
         console.log(this.sondageType);
@@ -47,6 +53,7 @@ export class SondageComponent implements OnInit {
 
     createOption() {
         const formBuilder = this.formBuilder.group({
+            title: ['', Validators.required],
             optionSondage : ['', Validators.required]
           });
         this.allOptions.push(formBuilder);
