@@ -34,6 +34,7 @@ export class DebtListComponent implements OnInit {
 
   loadDebts() {
       if (this.groupId) {
+          this.cache.changeTitleTopBar("Nom du groupe");
           this.debtService.findAllByGroupId(this.groupId).then((debts) => {
               this.debts = debts;
           });

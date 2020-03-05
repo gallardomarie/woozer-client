@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CacheService} from "../../../services/cache.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-topbar',
@@ -7,8 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  private subscription: Subscription;
+  titleCurrentPage: string;
 
-  ngOnInit() {}
+  constructor(
+      private cacheService: CacheService
+  ) {
+    this.titleCurrentPage = this.cacheService.getTitleTopBar();
+  }
+
+  ngOnInit() {
+    this.subscription = this.cacheService.titleTopBarObservable
+        .subscribe(title => {
+          this.titleCurrentPage= title;
+        });
+  }
 
 }

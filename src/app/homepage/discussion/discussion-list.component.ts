@@ -33,6 +33,7 @@ export class DiscussionListComponent implements OnInit {
   }
 
   navigateToDiscussion(discussionId: number) {
+    this.cacheService.changeTitleTopBar("Nom du groupe");
     this.router.navigate(['/woozer/discussion/', discussionId]);
     this.cacheService.emitChange(this.discussions[0].group.id);
   }

@@ -1,6 +1,7 @@
 nav#topbar {
     background-color: #FE6C0C;
-    text-align: end;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav#topbar i {
@@ -11,4 +12,11 @@ i {
     font-size: 230%;
     color: white;
     margin: 1.5%;
+}
+
+span {
+    margin-left: 4%;
+    align-self: center;
+    color: white;
+    font-size: 20px;
 }

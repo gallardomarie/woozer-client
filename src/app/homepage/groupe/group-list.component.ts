@@ -33,6 +33,7 @@ export class GroupListComponent implements OnInit {
   }
 
   navigateToGroup(idGroup){
+    this.cacheService.changeTitleTopBar("Nom du groupe");
     this.router.navigate(['/woozer/event', {id: idGroup}]);
     this.cacheService.emitChange(idGroup);
   }
