@@ -38,10 +38,15 @@ export class GroupFormComponent implements OnInit {
       this.group = new Group(null, '', [], []);
     } else {
       this.creation = false;
-      this.groupService.findGroupById(+this.router.url[this.router.url.length - 1]).then((group) => {
+      this.groupService.findGroupById(+this.getGroupIdFromUrl()).then((group) => {
         this.group = group;
       });
     }
+  }
+
+  getGroupIdFromUrl() {
+    let urlArray = this.router.url.split('/');
+    return urlArray[urlArray.length -1];
   }
 
   addUser(user: User) {

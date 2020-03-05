@@ -36,12 +36,17 @@ export class DiscussionDetailsComponent implements OnInit {
     ngOnInit() {
         this.userId = this.cacheService.getUser().id;
         this.groupdId = this.cacheService.getCache();
-        this.discussionService.findById(+this.router.url[this.router.url.length - 1]).then((discussion) => {
+        this.discussionService.findById(+this.getDiscussionId()).then((discussion) => {
             this.discussion = discussion;
             this.user = this.cacheService.getUser();
             this.message = new Message(null, this.user, null, '');
             this.content.scrollToBottom(1000);
         });
+    }
+
+    getDiscussionId() {
+        let urlArray = this.router.url.split('/');
+        return urlArray[urlArray.length -1];
     }
 
     isUserAuthor(authorId: number): boolean {
