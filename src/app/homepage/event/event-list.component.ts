@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { EventService } from 'src/services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from '../groupe/group';
 import { GroupService } from 'src/services/group.service';
+import {IonContent} from '@ionic/angular';
 
 @Component({
     selector: 'app-event-list',
@@ -11,6 +12,9 @@ import { GroupService } from 'src/services/group.service';
     providers: [EventService],
 })
 export class EventListComponent implements OnInit {
+
+    @ViewChild(IonContent, null)
+    private content: IonContent;
 
     listEvent;
     group: Group;

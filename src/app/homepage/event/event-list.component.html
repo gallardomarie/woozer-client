@@ -1,35 +1,39 @@
-<!-- TODO Ajouter le nom du groupe dans le header -->
-<div>
-    <app-button text="Créer un événement" [routerLink]="['/woozer/event/form', {groupId: groupId}]"></app-button>
-    <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', groupId]"></app-button>
-  </div>
+<div id="event-list-container">
+    <div id="buttons-container">
+        <app-button text="Créer un événement" [routerLink]="['/woozer/event/form', {groupId: groupId}]"></app-button>
+        <app-button text="Gérer le groupe" [routerLink]="['/woozer/groupe/modification', groupId]"></app-button>
+      </div>
 
-<!-- TODO Scrolling quand page pleine d'événements-->
+    <h2><strong>Événements à venir</strong></h2>
 
-<!-- TODO Titre (composant) -->
+    <ion-content [scrollEvents]="true" #content>
+        <div class="list-event" *ngIf="listEvent">
+            <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id}]">
 
-<div class="list-event" *ngIf="listEvent">
-    <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id}]">
+                <span class= "name">{{event.name}}</span>
 
-        <span class= "name">{{event.name}}</span>
+                <div class="date">
+                    <div *ngIf="!event.date">
+                        <label class="dateLabel"> Date :</label>
+                        <span class="attente">en attente</span>
+                    </div>
+                    <div *ngIf="event.date">
+                        <label class="dateLabel"> Date :</label>
+                        <span> {{event.date | date : 'dd/MM/yyyy'}} </span>
+                        <span *ngIf="event.hour"> - {{event.hour}}</span>
+                    </div>
+                </div>
 
-        <div class="date">
-            <div *ngIf="!event.date">
-                <label class="dateLabel"> Date :</label>
-                <span class="attente">en attente</span>
+                <div class="place">
+                    <label class="placeLabel">Lieu : </label>
+                    <span class="attente" *ngIf="!event.place">en attente</span>
+                    <span>{{event.place}}</span>
+                </div>
+
             </div>
-            <div *ngIf="event.date">
-                <label class="dateLabel"> Date :</label>
-                <span> {{event.date | date : 'dd/MM/yyyy'}} </span>
-                <span *ngIf="event.hour"> - {{event.hour}}</span>
+            <div *ngIf="listEvent.length === 0">
+                Aucun événement à venir.
             </div>
         </div>
-
-        <div class="place">
-            <label class="placeLabel">Lieu : </label>
-            <span class="attente" *ngIf="!event.place">en attente</span>
-            <span>{{event.place}}</span>
-        </div>
-
-    </div>
+    </ion-content>
 </div>

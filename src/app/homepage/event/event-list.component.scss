@@ -1,3 +1,9 @@
+#event-list-container {
+    padding: 0% 4%;
+    font-family: 'Lato', sans-serif!important;
+}
+
+
 .list-event {
     display: list-item;
     
@@ -31,5 +37,16 @@
 
     }
 
+}
 
+#buttons-container {
+    display: flex;
+}
+
+#buttons-container app-button:first-child {
+    margin-right: 3%;
+}
+
+ion-content {
+    height: 65vh;
 }
