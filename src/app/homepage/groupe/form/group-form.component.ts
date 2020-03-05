@@ -32,10 +32,12 @@ export class GroupFormComponent implements OnInit {
     }
 
   ngOnInit() {
-      this.connectedUser = this.cacheService.getUser();
-      if (this.router.url.includes('creation')) {
+    this.connectedUser = this.cacheService.getUser();
+    if (this.router.url.includes('creation')) {
       this.creation = true;
-      this.group = new Group(null, '', [], []);
+      let usersList : User[] = [];
+      usersList.push(this.connectedUser);
+      this.group = new Group(null, '', usersList, []);
     } else {
       this.creation = false;
       this.groupService.findGroupById(+this.getGroupIdFromUrl()).then((group) => {

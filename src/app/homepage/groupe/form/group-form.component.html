@@ -20,8 +20,8 @@
     <ng-template #withImageAndIcon let-attrs="attrs">
       <span><img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 45px;"/></span>
       <span class="search-member-name" [innerHTML]="attrs.data.username"></span>
-      <ion-icon *ngIf="isInGroup(attrs.data)" (click)="removeUser(attrs.data)" name="remove-circle" style="font-size: 30px; color: red;"></ion-icon>
-      <ion-icon *ngIf="!isInGroup(attrs.data)" (click)="addUser(attrs.data)" name="add-circle" style="font-size: 30px; color: green;"></ion-icon>
+      <ion-icon *ngIf="isInGroup(attrs.data)" (click)="removeUser(attrs.data)" name="remove-circle-outline" style="font-size: 30px; color: red;"></ion-icon>
+      <ion-icon *ngIf="!isInGroup(attrs.data)" (click)="addUser(attrs.data)" name="add-circle-outline" style="font-size: 30px; color: green;"></ion-icon>
     </ng-template>
     <ion-auto-complete [dataProvider]="userAutocompleteService" [template]="withImageAndIcon"></ion-auto-complete>
   </div>
