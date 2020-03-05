@@ -23,6 +23,6 @@
     </ion-content>
     <ion-item class="send-message" *ngIf="message">
         <ion-input placeholder="Répondre" [(ngModel)]="message.message"></ion-input>
-        <ion-icon id="send-icon" name="send-outline" slot="end" (click)="sendMessage()"></ion-icon>
+        <ion-icon id="send" name="send" slot="end" (click)="sendMessage()"></ion-icon>
     </ion-item>
 </div>

@@ -1,19 +1,19 @@
 <div class="separation_ligne">
     <div class="footer">
         <div class="blue_circle" [class.disabled]="cache.getCache() ? null : true" routerLink="/woozer/agenda">
-            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-icon name="calendar"></ion-icon>
         </div>
         <div id="debt" class="blue_circle" routerLink="/woozer/dettes">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="cash"></ion-icon>
         </div>
 
         <img src=".../../../assets/OO.jpg" alt="Woozer" (click)="goHome()">
 
         <div id="camera" class="orange_circle" routerLink="/woozer/album">
-            <ion-icon name="camera-outline"></ion-icon>
+            <ion-icon name="camera"></ion-icon>
         </div>
         <div class="orange_circle" (click)="goDiscussions()">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
+            <ion-icon name="chatboxes"></ion-icon>
         </div>
     </div>
 </div>
