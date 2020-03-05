@@ -38,11 +38,25 @@
       <div class="form-group">
         <label for="lieu">Lieu </label>
         <div class="form-group-feedback">
-          <input class="form-control" formControlName="lieu" type="text"/>
+
+          <input *ngIf="!sondageLieuBool" class="form-control" formControlName="lieu" type="text"/>
+
+          <div *ngIf="sondageLieuBool">
+          <div class="option" *ngFor="let option of sondageLieu.options">
+            <ion-icon name="square-outline"></ion-icon>
+            <ion-input type="text" [innerHTML]="option.name" disabled ></ion-input>
+          </div>
+
+          <div *ngIf="sondageLieuBool" class="createSondage" (click)="deleteSondage('Lieu')">
+            <p>Supprimer le sondage</p>
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </div>
+        </div>
+
         </div>
       </div>
 
-      <div class="createSondage" (click)="createSondage('Lieu')">
+      <div *ngIf="!sondageLieuBool" class="createSondage" (click)="createSondage('Lieu',null)">
         <p>Créer un sondage</p>
         <ion-icon name="add-circle-outline"></ion-icon>
       </div>
@@ -50,11 +64,25 @@
       <div class="form-group">
         <label for="date">Date  </label>
         <div class="form-group-feedback">
-          <input class="form-control" formControlName="date" type="date"/>
+
+          <input *ngIf="!sondageDateBool" class="form-control" formControlName="date" type="date"/>
+
+          <div *ngIf="sondageDateBool">
+            <div class="option" *ngFor="let option of sondageDate.options">
+              <ion-icon name="square-outline"></ion-icon>
+              <ion-input type="text" [innerHTML]="option.name" disabled ></ion-input>
+            </div>              
+            <div *ngIf="!sondageLieuBool" class="createSondage" (click)="deleteSondage('Date',null)">
+                <p>Supprimer le sondage</p>
+                <ion-icon name="remove-circle-outline"></ion-icon>
+              </div>
+
+
         </div>
       </div>
+      </div>
 
-      <div class="createSondage" (click)="createSondage('Date')">
+      <div *ngIf="!sondageDateBool" class="createSondage" (click)="createSondage('Date')">
         <p>Créer un sondage</p>
         <ion-icon name="add-circle-outline"></ion-icon>
       </div>
@@ -75,6 +103,22 @@
         <ion-icon name="add-circle-outline"></ion-icon>
       </div>
  
+      
+      <div *ngIf="this.otherSondage.length>0">
+        <div  *ngFor="let sondage of otherSondage">
+          <label> {{sondage.title}} </label><br>
+          <div class="option" *ngFor="let option of sondage.options">
+            <ion-icon name="square-outline"></ion-icon>
+            <ion-input type="text" [innerHTML]="option.name" disabled ></ion-input>
+          </div>
+             
+          <div class="createSondage" (click)="deleteSondage('Date',sondage.title)">
+            <p>Supprimer le sondage</p>
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </div>
+        </div>     
+      </div>   
+
 
     </form>
   </div>

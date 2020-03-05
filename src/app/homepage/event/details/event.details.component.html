@@ -1,6 +1,6 @@
 <!-- Ajouter le nom de l'event dans la barre d'entête -->
 <!-- TODO Créer le bouton de modif d'event -->
-<app-button *ngIf="event" text="Gérer l'événement" [routerLink]="['/woozer/event/form', {eventId: event.id}]"></app-button>
+<app-button *ngIf="event" text="Gérer l'événement" [routerLink]="['/woozer/event/form', {eventId: event.id, groupId: groupId}]"></app-button>
 
 <div class="details" *ngIf="event">
     <label> Description </label>

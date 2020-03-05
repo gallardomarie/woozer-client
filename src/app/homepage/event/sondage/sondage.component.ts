@@ -19,6 +19,7 @@ export class SondageComponent implements OnInit {
     typeInput;
     generique;
     event: EventObject;
+    groupId;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -26,6 +27,7 @@ export class SondageComponent implements OnInit {
         private router: Router
     ) {
         this.activeRoute.params.subscribe(params => {
+            this.groupId = params.groupId;
             this.eventId = params.eventId;
             this.sondageType = params.sondageType;
             this.event = JSON.parse(params.event);
@@ -43,8 +45,6 @@ export class SondageComponent implements OnInit {
             this.typeInput = 'text';
             this.generique = false;
         }
-        console.log(this.eventId);
-        console.log(this.sondageType);
         this.initFormGroup();
         if (!this.generique) {
             this.formGroup.patchValue({
@@ -99,7 +99,7 @@ export class SondageComponent implements OnInit {
         this.event.survey.push(sondage);
 
         const stringEvent = JSON.stringify(this.event);
-        this.router.navigate(['woozer/event/form', {event: stringEvent}]);
+        this.router.navigate(['woozer/event/form', {event: stringEvent, groupId: this.groupId, eventId: this.eventId}]);
     }
 
 }

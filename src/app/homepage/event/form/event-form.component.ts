@@ -26,6 +26,12 @@ export class EventFormComponent implements OnInit {
     savedEvent;
     surveys = [];
 
+    sondageDateBool = false;
+    sondageDate;
+    sondageLieuBool = false;
+    sondageLieu;
+    otherSondage = [];
+
     constructor(
         private eventService: EventService,
         private activeRoute: ActivatedRoute,
@@ -57,13 +63,13 @@ export class EventFormComponent implements OnInit {
         if (this.savedEvent) {
             this.preremplissageForm(this.savedEvent);
             this.surveys = this.savedEvent.survey;
-
-        }
-        if (this.eventId) {
+            this.initSurveys();
+        } else if (this.eventId) {
             this.activeRoute.params.subscribe(
                 params => {
                     this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;
+                    this.surveys = this.event.survey;
                     this.preremplissageForm(this.event);
                 });
             });
@@ -96,16 +102,23 @@ export class EventFormComponent implements OnInit {
             lieu: event.place,
             heure: event.hour
         });
+        this.initSurveys();
     }
 
     saveEvent() {
         const event = this.convertToEventObject();
-        if (this.inGroup) {
-            this.eventService.save(event, +this.groupId);
+        console.log(event);
+        if (this.eventId) {
+            this.eventService.save(event);
             this.router.navigate(['woozer/event', {id: this.groupId}]);
         } else {
-            this.eventService.save(event, +this.formGroup.controls.group.value);
-            this.router.navigate(['woozer/home']);
+            if (this.inGroup) {
+                this.eventService.create(event, +this.groupId);
+                this.router.navigate(['woozer/event', {id: this.groupId}]);
+            } else {
+                this.eventService.create(event, +this.formGroup.controls.group.value);
+                this.router.navigate(['woozer/home']);
+            }
         }
     }
 
@@ -138,7 +151,58 @@ export class EventFormComponent implements OnInit {
 
     createSondage(type) {
         const savedEvent = this.convertToEventObject();
-        this.router.navigate(['woozer/sondage', {sondageType: type , event: JSON.stringify(savedEvent)}]);
+        this.router.navigate(['woozer/sondage', {sondageType: type , event: JSON.stringify(savedEvent), groupId: this.groupId, eventId: this.eventId}]);
     }
+
+    initSurveys() {
+        this.otherSondage = [];
+        if (this.surveys) {
+            this.surveys.forEach(survey => {
+                if (survey.typeSurvey === 'Date') {
+                    this.sondageDateBool = true;
+                    this.sondageDate = survey;
+                    this.formGroup.patchValue({
+                        date: null
+                    });
+                } else if (survey.typeSurvey === 'Lieu') {
+                    this.sondageLieuBool = true;
+                    this.sondageLieu = survey;
+                    this.formGroup.patchValue({
+                        lieu: null
+                    });
+                } else {
+                    this.otherSondage.push(survey);
+                }
+            });
+        }
+    }
+
+    deleteSondage(toDelete, name) {
+        let index;
+        this.surveys.forEach(survey => {
+            if ( survey.typeSurvey === toDelete) {
+                index = this.surveys.indexOf(survey);
+
+                if ( survey.typeSurvey === 'Lieu') {
+                    this.sondageLieuBool = false;
+                    this.sondageLieu = null;
+                    index = this.surveys.indexOf(survey);
+                }
+
+                if (survey.typeSurvey === 'Date') {
+                    this.sondageDate = null;
+                    this.sondageDateBool = false;
+                    index = this.surveys.indexOf(survey);
+                }
+
+                if (survey.typeSurvey === 'generique' && name === survey.title) {
+                    index = this.surveys.indexOf(survey);
+                }
+            }
+        });
+        this.surveys.splice(index, 1);
+        this.initSurveys();
+    }
+
 
 }

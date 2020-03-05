@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EventDetailsComponent implements OnInit {
 
     event: any;
+    groupId;
 
     constructor(
         private eventService: EventService,
@@ -21,6 +22,7 @@ export class EventDetailsComponent implements OnInit {
     ngOnInit() {
         this.activeRoute.params.subscribe(
             params => {
+                this.groupId = params.groupId;
                 this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;
                 });
