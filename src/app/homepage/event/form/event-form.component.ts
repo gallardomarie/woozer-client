@@ -23,6 +23,8 @@ export class EventFormComponent implements OnInit {
     formGroup;
     inGroup;
     groups;
+    savedEvent;
+    surveys = [];
 
     constructor(
         private eventService: EventService,
@@ -35,6 +37,9 @@ export class EventFormComponent implements OnInit {
         this.activeRoute.params.subscribe(params => {
             this.eventId = params.eventId;
             this.groupId = params.groupId;
+            if (params.event !== undefined) {
+                this.savedEvent = JSON.parse(params.event);
+            }
         });
     }
 
@@ -49,12 +54,17 @@ export class EventFormComponent implements OnInit {
             });
         }
         this.initFormGroup();
+        if (this.savedEvent) {
+            this.preremplissageForm(this.savedEvent);
+            this.surveys = this.savedEvent.survey;
+
+        }
         if (this.eventId) {
             this.activeRoute.params.subscribe(
                 params => {
                     this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;
-                    this.preremplissageForm();
+                    this.preremplissageForm(this.event);
                 });
             });
         }
@@ -74,17 +84,17 @@ export class EventFormComponent implements OnInit {
         });
     }
 
-    preremplissageForm() {
+    preremplissageForm(event) {
         let convertedDate = '';
-        if (this.event.date) {
-            convertedDate = this.convertDate(new Date(this.event.date));
+        if (event.date) {
+            convertedDate = this.convertDate(new Date(event.date));
         }
         this.formGroup.patchValue({
-            nom : this.event.name,
-            description: this.event.description,
+            nom : event.name,
+            description: event.description,
             date: convertedDate,
-            lieu: this.event.place,
-            heure: this.event.hour
+            lieu: event.place,
+            heure: event.hour
         });
     }
 
@@ -122,11 +132,13 @@ export class EventFormComponent implements OnInit {
         this.formGroup.controls.date.value === '' ? event.date = null : event.date = this.formGroup.controls.date.value;
         this.formGroup.controls.heure.value === '' ? event.hour = null : event.hour = this.formGroup.controls.heure.value;
         event.place = this.formGroup.controls.lieu.value;
+        event.survey = this.surveys;
         return event;
     }
 
     createSondage(type) {
-        this.router.navigate(['woozer/sondage', {sondageType: type}]);
+        const savedEvent = this.convertToEventObject();
+        this.router.navigate(['woozer/sondage', {sondageType: type , event: JSON.stringify(savedEvent)}]);
     }
 
 }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
+import { EventObject } from '../event';
+import { Survey } from './survey';
+import { SurveyOption } from './survey_options';
 
 @Component({
     selector: 'app-sondage',
@@ -15,14 +18,17 @@ export class SondageComponent implements OnInit {
     allOptions: FormGroup[] = [];
     typeInput;
     generique;
+    event: EventObject;
 
     constructor(
         private activeRoute: ActivatedRoute,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private router: Router
     ) {
         this.activeRoute.params.subscribe(params => {
             this.eventId = params.eventId;
             this.sondageType = params.sondageType;
+            this.event = JSON.parse(params.event);
         });
     }
 
@@ -40,6 +46,11 @@ export class SondageComponent implements OnInit {
         console.log(this.eventId);
         console.log(this.sondageType);
         this.initFormGroup();
+        if (!this.generique) {
+            this.formGroup.patchValue({
+                title: this.sondageType
+            });
+        }
         // 2 options minimum pour un sondage
         this.addOption();
         this.addOption();
@@ -47,13 +58,13 @@ export class SondageComponent implements OnInit {
 
     initFormGroup() {
         this.formGroup = this.formBuilder.group({
+            title: ['', Validators.required],
             sondage: this.formBuilder.array([])
           });
     }
 
     createOption() {
         const formBuilder = this.formBuilder.group({
-            title: ['', Validators.required],
             optionSondage : ['', Validators.required]
           });
         this.allOptions.push(formBuilder);
@@ -72,10 +83,23 @@ export class SondageComponent implements OnInit {
     }
 
     saveSondage() {
-        console.log('Je save le sondage');
-        // TODO Enregistrer le sondage
-        // Retour à l'event en modif avec l'id du sondage
-        // On stock cet id dans une variable pour pouvoir lié le sondage à l'event après enregistrement
+        const sondage = new Survey(null, null, null, null);
+        sondage.typeSurvey = this.sondageType;
+        sondage.title = this.formGroup.value.title;
+        sondage.options = [];
+        this.allOptions.forEach(option => {
+            const o = new SurveyOption(null, null, 0);
+            o.name = option.controls.optionSondage.value;
+            sondage.options.push(o);
+        });
+
+        if (!this.event.survey) {
+            this.event.survey = [];
+        }
+        this.event.survey.push(sondage);
+
+        const stringEvent = JSON.stringify(this.event);
+        this.router.navigate(['woozer/event/form', {event: stringEvent}]);
     }
 
 }
