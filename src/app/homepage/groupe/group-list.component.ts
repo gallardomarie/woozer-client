@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { GroupService } from 'src/services/group.service';
 import { Group } from './group';
 import { Router } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
 import {User} from "../../login/user";
+import {IonContent} from "@ionic/angular";
 
 @Component({
   selector: 'app-group-list',
@@ -11,6 +12,9 @@ import {User} from "../../login/user";
   styleUrls: ['./group-list.component.scss'],
 })
 export class GroupListComponent implements OnInit {
+
+  @ViewChild(IonContent, null)
+  private content: IonContent;
 
   groups: Group[];
   user: User;

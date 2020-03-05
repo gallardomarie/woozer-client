@@ -18,10 +18,13 @@ div.item-content div, ion-label img {
 
 #create-group-button ::ng-deep button  {
   margin-bottom: 5%;
-  margin-top: -70%;
 }
 
 div.item-content div ion-label:first-child {
   color: #FE6C0C;
   font-weight: bold;
+}
+
+ion-content {
+  height: 73vh;
 }
