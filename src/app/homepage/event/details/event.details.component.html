@@ -1,5 +1,4 @@
 <!-- Ajouter le nom de l'event dans la barre d'entête -->
-<!-- TODO Créer le bouton de modif d'event -->
 <app-button *ngIf="event" text="Gérer l'événement" [routerLink]="['/woozer/event/form', {eventId: event.id, groupId: groupId}]"></app-button>
 
 <div class="details" *ngIf="event">
@@ -11,13 +10,26 @@
     <div>
         <label>Date : </label>
         <span *ngIf="event.date"> {{event.date | date : 'dd/MM/yyyy'}}</span>
-        <span *ngIf="!event.date"> en attente </span>
+        <span *ngIf="!event.date && !surveyDate"> en attente </span>
+        <div *ngIf="surveyDate">
+            <div *ngFor="let option of surveyDate.options">
+                <ion-checkbox class="checkbox"></ion-checkbox>
+                <ion-label class="label">{{option.name}}</ion-label>
+                <ion-label class="label"> - {{option.nbVotes}} vote(s)</ion-label>            </div>
+        </div>
     </div>
 
     <div>
         <label> Lieu : </label>
         <span *ngIf="event.place"> {{event.place}}</span>
-        <span *ngIf="!event.place"> en attente </span>
+        <span *ngIf="!event.place && !surveyLieu"> en attente </span>
+        <div *ngIf="surveyLieu">
+            <div *ngFor="let option of surveyLieu.options">
+                <ion-checkbox class="checkbox"></ion-checkbox>
+                <ion-label class="label">{{option.name}}</ion-label>
+                <ion-label class="label"> - {{option.nbVotes}} vote(s)</ion-label>
+            </div>
+        </div>
     </div>
 
     <div>
@@ -26,10 +38,23 @@
         <span *ngIf="!event.hour"> en attente </span>
     </div>
 
+    <div *ngIf="otherSurvey && otherSurvey.length>0">
+        <div *ngFor="let sondage of otherSurvey">
+            <label>{{sondage.title}} :</label>
+            <div *ngFor="let option of sondage.options">
+                <ion-checkbox class="checkbox"></ion-checkbox>
+                <ion-label class="label">{{option.name}}</ion-label>
+                <ion-label class="label"> - {{option.nbVotes}} vote(s)</ion-label>
+
+            </div>
+        </div>
+    </div>
+    <!-- TODO Afficher les participants à l'event -->
+
+    <!--
     <label> Participants : </label>
     <div class="participant">
-        <!-- TODO Afficher les participants à l'event -->
     </div>
 </div>
-
+-->
 <!-- TODO Ajouter le bandeau "Je participe?" -->
