@@ -1,7 +1,7 @@
 <div id="debt-list">
     <app-button text="Ajouter une dépense" (click)="openCreationDialog()"></app-button>
-    <h3 *ngIf="groupId"><strong>Dettes du groupe</strong></h3>
-    <h3 *ngIf="!groupId"><strong>Mes dettes</strong></h3>
+    <h2 *ngIf="groupId"><strong>Dettes du groupe</strong></h2>
+    <h2 *ngIf="!groupId"><strong>Mes dettes</strong></h2>
 
     <div *ngIf="debts?.length > 0">
         <ion-content [scrollEvents]="true" #content>
