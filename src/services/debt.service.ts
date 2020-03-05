@@ -22,4 +22,8 @@ export class DebtService {
         return this.httpClient.post<Debt>(`${environment.apiBaseUrl}debt/save`, debt).toPromise();
     }
 
+    acknowledge(debtId: number) {
+        return this.httpClient.get<Debt>(`${environment.apiBaseUrl}debt/` + debtId + `/acknowledge`).toPromise();
+    }
+
 }
