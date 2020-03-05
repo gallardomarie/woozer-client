@@ -1,12 +1,14 @@
-<ion-item *ngFor="let discussion of discussions" lines="none">
-  <div class="item-content" (click)="navigateToDiscussion(discussion.id)">
-      <ion-label>
-          <img src="https://photos.lci.fr/images/1024/576/friends-4f642a-2@1x.jpeg" style="width: 120px">
-      </ion-label>
-      <div class="discussion-container">
-          <ion-label class="discussion-name">{{discussion.group.name}}</ion-label>
-          <ion-label class="discussion-content"*ngIf="discussion.message !== null">{{discussion.message.user.username}} : {{discussion.message.message}}</ion-label>
-          <ion-label class="discussion-content"*ngIf="discussion.message === null">Aucun message n'a été envoyé.</ion-label>
+<ion-content [scrollEvents]="true" #content>
+    <ion-item *ngFor="let discussion of discussions" lines="none">
+      <div class="item-content" (click)="navigateToDiscussion(discussion.id)">
+          <ion-label>
+              <img src="https://photos.lci.fr/images/1024/576/friends-4f642a-2@1x.jpeg" style="width: 120px">
+          </ion-label>
+          <div class="discussion-container">
+              <ion-label class="discussion-name">{{discussion.group.name}}</ion-label>
+              <ion-label class="discussion-content"*ngIf="discussion.message !== null">{{discussion.message.user.username}} : {{discussion.message.message}}</ion-label>
+              <ion-label class="discussion-content"*ngIf="discussion.message === null">Aucun message n'a été envoyé.</ion-label>
+          </div>
       </div>
-  </div>
-</ion-item>
+    </ion-item>
+</ion-content>

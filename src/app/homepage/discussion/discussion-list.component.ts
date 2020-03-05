@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CacheService } from 'src/services/cache.service';
 import { Router } from '@angular/router';
 import { DiscussionService } from 'src/services/discussion.service';
 import { DiscussionListItem } from './discussion-list-item';
 import {User} from "../../login/user";
+import {IonContent} from "@ionic/angular";
 
 @Component({
   selector: 'app-discussion-list',
@@ -11,6 +12,9 @@ import {User} from "../../login/user";
   styleUrls: ['./discussion-list.component.scss'],
 })
 export class DiscussionListComponent implements OnInit {
+
+  @ViewChild(IonContent, null)
+  private content: IonContent;
 
   private discussions: DiscussionListItem[];
   private user: User;
