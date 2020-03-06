@@ -25,10 +25,6 @@ export class EventService {
     return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/create/` + groupId, event).toPromise();
   }
 
-  save(event: EventObject) {
-    return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/save/`, event).toPromise();
-  }
-
   voter(surveyOption: SurveyOption) {
     return this.httpClient.post<SurveyOption>(`${environment.apiBaseUrl}voter/`, surveyOption).toPromise();
   }
