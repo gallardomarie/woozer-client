@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import { EventObject } from 'src/app/homepage/event/event';
+import { SurveyOption } from 'src/app/homepage/event/sondage/survey_options';
 
 @Injectable()
 export class EventService {
@@ -28,6 +29,9 @@ export class EventService {
     return this.httpClient.post<EventObject>(`${environment.apiBaseUrl}event/save/`, event).toPromise();
   }
 
+  voter(surveyOption: SurveyOption) {
+    return this.httpClient.post<SurveyOption>(`${environment.apiBaseUrl}voter/`, surveyOption).toPromise();
+  }
 
 
 }

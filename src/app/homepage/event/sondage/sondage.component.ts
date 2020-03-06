@@ -88,7 +88,7 @@ export class SondageComponent implements OnInit {
         sondage.title = this.formGroup.value.title;
         sondage.options = [];
         this.allOptions.forEach(option => {
-            const o = new SurveyOption(null, null, 0);
+            const o = new SurveyOption(null, null, 0, []);
             o.name = option.controls.optionSondage.value;
             sondage.options.push(o);
         });

@@ -50,7 +50,7 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (+this.groupId) {
+        if (+this.groupId || this.eventId) {
             this.inGroup = true;
         } else {
             this.inGroup = false;
@@ -107,18 +107,12 @@ export class EventFormComponent implements OnInit {
 
     saveEvent() {
         const event = this.convertToEventObject();
-        console.log(event);
-        if (this.eventId) {
-            this.eventService.save(event);
+        if (this.inGroup) {
+            this.eventService.create(event, +this.groupId);
             this.router.navigate(['woozer/event', {id: this.groupId}]);
         } else {
-            if (this.inGroup) {
-                this.eventService.create(event, +this.groupId);
-                this.router.navigate(['woozer/event', {id: this.groupId}]);
-            } else {
-                this.eventService.create(event, +this.formGroup.controls.group.value);
-                this.router.navigate(['woozer/home']);
-            }
+            this.eventService.create(event, +this.formGroup.controls.group.value);
+            this.router.navigate(['woozer/home']);
         }
     }
 
@@ -137,7 +131,7 @@ export class EventFormComponent implements OnInit {
 
     convertToEventObject() {
         const event = new EventObject(null, '', '');
-        if (this.eventId) {
+        if (this.eventId && this.eventId !== 'undefined') {
             event.id = this.eventId;
         }
         event.name = this.formGroup.controls.nom.value;
