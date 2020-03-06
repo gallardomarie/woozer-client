@@ -6,12 +6,11 @@
 
     <h2><strong>Événements à venir</strong></h2>
 
-    <ion-content [scrollEvents]="true" #content>
-        <div class="list-event" *ngIf="listEvent">
-            <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id}]">
+    <ion-content [scrollEvents]="true" #content>       
+                <div class="list-event" *ngIf="listEvent">
+                    <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id, groupId: groupId}]">
 
-<div class="list-event" *ngIf="listEvent">
-    <div class="event" *ngFor="let event of listEvent" [routerLink]="['/woozer/event/details', {eventId: event.id, groupId: groupId}]">
+                <span class="name">{{event.name}}</span>
 
                 <div class="date">
                     <div *ngIf="!event.date">
