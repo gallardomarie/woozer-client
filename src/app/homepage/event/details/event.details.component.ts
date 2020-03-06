@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { EventService } from 'src/services/event.service';
 import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/services/cache.service';
-import { GroupService } from 'src/services/group.service';
 import { SurveyOption } from '../sondage/survey_options';
+import { IonContent } from '@ionic/angular';
 
 @Component({
     selector: 'app-event-details',
@@ -14,6 +14,9 @@ import { SurveyOption } from '../sondage/survey_options';
 
 export class EventDetailsComponent implements OnInit {
 
+    @ViewChild(IonContent, null)
+    private content: IonContent;
+    
     event: any;
     groupId;
 

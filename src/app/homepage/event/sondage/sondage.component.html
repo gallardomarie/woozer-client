@@ -1,4 +1,6 @@
-<div class="sondage" [formGroup]="formGroup">
+    <div class="sondage" [formGroup]="formGroup">
+    <ion-content [scrollEvents]="true" #content>
+
     <div class="titleSection">
         <h4 class="title">Titre du sondage :</h4>
         <ion-input *ngIf="generique" class="title" type="text" formControlName="title"></ion-input>
@@ -22,6 +24,7 @@
         <p>Supprimer une option</p>
         <ion-icon name="remove-circle-outline"></ion-icon>
       </div>
+</ion-content>
 
       <app-button text="Ajouter le sondage" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveSondage()"></app-button>
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from 'src/services/event.service';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -7,6 +7,7 @@ import { EventObject } from '../event';
 import { CacheService } from 'src/services/cache.service';
 import { GroupService } from 'src/services/group.service';
 import { ValidateGroup } from './group-validator';
+import { IonContent } from '@ionic/angular';
 
 @Component({
     selector: 'app-event-form',
@@ -16,6 +17,9 @@ import { ValidateGroup } from './group-validator';
 })
 
 export class EventFormComponent implements OnInit {
+
+    @ViewChild(IonContent, null)
+    private content: IonContent;
 
     eventId;
     groupId;

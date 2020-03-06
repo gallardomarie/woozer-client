@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { EventObject } from '../event';
 import { Survey } from './survey';
 import { SurveyOption } from './survey_options';
+import { IonContent } from '@ionic/angular';
 
 @Component({
     selector: 'app-sondage',
@@ -11,6 +12,9 @@ import { SurveyOption } from './survey_options';
     styleUrls: ['./sondage.component.scss'],
 })
 export class SondageComponent implements OnInit {
+
+    @ViewChild(IonContent, null)
+    private content: IonContent;
 
     eventId;
     sondageType;

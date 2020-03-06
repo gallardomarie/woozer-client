@@ -1,3 +1,4 @@
+<ion-content [scrollEvents]="true" #content>
 <div class="event-form">
 
     <form [formGroup]="formGroup">
@@ -123,5 +124,6 @@
     </form>
   </div>
 
+</ion-content>
   <app-button text="Valider" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveEvent()"></app-button>
   
