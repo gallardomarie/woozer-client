@@ -11,10 +11,27 @@
 
   .title {
     font-weight: bold;
-    text-align: -webkit-center;
+    margin-left: 8%;
   }
 
   .button {
     font-size: 12px;
     margin: 3%;
+  }
+
+  #popup-topbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ion-item {
+    margin-bottom: 4%;
+  }
+
+  .error-msg {
+    color: red;
+  }
+
+  #user-dropdown-list {
+    width: 100%;
   }

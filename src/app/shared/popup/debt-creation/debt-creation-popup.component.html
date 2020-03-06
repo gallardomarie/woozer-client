@@ -1,51 +1,48 @@
-<button class="close" (click)="closeModal()">
-    <ion-icon name="close"></ion-icon>
-</button>
+<div id="popup-topbar">
+    <h4 class="title">Ajout d'une dette</h4>
+    <button class="close" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+    </button>
+</div>
 
-<h4 class="title">Ajout d'une dette</h4>
+<ion-content>
+    <form (ngSubmit)="save()" [formGroup]="debtForm" id="debt-form">
+        <ion-list inset>
 
+            <ion-item >
+                <ion-label position="stacked">Montant dépensé</ion-label>
+                <ion-input type="number" formControlName="amount" [(ngModel)]="debt.amount"></ion-input>
+            </ion-item>
 
-<form (ngSubmit)="save()" [formGroup]="debtForm" id="debt-form">
-    <ion-list inset>
-
-        <ion-item >
-            <ion-label position="stacked">Montant dépensé</ion-label>
-            <ion-input type="number" formControlName="amount" [(ngModel)]="debt.amount"></ion-input>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="stacked">Quel groupe ?</ion-label>
-            <ion-select formControlName="selectedGroup" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="selectedGroup" (ionChange)="updateUsers(selectedGroup)">
-                <ion-select-option *ngFor="let group of groups" [value]="group">{{group.name}}</ion-select-option>
-            </ion-select>
-        </ion-item>
-
-        <ion-item>
-            <div *ngIf="users?.length > 0">
-                <ion-label position="stacked">Pour qui ?</ion-label>
-                <ion-select formControlName="payedFor" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="debt.payedFor">
-                    <ion-select-option *ngFor="let user of users" [value]="user">{{user.username}}</ion-select-option>
+            <ion-item *ngIf="!groupId">
+                <ion-label position="stacked">Quel groupe ?</ion-label>
+                <ion-select formControlName="selectedGroup" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="selectedGroup" (ionChange)="updateUsers(selectedGroup)">
+                    <ion-select-option *ngFor="let group of groups" [value]="group">{{group.name}}</ion-select-option>
                 </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="users">
+                <div *ngIf="users?.length > 0" id="user-dropdown-list">
+                    <ion-label position="stacked">Pour qui ?</ion-label>
+                    <ion-select formControlName="payedFor" [compareWith]="compareFn" okText="Ok" cancelText="Retour" [(ngModel)]="debt.payedFor">
+                        <ion-select-option *ngFor="let user of users" [value]="user">{{user.username}}</ion-select-option>
+                    </ion-select>
+                </div>
+                <div *ngIf="users?.length === 0" class="error-msg">
+                    Aucun membre dans le groupe sélectionné.
+                </div>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Détails</ion-label>
+                <ion-input type="text" formControlName="comment" [(ngModel)]="debt.comment"></ion-input>
+            </ion-item>
+
+            <div class="ion-padding-horizontal">
+                <app-button text="Valider" type="submit"></app-button>
             </div>
-            <div *ngIf="!selectedGroup">
-                <ion-label position="stacked">Pour qui ?</ion-label>
-                Veuillez sélectionner un groupe afin de pouvoir choisir un membre.
-            </div>
-            <div *ngIf="users?.length === 0">
-                <ion-label position="stacked">Pour qui ?</ion-label>
-                Il n'y a aucun membre dans le groupe sélectionné, excepté vous.
-            </div>
-        </ion-item>
 
-        <ion-item>
-            <ion-label position="stacked">Détails</ion-label>
-            <ion-input type="text" formControlName="comment" [(ngModel)]="debt.comment"></ion-input>
-        </ion-item>
+        </ion-list>
 
-        <div class="ion-padding-horizontal">
-            <app-button text="Valider" type="submit"></app-button>
-        </div>
-
-    </ion-list>
-
-</form>
+    </form>
+</ion-content>
