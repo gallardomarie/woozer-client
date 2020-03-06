@@ -89,6 +89,7 @@ export class GroupFormComponent implements OnInit {
   save() {
     this.groupService.save(this.group).then((groupSaved) => {
       this.cacheService.emitChange(groupSaved.id);
+      this.cacheService.changeTitleTopBar("Nom du groupe");
       this.router.navigate(['/woozer/event', {id: groupSaved.id}]);
     });
     // TODO faire un retour utilisateur pour dire que groupe bien crée/modifié
