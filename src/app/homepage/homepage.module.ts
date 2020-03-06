@@ -22,6 +22,7 @@ import { DiscussionService } from 'src/services/discussion.service';
 import {DiscussionDetailsComponent} from './discussion/details/discussion-details.component';
 import { MessageService } from 'src/services/message.service';
 import {DebtService} from '../../services/debt.service';
+import { SondageComponent } from './event/sondage/sondage.component';
 
 const routes: Routes = [
     {
@@ -75,6 +76,10 @@ const routes: Routes = [
             {
                 path: 'event/form',
                 component: EventFormComponent
+            },
+            {
+                path: 'sondage',
+                component: SondageComponent
             }
         ]
     },
@@ -101,7 +106,8 @@ const routes: Routes = [
         GroupFormComponent,
         EventListComponent,
         EventDetailsComponent,
-        EventFormComponent
+        EventFormComponent,
+        SondageComponent
     ],
     providers: [
         GroupService,

@@ -14,3 +14,26 @@
     }
 }
 
+.checkbox {
+    
+    margin: 2%;
+    margin-left: 10%;
+    --background-checked: #fe6d0c;
+    --border-color-checked: #fe6d0c;
+}
+
+
+.label {
+    margin-bottom : 3px;
+    vertical-align: super;
+}
+
+ion-content {
+    height: 75vh;
+
+    div {
+        div {
+            margin-bottom: 20px;
+        }
+    }
+}
