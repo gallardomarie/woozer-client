@@ -2,10 +2,14 @@
 
 <app-calendar (sendEventsSansDate)="getEvents($event)"></app-calendar>
 
-<div *ngIf="eventsSansDate.length > 0">
-    <h2>Evénements sans date fixée</h2>
-    <!-- TODO Scrollbar -->
-    <div *ngFor="let event of eventsSansDate">
-        <div class="event" [routerLink]="['/woozer/event/details', {eventId: event.id}]"> {{event.name}} </div>
+<h2><strong>Événements sans date fixée</strong></h2>
+<ion-content [scrollEvents]="true" #content>
+    <div *ngIf="eventsSansDate.length > 0">
+        <div *ngFor="let event of eventsSansDate">
+            <div class="event" [routerLink]="['/woozer/event/details', {eventId: event.id}]"> {{event.name}} </div>
+        </div>
     </div>
-</div>
+    <div *ngIf="eventsSansDate.length === 0" id="no-fixed-event">
+        Aucun événement sans date fixée.
+    </div>
+</ion-content>

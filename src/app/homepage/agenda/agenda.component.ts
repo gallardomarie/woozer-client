@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import {CacheService} from "../../../services/cache.service";
+import {IonContent} from "@ionic/angular";
 
 @Component({
   selector: 'app-agenda',
@@ -8,6 +9,9 @@ import {CacheService} from "../../../services/cache.service";
   styleUrls: ['./agenda.component.scss'],
 })
 export class AgendaComponent implements OnInit {
+
+  @ViewChild(IonContent, null)
+  private content: IonContent;
 
   groupId;
   eventsSansDate = [];
