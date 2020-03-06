@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {UserAutocompleteService} from '../../../../services/user-autocomplete.service';
 import {User} from '../../../login/user';
 import {Group} from '../group';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { GroupService } from 'src/services/group.service';
 import {CacheService} from '../../../../services/cache.service';
+import {map} from "rxjs/operators";
+import {UserService} from "../../../../services/user.service";
 
 @Component({
   selector: 'app-group-form',
@@ -18,16 +19,19 @@ export class GroupFormComponent implements OnInit {
   groupForm: FormGroup;
   creation: boolean;
   connectedUser: User;
+  searchText: string = "";
+  usersDropAutocomplete: User[];
 
     constructor(
-        public userAutocompleteService: UserAutocompleteService,
         private fb: FormBuilder,
         private router: Router,
         private groupService: GroupService,
-        private cacheService: CacheService
+        private cacheService: CacheService,
+        private userService: UserService
     ) {
         this.groupForm = fb.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+            searchText: ['']
       });
     }
 
@@ -46,6 +50,20 @@ export class GroupFormComponent implements OnInit {
     }
   }
 
+  search() {
+    if (!this.searchText) {
+      return false;
+    }
+
+    this.userService.searchByUsername(this.searchText).then((users) => {
+      this.usersDropAutocomplete = users;
+    });
+  }
+
+  logTest() {
+      console.log("click test");
+  }
+
   getGroupIdFromUrl() {
     let urlArray = this.router.url.split('/');
     return urlArray[urlArray.length -1];
@@ -58,10 +76,10 @@ export class GroupFormComponent implements OnInit {
   }
 
   removeUser(user: User) {
-    console.log(`taille users avant : ${this.group.users}`);
-    const users = this.group.users;
-    users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
-    console.log(`taille users après : ${this.group.users}`);
+      if (this.connectedUser.id !== user.id) {
+        const users = this.group.users;
+        users.splice(users.findIndex((userArray) => userArray.id === user.id), 1);
+      }
   }
 
   isInGroup(user: User) {

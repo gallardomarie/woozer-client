@@ -25,7 +25,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr);
-import {AutoCompleteModule} from 'ionic4-auto-complete';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { MatDialogModule } from '@angular/material/dialog';
         ReactiveFormsModule,
         HttpClientModule,
         SharedModule,
-        AutoCompleteModule,
         CommonModule,
         FlatpickrModule.forRoot(),
         CalendarModule.forRoot({

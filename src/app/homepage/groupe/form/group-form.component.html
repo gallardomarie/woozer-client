@@ -16,14 +16,24 @@
 
   <h4>Ajouter des membres</h4>
 
-  <div class="ion-form-group">
-    <ng-template #withImageAndIcon let-attrs="attrs">
-      <span><img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 45px;"/></span>
-      <span class="search-member-name" [innerHTML]="attrs.data.username"></span>
-      <ion-icon *ngIf="isInGroup(attrs.data)" (click)="removeUser(attrs.data)" name="remove-circle-outline" style="font-size: 30px; color: red;"></ion-icon>
-      <ion-icon *ngIf="!isInGroup(attrs.data)" (click)="addUser(attrs.data)" name="add-circle-outline" style="font-size: 30px; color: green;"></ion-icon>
-    </ng-template>
-    <ion-auto-complete [dataProvider]="userAutocompleteService" [template]="withImageAndIcon"></ion-auto-complete>
+  <div class="autocomplete">
+    <ion-searchbar
+            formControlName="searchText"
+            [(ngModel)]="searchText"
+            (ionInput)="search()"
+            placeholder="Rechercher"
+            debounce=500>
+    </ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let user of usersDropAutocomplete" (click)="logTest()">
+        <span class="img-container"><img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="width: 45px"/></span>
+        <span class="name-icon-container">
+          <span class="search-member-name">{{user.username}}</span>
+          <ion-icon *ngIf="isInGroup(user)" (click)="removeUser(user)" name="remove-circle-outline" style="font-size: 30px; color: red;"></ion-icon>
+          <ion-icon *ngIf="!isInGroup(user)" (click)="addUser(user)" name="add-circle-outline" style="font-size: 30px; color: green;"></ion-icon>
+        </span>
+      </ion-item>
+    </ion-list>
   </div>
 
   <div id="end-page-container">

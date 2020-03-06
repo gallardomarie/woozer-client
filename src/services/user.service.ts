@@ -14,7 +14,7 @@ export class UserService {
   }
 
   searchByUsername(term: string) {
-    return this.httpClient.get<User[]>(`${environment.apiBaseUrl}user/username/like/` + term);
+    return this.httpClient.get<User[]>(`${environment.apiBaseUrl}user/username/like/` + term).toPromise();
   }
 
   findAll() {

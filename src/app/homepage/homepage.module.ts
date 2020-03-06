@@ -14,8 +14,6 @@ import {GroupService} from '../../services/group.service';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import {UserAutocompleteService} from '../../services/user-autocomplete.service';
-import {AutoCompleteModule} from 'ionic4-auto-complete';
 import { EventListComponent } from './event/event-list.component';
 import { EventDetailsComponent } from './event/details/event.details.component';
 import { EventFormComponent } from './event/form/event-form.component';
@@ -89,7 +87,6 @@ const routes: Routes = [
         IonicModule,
         CommonModule,
         FormsModule,
-        AutoCompleteModule,
         ReactiveFormsModule
     ],
     declarations: [
@@ -109,7 +106,6 @@ const routes: Routes = [
     providers: [
         GroupService,
         UserService,
-        UserAutocompleteService,
         CacheService,
         DiscussionService,
         MessageService,

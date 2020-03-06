@@ -62,4 +62,40 @@ ion-auto-complete ::ng-deep ul li {
 
 .search-member-name {
   font-size: 18px;
+  margin-right: 50%;
+}
+
+.autocomplete {
+  width: 100%;
+
+  ion-searchbar {
+    padding: 1px !important;
+  }
+
+  ion-list {
+    position: absolute;
+    width: inherit;
+    overflow-y: scroll;
+    max-height: 150%;
+    z-index: 999;
+
+    ion-item {
+      width: 90%;
+    }
+
+    ion-item:hover {
+      cursor: pointer;
+      background: #f1f1f1
+    }
+
+    .img-container {
+      margin-right: 4%;
+    }
+
+    .name-icon-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
