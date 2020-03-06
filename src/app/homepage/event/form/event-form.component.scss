@@ -41,9 +41,46 @@
 }
 
 ::ng-deep app-button.disabled {
-    div {
         button {
             background-color: #f0f0f0 !important;
-        }
     }
+}
+
+.createSondage, .autreSondage {
+    color: #fe6d0c;
+    display: flex;
+    margin-right: 3%;
+    margin-top: -20px; 
+
+    p {
+        text-decoration: underline;
+    }
+    
+    ion-icon {
+        margin: 5px;  
+        display: flex;
+        align-self: center;
+    }
+}
+
+.createSondage {
+    place-content: flex-end;
+    p { font-size: 14px; }
+}
+
+.autreSondage {
+    place-content: center;
+    p { font-size: 16px; }
+}
+
+.option {
+    display: inline-flex;
+    ion-icon {
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+ion-content {
+    height: 75vh;
 }

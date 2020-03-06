@@ -1,4 +1,5 @@
 import { User } from 'firebase';
+import { Survey } from './sondage/survey';
 
 export class EventObject {
 
@@ -9,6 +10,7 @@ export class EventObject {
         public date?: Date,
         public hour?: string,
         public place?: string,
-        public participant?: User[]
+        public participant?: User[],
+        public survey?: Survey[]
         ) {}
     }
