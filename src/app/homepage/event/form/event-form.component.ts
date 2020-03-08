@@ -112,11 +112,13 @@ export class EventFormComponent implements OnInit {
     saveEvent() {
         const event = this.convertToEventObject();
         if (this.inGroup) {
-            this.eventService.create(event, +this.groupId);
-            this.router.navigate(['woozer/event', {id: this.groupId}]);
+            this.eventService.create(event, +this.groupId).then((eventCreated) => {
+                this.router.navigate(['woozer/event', {id: this.groupId}]);
+            });
         } else {
-            this.eventService.create(event, +this.formGroup.controls.group.value);
-            this.router.navigate(['woozer/home']);
+            this.eventService.create(event, +this.formGroup.controls.group.value).then((eventCreated) => {
+                this.router.navigate(['woozer/home']);
+            });
         }
     }
 
