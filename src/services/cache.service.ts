@@ -6,8 +6,7 @@ import {BehaviorSubject, Subject} from "rxjs";
 export class CacheService {
 
     private emitChangeSource;
-    //TODO enlever quand prod
-    private user: User = {id: 1, email: 'amandine.watrelos@gmail.com', username: 'awatrelos'};
+    private user: User;
 
     private titleTopBar: string = "";
     titleTopBarObservable;

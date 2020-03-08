@@ -50,7 +50,7 @@ const routes: Routes = [
                 component: PhotoAlbumComponent
             },
             {
-                path: 'home',
+                path: 'home/:userId',
                 component: HomeComponent
             },
             {
