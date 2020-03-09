@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CacheService} from "../../../services/cache.service";
-import {Subscription} from "rxjs";
+import {CacheService} from '../../../services/cache.service';
+import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -13,7 +14,8 @@ export class TopbarComponent implements OnInit {
   titleCurrentPage: string;
 
   constructor(
-      private cacheService: CacheService
+      private cacheService: CacheService,
+      private router: Router
   ) {
     this.titleCurrentPage = this.cacheService.getTitleTopBar();
   }
@@ -21,8 +23,16 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.cacheService.titleTopBarObservable
         .subscribe(title => {
-          this.titleCurrentPage= title;
+          this.titleCurrentPage = title;
         });
+  }
+
+  logout() {
+    this.cacheService.changeTitleTopBar('');
+    // TODO à remettre quand connexion remise
+    // this.cacheService.setUser(null);
+    this.cacheService.emitChange(null);
+    this.router.navigate(['']);
   }
 
 }
