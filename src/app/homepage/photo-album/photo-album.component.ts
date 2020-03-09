@@ -11,12 +11,12 @@ export class PhotoAlbumComponent implements OnInit {
   groupId;
 
   constructor(
-    private cache: CacheService
+    private cacheService: CacheService
   ) { }
 
   ngOnInit() {
-    this.groupId = this.cache.getCache();
-    if (this.groupId) {
+    if (this.cacheService.isInGroup()) {
+      this.groupId = this.cacheService.getGroup().id;
       console.log('Je suis dans le groupe ' + this.groupId);
     } else {
       console.log('Je ne suis dans aucun groupe');

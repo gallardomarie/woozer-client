@@ -41,11 +41,9 @@ export class DebtCreationPopupComponent implements OnInit {
 
     ngOnInit(): void {
         this.connectedUser = this.cacheService.getUser();
-        this.groupId = this.cacheService.getCache();
-        if (this.groupId) {
-            this.groupService.findGroupById(this.groupId).then((group) => {
-                this.updateUsers(group);
-            });
+        this.groupId = this.cacheService.getGroup().id;
+        if (this.cacheService.isInGroup()) {
+            this.updateUsers(this.cacheService.getGroup());
         } else {
             this.groupService.findGroupsByUser(this.connectedUser.id).then((groups) => {
                 this.groups = groups;

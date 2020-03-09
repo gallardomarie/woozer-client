@@ -26,9 +26,12 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToGroup(idGroup){
-    this.cacheService.changeTitleTopBar("Nom du groupe");
-    this.router.navigate(['/woozer/event', {id: idGroup}]);
-    this.cacheService.emitChange(idGroup);
+    this.groupService.findGroupById(idGroup).then((group) => {
+      this.cacheService.setGroup(group);
+      this.cacheService.changeTitleTopBar("Nom du groupe");
+      this.router.navigate(['/woozer/event', {id: idGroup}]);
+    });
+
   }
 
 }

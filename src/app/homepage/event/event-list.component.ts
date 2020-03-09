@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { EventService } from 'src/services/event.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Group } from '../groupe/group';
 import { GroupService } from 'src/services/group.service';
 import {IonContent} from '@ionic/angular';
+import {CacheService} from "../../../services/cache.service";
 
 @Component({
     selector: 'app-event-list',
@@ -24,7 +25,7 @@ export class EventListComponent implements OnInit {
         private eventService: EventService,
         private groupService: GroupService,
         private activeRoute: ActivatedRoute,
-        private router: Router,
+        private cacheService: CacheService,
     ) {
         this.activeRoute.params.subscribe(params => {
             this.groupId = params.id;
@@ -32,11 +33,9 @@ export class EventListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.groupService.findGroupById(this.groupId).then((group) => {
-            this.group = group;
-            this.eventService.findAllByGroupId(this.group.id).then(events => {
-                this.listEvent = events;
-            });
+        this.group = this.cacheService.getGroup();
+        this.eventService.findAllByGroupId(this.group.id).then(events => {
+            this.listEvent = events;
         });
     }
 

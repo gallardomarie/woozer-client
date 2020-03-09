@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
-  groupId: string;
+  groupId: number;
 
   events: CalendarEvent[] = [];
   eventsSansDate: Event[] = [];
@@ -39,15 +39,15 @@ export class CalendarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.groupId = this.cache.getCache();
-    if (this.groupId) {
-      this.eventService.findAllByGroupId(+this.groupId).then(result => {
+    if (this.cache.isInGroup()) {
+      this.groupId = this.cache.getGroup().id;
+      this.eventService.findAllByGroupId(this.groupId).then(result => {
         this.initEventsCalendar(result);
         this.sendEventsSansDate.emit(this.eventsSansDate);
       });
     } else {
-      // TODO: Remplacer par l'id de l'user connecté
-      this.eventService.findByUserId(1).then(result => {
+      this.groupId = null;
+      this.eventService.findByUserId(this.cache.getUser().id).then(result => {
         this.initEventsCalendar(result);
       });
     }

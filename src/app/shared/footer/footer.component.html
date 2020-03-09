@@ -1,6 +1,6 @@
 <div class="separation_ligne">
     <div class="footer">
-        <div class="blue_circle" [class.disabled]="cache.getCache() ? null : true" routerLink="/woozer/agenda">
+        <div class="blue_circle" [class.disabled]="cache.isInGroup() ? false : true" routerLink="/woozer/agenda">
             <ion-icon name="calendar"></ion-icon>
         </div>
         <div id="debt" class="blue_circle" routerLink="/woozer/dettes">
