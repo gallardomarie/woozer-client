@@ -1,13 +1,11 @@
 /** Ionic CSS Variables **/
 :root {
 
-  $colors: (
-          primaryBlue: #13A3C8,
-          primaryOrange: #FE6C0C,
-          secondary: #882e2e,
-          danger: #f84e4e,
-          lightGrey: #f4f5f6,
-          dark: #222,
-  );
+  --ion-color-blue: #13A3C8;
+  --ion-color-orange: #FE6C0C;
+  --ion-color-lightgrey: #f4f5f6;
+  --ion-color-danger: #f84e4e;
+  --ion-color-white: #ffffff;
+  --ion-color-dark: #222222;
 
 }

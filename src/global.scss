@@ -28,6 +28,34 @@
 @import "~ionic4-auto-complete/auto-complete";
 
 
+/* Custom colors */
+
+.ion-color-orange {
+  --ion-color-base: var(--ion-color-orange);
+}
+
+.ion-color-blue {
+  --ion-color-base: var(--ion-color-blue);
+}
+
+.ion-color-lightgrey {
+  --ion-color-base: var(--ion-color-lightgrey);
+}
+
+.ion-color-dark {
+  --ion-color-base: var(--ion-color-dark);
+}
+
+.ion-color-danger {
+  --ion-color-base: var(--ion-color-danger);
+}
+
+.ion-color-white {
+  --ion-color-base: var(--ion-color-white);
+}
+
+/* Global font */
+
 * {
   font-family: 'Lato', sans-serif;
   font-weight: 350;
