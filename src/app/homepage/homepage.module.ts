@@ -23,12 +23,17 @@ import {DiscussionDetailsComponent} from './discussion/details/discussion-detail
 import { MessageService } from 'src/services/message.service';
 import {DebtService} from '../../services/debt.service';
 import { SondageComponent } from './event/sondage/sondage.component';
+import {AccountFormComponent} from '../shared/account/account-form.component';
 
 const routes: Routes = [
     {
         path: 'woozer',
         component: HomepageComponent,
         children: [
+            {
+                path: 'account/edit',
+                component: AccountFormComponent
+            },
             {
                 path: 'agenda',
                 component: AgendaComponent
