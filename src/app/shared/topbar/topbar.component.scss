@@ -1,13 +1,17 @@
-ion-icon {
-    font-size: 230%;
-    color: white;
-    margin: 1.5%;
-}
-
 ion-title {
     width: 80%;
 }
 
+ion-buttons {
+    width: 30%;
+    justify-content: flex-end;
+}
+
+#person-icon {
+    font-size: 200%;
+}
+
 #logout-icon {
+    font-size: 230%;
     margin-left: 10%;
 }
