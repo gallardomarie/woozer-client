@@ -56,6 +56,7 @@ export class EventDetailsComponent implements OnInit {
     }
 
     voter(event, option, sondage) {
+        console.log(this.event);
         let vote: SurveyOption;
         if (event.detail.checked) {
             this.event.survey.forEach(survey => {
@@ -72,7 +73,19 @@ export class EventDetailsComponent implements OnInit {
             this.eventService.voter(vote);
 
         } else {
-            console.log('jenleve mon vote');
+            this.event.survey.forEach(survey => {
+                if (survey.id === sondage) {
+                    survey.options.forEach(o => {
+                        if (o.id === option) {
+                            const index = o.votes.indexOf(this.cache.getUser());
+                            o.votes.splice(index, 1);
+                            vote = o;
+                        }
+                    });
+                }
+            });
+            vote.nbVotes -= 1 ;
+            this.eventService.voter(vote);
         }
     }
 
