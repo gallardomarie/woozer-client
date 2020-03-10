@@ -53,18 +53,23 @@
     </div>
 
 </ion-content>
-    <!-- TODO Afficher les participants à l'event -->
+   
+<div class="details" id="end-page-container">
+    <label>Participants</label>
 
-    <!--
-    <label> Participants : </label>
-    <div class="participant">
+    <div id="members-container">
+      <div *ngFor="let user of event.participant">
+        <img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="height: 50px;"/>
+        <p>{{user?.username}}</p>
+      </div>
+      <div *ngIf="event.participant.length === 0">
+          <span> Il n'y a pour le moment aucun participant à l'événement</span>
+      </div>
     </div>
-</div>
--->
+  </div>
 
 <div class="participation">
     <span>Je participe ?</span>
     <ion-icon name="thumbs-up" id="participe" (click)="jeParticipe()"></ion-icon>
     <ion-icon name="thumbs-down" id="participePas" (click)="jeNeParticipePas()"></ion-icon>
 </div>
-<!-- TODO Ajouter le bandeau "Je participe?" -->
