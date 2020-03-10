@@ -16,7 +16,7 @@ export class EventDetailsComponent implements OnInit {
 
     @ViewChild(IonContent, null)
     private content: IonContent;
-    
+
     event: any;
     groupId;
 
@@ -37,6 +37,7 @@ export class EventDetailsComponent implements OnInit {
                 this.eventService.findById(+params.eventId).then(event => {
                     this.event = event;
                     this.initSurvey(this.event.survey);
+                    this.initParticipation();
                 });
             });
     }
@@ -99,4 +100,62 @@ export class EventDetailsComponent implements OnInit {
         });
         return retour;
     }
+
+    jeParticipe() {
+        const participants = this.event.participant;
+        const user = this.cache.getUser();
+        const index = this.userInParticipant(participants, user);
+        if (index < 0) {
+            // user pas présent dans les participants donc on l'ajoute
+            participants.push(user);
+            this.event.participant = participants;
+            this.eventService.create(this.event, this.groupId);
+            this.adaptColorIcon(true);
+        }
+    }
+
+    jeNeParticipePas() {
+        const participants = this.event.participant;
+        const user = this.cache.getUser();
+        const index = this.userInParticipant(participants, user);
+        if (index >= 0 ) {
+            // user présent donc on le supprime
+            participants.splice(index, 1);
+            this.event.participant = participants;
+            this.eventService.create(this.event, this.groupId);
+            this.adaptColorIcon(false);
+        }
+    }
+
+    initParticipation() {
+        const user = this.cache.getUser();
+        const userInParticipant = this.userInParticipant(this.event.participant, user);
+        const participe = userInParticipant === -1 ? false : true;
+        this.adaptColorIcon(participe);
+    }
+
+    adaptColorIcon(participe: boolean) {
+        const iconParticipe = document.getElementById('participe');
+        const iconParticipePas = document.getElementById('participePas');
+        if (participe) {
+            iconParticipe.style.color = '#13A3C8';
+            iconParticipePas.style.color = 'grey';
+        } else {
+            iconParticipe.style.color = 'grey';
+            iconParticipePas.style.color = '#13A3C8';
+        }
+    }
+
+    userInParticipant(participants, user) {
+        let index = 0;
+        let result = -1;
+        participants.forEach(participant => {
+            if ((participant.id === user.id) && (participant.email === user.email)) {
+                result = index;
+            }
+            index++;
+        });
+        return result;
+    }
+
 }
