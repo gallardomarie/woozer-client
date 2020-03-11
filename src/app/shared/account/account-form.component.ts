@@ -91,6 +91,7 @@ export class AccountFormComponent implements OnInit {
     editAccount() {
         this.userService.save(this.user).then((userSaved) => {
             this.toasterService.displayMessage("Votre compte a bien été modifié.");
+            this.cacheService.changeTitleTopBar("");
             this.cacheService.setUser(userSaved);
             this.router.navigateByUrl('/woozer/home');
         });
