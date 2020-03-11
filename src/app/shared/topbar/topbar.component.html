@@ -2,7 +2,7 @@
   <ion-back-button></ion-back-button>
   <ion-title color="white">{{titleCurrentPage}}</ion-title>
   <ion-buttons slot="end">
-    <ion-icon id="person-icon" name="person" color="white" routerLink="/woozer/account/edit"></ion-icon>
+    <ion-icon id="person-icon" name="person" color="white" (click)="goToMyProfile()"></ion-icon>
     <ion-icon id="logout-icon" name="log-out" color="white" (click)="logout()"></ion-icon>
   </ion-buttons>
 </ion-toolbar>

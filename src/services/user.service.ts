@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {User} from '../app/login/user';
+import {Group} from "../app/homepage/groupe/group";
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,10 @@ export class UserService {
 
   findById(id: number) {
     return this.httpClient.get<User>(`${environment.apiBaseUrl}user/` + id).toPromise();
-}
+  }
+
+  save(user: User) {
+    return this.httpClient.post<User>(`${environment.apiBaseUrl}user/save`, user).toPromise();
+  }
 
 }

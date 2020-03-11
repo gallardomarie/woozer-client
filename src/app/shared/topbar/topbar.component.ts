@@ -27,6 +27,12 @@ export class TopbarComponent implements OnInit {
         });
   }
 
+  goToMyProfile() {
+    this.cacheService.setGroup(null);
+    this.cacheService.changeTitleTopBar('Mon profil');
+    this.router.navigate(['/woozer/account/edit']);
+  }
+
   logout() {
     this.cacheService.changeTitleTopBar('');
     // TODO à remettre quand connexion remise

@@ -1,0 +1,17 @@
+ion-avatar {
+  width: 130px;
+  height: 130px;
+  margin: 10% auto;
+}
+
+ion-item {
+  margin: 0% 4% 5% 4%;
+}
+
+app-button ::ng-deep button {
+  margin-top: 20%;
+}
+
+app-button.disabled ::ng-deep  button {
+  background-color: #f0f0f0 !important;
+}

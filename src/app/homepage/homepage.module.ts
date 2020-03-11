@@ -23,7 +23,7 @@ import {DiscussionDetailsComponent} from './discussion/details/discussion-detail
 import { MessageService } from 'src/services/message.service';
 import {DebtService} from '../../services/debt.service';
 import { SondageComponent } from './event/sondage/sondage.component';
-import {AccountFormComponent} from '../shared/account/account-form.component';
+import {AccountEditComponent} from "./account-edit/account-edit.component";
 
 const routes: Routes = [
     {
@@ -32,7 +32,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'account/edit',
-                component: AccountFormComponent
+                component: AccountEditComponent
             },
             {
                 path: 'agenda',
@@ -112,7 +112,8 @@ const routes: Routes = [
         EventListComponent,
         EventDetailsComponent,
         EventFormComponent,
-        SondageComponent
+        SondageComponent,
+        AccountEditComponent
     ],
     providers: [
         GroupService,

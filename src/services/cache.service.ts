@@ -35,7 +35,15 @@ export class CacheService {
     }
 
     changeTitleTopBar(title: string) {
-        title !== "" ? this.titleTopBarObservable.next(this.getGroup().name) : this.titleTopBarObservable.next("");
+        if (title !== "") {
+            if (this.getGroup() !== null) {
+                this.titleTopBarObservable.next(this.getGroup().name);
+            } else {
+                this.titleTopBarObservable.next(title)
+            }
+        } else {
+            this.titleTopBarObservable.next("");
+        }
     }
 
     getUser() {

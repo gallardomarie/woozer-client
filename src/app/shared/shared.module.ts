@@ -14,6 +14,7 @@ import {CalendarEventPopupComponent} from './popup/calendar-event/calendar-event
 import {DebtCreationPopupComponent} from './popup/debt-creation/debt-creation-popup.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AccountFormComponent} from './account/account-form.component';
+import {ToasterService} from "../../services/toaster.service";
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import {AccountFormComponent} from './account/account-form.component';
     ],
     providers: [
         CacheService,
-        EventService
+        EventService,
+        ToasterService
     ],
     entryComponents: [
         CalendarEventPopupComponent,
