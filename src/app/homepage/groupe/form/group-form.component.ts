@@ -58,9 +58,7 @@ export class GroupFormComponent implements OnInit {
   }
 
   addUser(user: User) {
-    console.log(`taille users avant : ${this.group.users}`);
     this.group.users.push(user);
-    console.log(`taille users après : ${this.group.users}`);
   }
 
   removeUser(user: User) {
