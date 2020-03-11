@@ -25,7 +25,7 @@
             debounce=500>
     </ion-searchbar>
     <ion-list>
-      <ion-item *ngFor="let user of usersDropAutocomplete" (click)="logTest()">
+      <ion-item *ngFor="let user of usersDropAutocomplete">
         <span class="img-container"><img src="https://capenetworks.com/static/images/testimonials/user-icon.svg" style="width: 45px"/></span>
         <span class="name-icon-container">
           <span class="search-member-name">{{user.username}}</span>

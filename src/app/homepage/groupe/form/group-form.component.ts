@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { GroupService } from 'src/services/group.service';
 import {CacheService} from '../../../../services/cache.service';
-import {map} from "rxjs/operators";
 import {UserService} from "../../../../services/user.service";
 
 @Component({
@@ -44,9 +43,7 @@ export class GroupFormComponent implements OnInit {
       this.group = new Group(null, '', usersList, []);
     } else {
       this.creation = false;
-      this.groupService.findGroupById(+this.getGroupIdFromUrl()).then((group) => {
-        this.group = group;
-      });
+        this.group = this.cacheService.getGroup();
     }
   }
 
@@ -60,19 +57,8 @@ export class GroupFormComponent implements OnInit {
     });
   }
 
-  logTest() {
-      console.log("click test");
-  }
-
-  getGroupIdFromUrl() {
-    let urlArray = this.router.url.split('/');
-    return urlArray[urlArray.length -1];
-  }
-
   addUser(user: User) {
-    console.log(`taille users avant : ${this.group.users}`);
     this.group.users.push(user);
-    console.log(`taille users après : ${this.group.users}`);
   }
 
   removeUser(user: User) {
@@ -88,7 +74,7 @@ export class GroupFormComponent implements OnInit {
 
   save() {
     this.groupService.save(this.group).then((groupSaved) => {
-      this.cacheService.emitChange(groupSaved.id);
+      this.cacheService.setGroup(groupSaved);
       this.cacheService.changeTitleTopBar("Nom du groupe");
       this.router.navigate(['/woozer/event', {id: groupSaved.id}]);
     });

@@ -27,18 +27,19 @@ export class DebtListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.groupId = this.cache.getCache();
     this.userId = this.cache.getUser().id;
     this.loadDebts();
   }
 
   loadDebts() {
-      if (this.groupId) {
+      if (this.cache.isInGroup()) {
+          this.groupId = this.cache.getGroup().id;
           this.cache.changeTitleTopBar("Nom du groupe");
           this.debtService.findAllByGroupId(this.groupId).then((debts) => {
               this.debts = debts;
           });
       } else {
+          this.groupId = null;
           this.debtService.findAllByUserId(this.userId).then((debts) => {
               this.debts = debts;
           });

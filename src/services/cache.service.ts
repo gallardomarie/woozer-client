@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {User} from "../app/login/user";
 import {BehaviorSubject, Subject} from "rxjs";
+import {Group} from "../app/homepage/groupe/group";
 
 @Injectable()
 export class CacheService {
 
-    private emitChangeSource;
     private user: User;
+
+    private group: Group;
 
     private titleTopBar: string = "";
     titleTopBarObservable;
@@ -15,11 +17,16 @@ export class CacheService {
         this.titleTopBarObservable= new BehaviorSubject<string>(this.titleTopBar);
     }
 
-    getCache() {
-        return this.emitChangeSource;
+    isInGroup() {
+        return this.group != null;
     }
-    emitChange(change: any) {
-        this.emitChangeSource = change;
+
+    getGroup() {
+        return this.group;
+    }
+
+    setGroup(group: Group) {
+        this.group = group;
     }
 
     getTitleTopBar() {
@@ -27,7 +34,15 @@ export class CacheService {
     }
 
     changeTitleTopBar(title: string) {
-        this.titleTopBarObservable.next(title);
+        if (title !== "") {
+            if (this.getGroup() !== null) {
+                this.titleTopBarObservable.next(this.getGroup().name);
+            } else {
+                this.titleTopBarObservable.next(title)
+            }
+        } else {
+            this.titleTopBarObservable.next("");
+        }
     }
 
     getUser() {

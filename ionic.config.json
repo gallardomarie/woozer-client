@@ -1,7 +1,8 @@
 {
   "name": "woozer",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

@@ -8,11 +8,17 @@ import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './login.component';
 import {UserService} from '../../services/user.service';
 import {SharedModule} from '../shared/shared.module';
+import {AccountCreationComponent} from "./account-creation/account-creation.component";
+import {ToasterService} from "../../services/toaster.service";
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: 'account/create',
+    component: AccountCreationComponent
   }
 ];
 
@@ -25,7 +31,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule
   ],
-  declarations: [LoginComponent],
-  providers: [UserService]
+  declarations: [
+      LoginComponent,
+      AccountCreationComponent
+  ],
+  providers: [
+      UserService,
+      ToasterService
+  ]
 })
 export class LoginModule {}

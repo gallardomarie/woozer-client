@@ -9,8 +9,6 @@ import { CacheService } from 'src/services/cache.service';
 })
 export class FooterComponent implements OnInit {
 
-    private groupId: number;
-
     constructor(
         private router: Router,
         private cache: CacheService
@@ -20,16 +18,15 @@ export class FooterComponent implements OnInit {
     }
 
     goHome() {
-        this.cache.emitChange(null);
+        this.cache.setGroup(null);
         this.cache.changeTitleTopBar("");
         this.router.navigateByUrl('/woozer/home/' + this.cache.getUser().id);
     }
 
     goDiscussions() {
-        this.groupId = this.cache.getCache();
-        if (this.groupId) {
+        if (this.cache.isInGroup()) {
             this.cache.changeTitleTopBar("Nom du groupe");
-            this.router.navigateByUrl("/woozer/discussion/" + this.groupId);
+            this.router.navigateByUrl("/woozer/discussion/" + this.cache.getGroup().id);
         } else {
             this.router.navigateByUrl("/woozer/discussions");
         }

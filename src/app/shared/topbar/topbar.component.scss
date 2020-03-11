@@ -1,22 +1,17 @@
-nav#topbar {
-    background-color: #FE6C0C;
-    display: flex;
-    justify-content: space-between;
+ion-title {
+    width: 80%;
 }
 
-nav#topbar i {
-    vertical-align: middle;
+ion-buttons {
+    width: 30%;
+    justify-content: flex-end;
 }
 
-i {
+#person-icon {
+    font-size: 200%;
+}
+
+#logout-icon {
     font-size: 230%;
-    color: white;
-    margin: 1.5%;
-}
-
-span {
-    margin-left: 4%;
-    align-self: center;
-    color: white;
-    font-size: 20px;
+    margin-left: 10%;
 }

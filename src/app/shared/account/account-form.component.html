@@ -1,0 +1,38 @@
+<ion-avatar>
+    <img src="https://capenetworks.com/static/images/testimonials/user-icon.svg">
+</ion-avatar>
+
+<form (ngSubmit)="save()" [formGroup]="accountForm">
+    <ion-list inset>
+
+        <ion-item >
+            <ion-label position="stacked">Email <span *ngIf="!creation">- non modifiable</span></ion-label>
+            <ion-input type="text" formControlName="email" [readonly]="!creation" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item >
+            <ion-label position="stacked">Nom d'utilisateur</ion-label>
+            <ion-input type="text" formControlName="username" [(ngModel)]="user.username"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="creation">
+            <ion-label position="stacked">Mot de passe</ion-label>
+            <ion-input type="password" formControlName="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="creation">
+            <ion-label position="stacked">Confirmation du mot de passe</ion-label>
+            <ion-input type="password" formControlName="passwordConfirmation" [(ngModel)]="passwordConfirmation"></ion-input>
+        </ion-item>
+
+        <div class="ion-padding-horizontal" *ngIf="creation">
+            <app-button text="Créer mon compte" type="submit"></app-button>
+        </div>
+
+        <div class="ion-padding-horizontal" *ngIf="!creation">
+            <app-button text="Modifier mon profil" type="submit"></app-button>
+        </div>
+
+    </ion-list>
+
+</form>

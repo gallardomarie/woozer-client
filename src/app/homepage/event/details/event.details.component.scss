@@ -29,11 +29,33 @@
 }
 
 ion-content {
-    height: 75vh;
+    height: 50vh;
 
     div {
         div {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
     }
+}
+
+.participation {
+    background-color: rgb(240, 240, 240);
+    padding: 3%;
+    margin: 3%;
+    text-align-last: center;
+
+    span {
+        font-weight: bold;
+        color : #13A3C8;
+        font-size: 20px;
+        margin-right: 20px;
+    }
+
+    ion-icon {
+        font-size: 25px;
+        color: #13A3C8;
+        margin-right: 10px;
+
+    }
+
 }
