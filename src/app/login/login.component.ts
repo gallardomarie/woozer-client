@@ -4,6 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {ToastController} from '@ionic/angular';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
+import { CacheService } from 'src/services/cache.service';
 
 @Component({
   selector: 'page-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
       private fb: FormBuilder,
       private toastController: ToastController,
       private userService: UserService,
-      private router: Router
+      private router: Router,
+      private cacheService: CacheService
   ) {
     this.loginForm = fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -29,9 +31,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.router.navigate(['/woozer/home']);
-    // TODO remettre quand prod
-    /*let data = this.loginForm.value;
+    let data = this.loginForm.value;
 
     if (!data.email) {
       return;
@@ -46,14 +46,14 @@ export class LoginComponent {
             () => {
               this.userService.findUserByMail(data.email).then((data) => {
                 if(data != null) {
-                  this.router.navigate(['/woozer/home'], {state : {user: data}});
+                  this.router.navigate(['/woozer/home/', data.id]);
                 } else {
                   console.log("L'utilisateur n'existe pas en base.");
                 }
               });
             },
             error => this.displayErrorToaster(error.code)
-        );*/
+        );
   }
 
   async displayErrorToaster(errorCode: string) {

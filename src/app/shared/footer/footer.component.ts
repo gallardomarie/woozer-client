@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
     goHome() {
         this.cache.setGroup(null);
         this.cache.changeTitleTopBar("");
-        this.router.navigateByUrl('/woozer/home');
+        this.router.navigateByUrl('/woozer/home/' + this.cache.getUser().id);
     }
 
     goDiscussions() {

@@ -10,19 +10,12 @@ import {User} from "../login/user";
 })
 export class HomepageComponent implements OnInit {
 
-
-  id: number;
-  user: User;
-
   constructor(
-      private cacheService: CacheService,
-      private router: Router
+  
   ) {}
 
   ngOnInit() {
-    //TODO remettre quand prod
-    //this.user = this.router.getCurrentNavigation().extras.state.user;
-    //this.cacheService.setUser(this.user);
+  
   }
 
 }

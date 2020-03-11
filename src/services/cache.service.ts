@@ -6,8 +6,7 @@ import {Group} from "../app/homepage/groupe/group";
 @Injectable()
 export class CacheService {
 
-    //TODO enlever quand prod
-    private user: User = {id: 1, email: 'amandine.watrelos@gmail.com', username: 'awatrelos'};
+    private user: User;
 
     private group: Group;
 
