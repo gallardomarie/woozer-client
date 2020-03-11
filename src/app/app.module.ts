@@ -35,7 +35,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot(
+            {
+                scrollPadding: false,
+                scrollAssist: false
+            }),
         AppRoutingModule,
         AngularFireModule.initializeApp(firebaseConfig.fire),
         LoginModule,
