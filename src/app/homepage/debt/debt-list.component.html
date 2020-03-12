@@ -3,8 +3,8 @@
     <h2 *ngIf="groupId"><strong>Dettes du groupe</strong></h2>
     <h2 *ngIf="!groupId"><strong>Mes dettes</strong></h2>
 
-    <div *ngIf="debts?.length > 0">
-        <ion-content [scrollEvents]="true" #content>
+    <ion-content [scrollEvents]="true" #content>
+        <div *ngIf="debts?.length > 0">
             <ion-item *ngFor="let debt of debts" lines="none">
                 <div class="item-content">
                     <ion-label *ngIf="!isUserConnected(debt.payedFor?.id) && !isUserConnected(debt.payedBy?.id)">
@@ -20,10 +20,9 @@
                 </div>
                 <ion-checkbox [(ngModel)]="debt.done" [checked]="debt.done" (click)="acknowledge(debt.id)"></ion-checkbox>
             </ion-item>
-        </ion-content>
-    </div>
-
-    <div *ngIf="debts?.length < 1" id="no-debt">
-        Aucune dette à afficher.
-    </div>
+        </div>
+        <div *ngIf="debts?.length < 1" id="no-debt">
+            Aucune dette à afficher.
+        </div>
+    </ion-content>
 </div>

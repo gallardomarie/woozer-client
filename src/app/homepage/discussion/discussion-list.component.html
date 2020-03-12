@@ -13,4 +13,7 @@
           </div>
       </div>
     </ion-item>
+    <div *ngIf="discussions?.length === 0" id="no-discussion">
+        Aucune discussion à afficher.
+    </div>
 </ion-content>

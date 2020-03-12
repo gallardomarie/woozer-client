@@ -7,6 +7,9 @@
             <ion-label>{{group.name}}</ion-label>
         </div>
     </ion-item>
+    <div *ngIf="groups?.length === 0" id="no-group">
+        Vous n'appartenez à aucun  groupe.
+    </div>
 </ion-content>
 
 <a routerLink="/woozer/groupe">Voir tous mes groupes</a>
