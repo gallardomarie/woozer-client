@@ -1,4 +1,5 @@
 import {User} from '../../login/user';
+import {Group} from "../groupe/group";
 
 export class Debt {
 
@@ -8,7 +9,8 @@ export class Debt {
         public payedFor: User,
         public amount: number,
         public comment: string,
-        public done: boolean
+        public done: boolean,
+        public group: Group
     ) { }
 
 }

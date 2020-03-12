@@ -41,15 +41,16 @@ export class DebtCreationPopupComponent implements OnInit {
 
     ngOnInit(): void {
         this.connectedUser = this.cacheService.getUser();
+        this.debt = new Debt(null, this.connectedUser, null, null, null, false, null);
         if (this.cacheService.isInGroup()) {
             this.groupId = this.cacheService.getGroup().id;
+            this.debt.group = this.cacheService.getGroup();
             this.updateUsers(this.cacheService.getGroup());
         } else {
             this.groupService.findGroupsByUser(this.connectedUser.id).then((groups) => {
                 this.groups = groups;
             });
         }
-        this.debt = new Debt(null, this.connectedUser, null, null, null, false);
     }
 
     compareFn(o1, o2) {
@@ -67,6 +68,9 @@ export class DebtCreationPopupComponent implements OnInit {
     }
 
     save() {
+        if (!this.cacheService.isInGroup()) {
+            this.debt.group = this.selectedGroup;
+        }
         this.debtService.save(this.debt).then((debtSaved) => {
             this.closeModalWithDebt(debtSaved);
         });
