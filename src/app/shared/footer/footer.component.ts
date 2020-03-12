@@ -19,16 +19,16 @@ export class FooterComponent implements OnInit {
 
     goHome() {
         this.cache.setGroup(null);
-        this.cache.changeTitleTopBar("");
+        this.cache.changeTitleTopBar('');
         this.router.navigateByUrl('/woozer/home/' + this.cache.getUser().id);
     }
 
     goDiscussions() {
         if (this.cache.isInGroup()) {
-            this.cache.changeTitleTopBar("Nom du groupe");
-            this.router.navigateByUrl("/woozer/discussion/" + this.cache.getGroup().id);
+            this.cache.changeTitleTopBar('Nom du groupe');
+            this.router.navigateByUrl('/woozer/discussion/' + this.cache.getGroup().id);
         } else {
-            this.router.navigateByUrl("/woozer/discussions");
+            this.router.navigateByUrl('/woozer/discussions');
         }
     }
 

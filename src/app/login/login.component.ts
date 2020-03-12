@@ -31,13 +31,13 @@ export class LoginComponent {
   }
 
   login() {
-    let data = this.loginForm.value;
+    const data = this.loginForm.value;
 
     if (!data.email) {
       return;
     }
 
-    let credentials = {
+    const credentials = {
       email: data.email,
       password: data.password
     };
@@ -45,10 +45,11 @@ export class LoginComponent {
         .then(
             () => {
               this.userService.findUserByMail(data.email).then((data) => {
-                if(data != null) {
+                if (data != null) {
+                  this.cacheService.setUser(data);
                   this.router.navigate(['/woozer/home/', data.id]);
                 } else {
-                  console.log("L'utilisateur n'existe pas en base.");
+                  console.log('L\'utilisateur n\'existe pas en base.');
                 }
               });
             },
