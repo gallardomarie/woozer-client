@@ -1,5 +1,6 @@
 .details {
     margin:3%;
+    height: 15vh;
 
     .description {
         background-color: rgb(240, 240, 240);
@@ -58,4 +59,12 @@ ion-content {
 
     }
 
+}
+
+#members-container {
+    margin-top: 2vh;
+}
+
+.participant-name {
+    margin-top: 0.5vh;
 }

@@ -1,30 +1,30 @@
     <div class="sondage" [formGroup]="formGroup">
-    <ion-content [scrollEvents]="true" #content>
 
     <div class="titleSection">
         <h4 class="title">Titre du sondage :</h4>
         <ion-input *ngIf="generique" class="title" type="text" formControlName="title"></ion-input>
         <ion-input *ngIf="!generique" class="title" type="text" formControlName="title" disabled></ion-input>
-
-
     </div>
+
+    <ion-content [scrollEvents]="true" #content>
+
     <div formArrayName="sondage">
         <div class="option" [formGroupName]="index" *ngFor="let option of allOptions; let index=index">
             <ion-input [type]="typeInput" formControlName="optionSondage"></ion-input>
             <ion-icon name="square-outline"></ion-icon>
         </div>
     </div>
-
-    <div class="changeOptions" (click)="addOption()">
-        <p>Ajouter une option</p>
-        <ion-icon name="add-circle-outline"></ion-icon>
-      </div>
-
-      <div *ngIf="allOptions.length > 2" class="changeOptions" (click)="deleteOption()">
-        <p>Supprimer une option</p>
-        <ion-icon name="remove-circle-outline"></ion-icon>
-      </div>
 </ion-content>
+
+        <div class="changeOptions" (click)="addOption()">
+            <p>Ajouter une option</p>
+            <ion-icon name="add-circle-outline"></ion-icon>
+        </div>
+
+        <div *ngIf="allOptions.length > 2" class="changeOptions" (click)="deleteOption()">
+            <p>Supprimer une option</p>
+            <ion-icon name="remove-circle-outline"></ion-icon>
+        </div>
 
       <app-button text="Ajouter le sondage" [class.disabled]="!formGroup.valid" (click)="formGroup.valid && saveSondage()"></app-button>
 
