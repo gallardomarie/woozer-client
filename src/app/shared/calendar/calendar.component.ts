@@ -47,7 +47,9 @@ export class CalendarComponent implements OnInit {
       });
     } else {
       this.groupId = null;
-      this.eventService.findByUserId(this.cache.getUser().id).then(result => {
+      let urlArray = this.router.url.split('/');
+      let userId = +urlArray[urlArray.length -1];
+      this.eventService.findByUserId(userId).then(result => {
         this.initEventsCalendar(result);
       });
     }
