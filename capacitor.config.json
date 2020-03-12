@@ -1,6 +1,6 @@
 {
-  "appId": "Woozer",
-  "appName": "Woozer",
+  "appId": "m2.platine.woozer",
+  "appName": "woozer",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
