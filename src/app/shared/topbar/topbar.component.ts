@@ -35,8 +35,7 @@ export class TopbarComponent implements OnInit {
 
   logout() {
     this.cacheService.changeTitleTopBar('');
-    // TODO à remettre quand connexion remise
-    // this.cacheService.setUser(null);
+    this.cacheService.setUser(null);
     this.cacheService.setGroup(null);
     this.router.navigate(['']);
   }
