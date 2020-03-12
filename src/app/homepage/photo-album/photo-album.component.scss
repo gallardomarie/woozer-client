@@ -1,3 +1,30 @@
 * {
   font-family: 'Lato', sans-serif!important;
 }
+
+ion-content {
+  height: 75vh;
+}
+
+h2, .album-container, .no-album {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.event-name {
+  color: #13A3C8;
+  margin-bottom: 3%;
+}
+
+.photo-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo {
+  margin: 1%;
+}
+
+.album-container {
+  margin-bottom: 4%;
+}

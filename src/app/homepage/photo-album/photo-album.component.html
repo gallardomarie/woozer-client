@@ -1,3 +1,17 @@
-<p>
-  photo-album works!
-</p>
+<h2 *ngIf="!groupId"><strong>Ma galerie photo</strong></h2>
+<h2 *ngIf="groupId"><strong>Galerie photo du groupe</strong></h2>
+
+<ion-content [scrollEvents]="true" #content>
+  <div *ngFor="let album of albums" class="album-container">
+      <ion-label><strong class="event-name">{{album.event.name}} :</strong> {{album.event.date | date : 'dd/MM/yyyy'}}</ion-label>
+      <div class="photo-container">
+        <div *ngFor="let photo of album.photos" class="photo">
+          <img src="{{photo.src}}" style="width: 115px"/>
+        </div>
+      </div>
+  </div>
+
+    <div *ngIf="!groupId && albums?.length < 1" class="no-album">Aucune photo n'a été ajoutée à vos événements.</div>
+    <div *ngIf="groupId && albums?.length < 1" class="no-album">Aucune photo n'a été ajoutée aux événements du groupe.</div>
+</ion-content>
+

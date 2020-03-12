@@ -24,6 +24,7 @@ import { MessageService } from 'src/services/message.service';
 import {DebtService} from '../../services/debt.service';
 import { SondageComponent } from './event/sondage/sondage.component';
 import {AccountEditComponent} from "./account-edit/account-edit.component";
+import {AlbumService} from '../../services/album.service';
 
 const routes: Routes = [
     {
@@ -121,7 +122,8 @@ const routes: Routes = [
         CacheService,
         DiscussionService,
         MessageService,
-        DebtService
+        DebtService,
+        AlbumService
     ]
 })
 export class HomepageModule {}
