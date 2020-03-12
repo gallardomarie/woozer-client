@@ -71,7 +71,7 @@
           <div *ngIf="sondageDateBool">
             <div class="option" *ngFor="let option of sondageDate.options">
               <ion-icon name="square-outline"></ion-icon>
-              <ion-input type="text" [innerHTML]="option.name" disabled ></ion-input>
+              <ion-input type="text" [innerHTML]="option.name | date : 'dd/MM/yyyy'" disabled ></ion-input>
             </div>              
             <div *ngIf="!sondageLieuBool" class="createSondage" (click)="deleteSondage('Date',null)">
                 <p>Supprimer le sondage</p>
