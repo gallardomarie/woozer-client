@@ -1,15 +1,18 @@
-### Sonar
-Pour lancer une analyse avec Sonar Scanner (il faut avoir défini la variable d'environnement qui pointe vers le dossier /bin de sonar-scanner dans le path) :
-``sonar-scanner   -Dsonar.projectKey=Woozer   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=bb21b4d50008ec9aba401d2de85db36e1cf8a802``
+### Client front-end pour l'application Woozer  
 
-Pour visualiser les analyses Sonar, se rendre dans le dossin /bin de sonarqube : 
-``./sonar.sh console``
+Retrouvez nous sur Facebook à l'adresse suivante : https://www.facebook.com/Woozer-110270700360039/  
+N'hésitez pas à nous contacter à l'adresse mail suivante : app.woozer@gmail.com  
 
-### Application front
+#### Installation en local  
 
-Il faut avoir installé : 
-- node.js
-- ionic
+Il faut avoir installé :   
+- node.js  
+- ionic  
 
-Pour lancer l'application :
-``ionic serve``
+Installer les packages nécessaires à l'aide de la commande suivante : ``npm install``  
+
+#### Lancement du client  
+
+Si vous voulez utiliser l'API Woozer qui tourne en local, exécuter ``ionic serve``  
+
+Si vous souhaitez utiliser l'API Woozer distante, exécuter ``ionic serve --prod``  
