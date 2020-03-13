@@ -117,7 +117,7 @@ export class EventFormComponent implements OnInit {
             });
         } else {
             this.eventService.create(event, +this.formGroup.controls.group.value).then((eventCreated) => {
-                this.router.navigate(['woozer/home']);
+                this.router.navigate(['woozer/home', this.cache.getUser().id]);
             });
         }
     }

@@ -93,7 +93,7 @@ export class AccountFormComponent implements OnInit {
             this.toasterService.displayMessage("Votre compte a bien été modifié.");
             this.cacheService.changeTitleTopBar("");
             this.cacheService.setUser(userSaved);
-            this.router.navigateByUrl('/woozer/home');
+            this.router.navigate(['woozer/home', this.cacheService.getUser().id]);
         });
     }
 
